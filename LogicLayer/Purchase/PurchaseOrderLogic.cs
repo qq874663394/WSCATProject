@@ -64,7 +64,6 @@ namespace LogicLayer.Purchase
             catch (Exception ex)
             {
                 logModel.result = 0;
-                throw ex;
             }
             finally
             {

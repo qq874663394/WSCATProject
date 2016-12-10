@@ -647,44 +647,17 @@ namespace BaseLayer
                             }
                             try
                             {
-                                foreach (SqlParameter[] para  in paraList)
+                                foreach (SqlParameter[] para in paraList)
                                 {
                                     string cmdText = sqlstr;
                                     SqlParameter[] cmdParms = para;
                                     PrepareCommand(cmd, conn, trans, cmdText, cmdParms);
                                     val2 = cmd.ExecuteNonQuery();
+                                    cmd.Parameters.Clear();
                                     if (val2 == 0)
                                     {
                                         cmdText = strInsert;
                                         cmdParms = para;
-                                        for (int i = 0; i < cmdParms.Length; i++)
-                                        {
-                                            string str1 = "declare " + cmdParms[i];
-                                            string str2 = "set " + cmdParms[i] + " = ";
-                                            if (cmdParms[i].SqlDbType == SqlDbType.NVarChar)
-                                            {
-                                                str1 += " Nvarchar(MAX)";
-                                                str2 += "'" + cmdParms[i].Value + "'";
-                                            }
-                                            if (cmdParms[i].SqlDbType == SqlDbType.DateTime)
-                                            {
-                                                str1 += " DateTime";
-                                                str2 += "'" + cmdParms[i].Value + "'";
-                                            }
-                                            if (cmdParms[i].SqlDbType == SqlDbType.Int)
-                                            {
-                                                str1 += " Int";
-                                                str2 += cmdParms[i].Value;
-                                            }
-                                            if (cmdParms[i].SqlDbType == SqlDbType.Decimal)
-                                            {
-                                                str1 += " Decimal(18,2)";
-                                                str2 += cmdParms[i].Value;
-                                            }
-                                            Console.WriteLine(str1);
-                                            Console.WriteLine(str2);
-                                        }
-                                        Console.WriteLine(cmdText.ToString());
                                         PrepareCommand(cmd, conn, trans, cmdText, cmdParms);
                                         val2 = cmd.ExecuteNonQuery();
                                         if (val2 == 0)

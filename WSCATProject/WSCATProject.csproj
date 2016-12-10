@@ -509,6 +509,7 @@
     <EmbeddedResource Include="Warehouse\WareHuseStorageRack.resx">
       <DependentUpon>WareHuseStorageRack.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
