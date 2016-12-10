@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4541CB9-F997-409A-801A-545A5FB60CF5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BaseLayer</RootNamespace>
+    <AssemblyName>BaseLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NPOI, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HelperUtility\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseHelper.cs" />
+    <Compile Include="Base\BankAccountBase.cs" />
+    <Compile Include="Base\ClientBase.cs" />
+    <Compile Include="Base\EmpolyeeBase.cs" />
+    <Compile Include="Finance\FinanceAccountingSubjectsBase.cs" />
+    <Compile Include="Finance\FinanceSummaryLibraryBase.cs" />
+    <Compile Include="Finance\FinanceVoucherEntryBase.cs" />
+    <Compile Include="Base\MaterialBase.cs" />
+    <Compile Include="Base\OrderTypeBase.cs" />
+    <Compile Include="Base\ProjectCostBase.cs" />
+    <Compile Include="Base\ProjectInCostBase.cs" />
+    <Compile Include="Base\StorageBase.cs" />
+    <Compile Include="Base\StorageRackBase.cs" />
+    <Compile Include="Base\SupplierBase.cs" />
+    <Compile Include="DbHelperSQL.cs" />
+    <Compile Include="Finance\FinanceBankAccessBase.cs" />
+    <Compile Include="Finance\FinanceCollectionBase.cs" />
+    <Compile Include="Finance\FinanceOtherExpenseInDetailBase.cs" />
+    <Compile Include="Finance\FinanceOtherExpensesInBase.cs" />
+    <Compile Include="Finance\FinanceOtherExpensesOutBase.cs" />
+    <Compile Include="Finance\FinanceOtherExpensesOutDetailBase.cs" />
+    <Compile Include="Finance\FinancePaymentBase.cs" />
+    <Compile Include="Finance\FinanceVerificationDetailBase.cs" />
+    <Compile Include="Finance\FinanceVerificationMainBase.cs" />
+    <Compile Include="Finance\FinanceVoucherManagementBase.cs" />
+    <Compile Include="LogBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purchase\FinanceCollectionBase.cs" />
+    <Compile Include="Purchase\PurchaseMainBase.cs" />
+    <Compile Include="Purchase\PurchaseDetailBase.cs" />
+    <Compile Include="Purchase\PurchaseOrderBase.cs" />
+    <Compile Include="Sales\SalesDetailBase.cs" />
+    <Compile Include="Sales\SalesMainBase.cs" />
+    <Compile Include="Sales\SalesOrderBase.cs" />
+    <Compile Include="Sales\SalesOrderDetailBase.cs" />
+    <Compile Include="Warehouse\WarehouseAdjustPriceBase.cs" />
+    <Compile Include="Warehouse\WarehouseAllotBase.cs" />
+    <Compile Include="Warehouse\WarehouseAllotDetailBase.cs" />
+    <Compile Include="Warehouse\WarehouseAssemblyBase.cs" />
+    <Compile Include="Warehouse\WarehouseDisassemblyBase.cs" />
+    <Compile Include="Warehouse\WarehouseInBase.cs" />
+    <Compile Include="Warehouse\WarehouseInDetailBase.cs" />
+    <Compile Include="Warehouse\WarehouseInProcessBase.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryBase.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryDetailBase.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryLossBase.cs" />
+    <Compile Include="Warehouse\WareHouseInventoryProfitBase.cs" />
+    <Compile Include="Warehouse\WarehouseMainBase.cs" />
+    <Compile Include="Warehouse\WarehouseOutBase.cs" />
+    <Compile Include="Warehouse\WarehouseOutDetailBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelperUtility\HelperUtility.csproj">
+      <Project>{317561b1-bfc4-45cd-880f-7f7db14e76bf}</Project>
+      <Name>HelperUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{7bb4607c-212e-44b3-bd65-70d6f36e96fb}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

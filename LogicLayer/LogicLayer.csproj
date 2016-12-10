@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A293828-E2A4-4049-A209-8CAF1D6412AF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LogicLayer</RootNamespace>
+    <AssemblyName>LogicLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BankAccountLogic.cs" />
+    <Compile Include="Base\ClientLogic.cs" />
+    <Compile Include="Base\EmpolyeeLogic.cs" />
+    <Compile Include="Base\MaterialLogic.cs" />
+    <Compile Include="Base\OrderTypeLogic.cs" />
+    <Compile Include="Base\ProjectCostLogic.cs" />
+    <Compile Include="Base\ProjectInCostLogic.cs" />
+    <Compile Include="Base\StorageLogic.cs" />
+    <Compile Include="Base\StorageRackLogic.cs" />
+    <Compile Include="Base\SupplierLogic.cs" />
+    <Compile Include="Finance\FinanceAccountingSubjectsLogic.cs" />
+    <Compile Include="Finance\FinanceBankAccessLogic.cs" />
+    <Compile Include="Finance\FinanceCollectionLogic.cs" />
+    <Compile Include="Finance\FinanceOtherExpensesInLogic.cs" />
+    <Compile Include="Finance\FinanceOtherExpensesOutLogic.cs" />
+    <Compile Include="Finance\FinancePaymentLogic.cs" />
+    <Compile Include="Finance\FinanceSummaryLibraryLogic.cs" />
+    <Compile Include="Finance\FinanceVerificationMainLogic.cs" />
+    <Compile Include="Finance\FinanceVoucherEntryLogic.cs" />
+    <Compile Include="Finance\FinanceVoucherManagementLogic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purchase\PurchaseDetailLogic.cs" />
+    <Compile Include="Purchase\PurchaseMainLogic.cs" />
+    <Compile Include="Purchase\PurchaseOrderLogic.cs" />
+    <Compile Include="Sales\SalesDetailLogic.cs" />
+    <Compile Include="Sales\SalesMainLogic.cs" />
+    <Compile Include="Sales\SalesOrderLogic.cs" />
+    <Compile Include="Warehouse\WarehouseAdjustPriceLogic.cs" />
+    <Compile Include="Warehouse\WarehouseAllotLogic.cs" />
+    <Compile Include="Warehouse\WarehouseAssemblyLogic.cs" />
+    <Compile Include="Warehouse\WarehouseDisassemblyLogic.cs" />
+    <Compile Include="Warehouse\WarehouseInDetailLogic.cs" />
+    <Compile Include="Warehouse\WarehouseInLogic.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryDetailLogic.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryLogic.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryLossLogic.cs" />
+    <Compile Include="Warehouse\WareHouseInventoryProfitLogic.cs" />
+    <Compile Include="Warehouse\WarehouseMainLogic.cs" />
+    <Compile Include="Warehouse\WarehouseOutDetailLogic.cs" />
+    <Compile Include="Warehouse\WarehouseOutLogic.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseLayer\BaseLayer.csproj">
+      <Project>{c4541cb9-f997-409a-801a-545a5fb60cf5}</Project>
+      <Name>BaseLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelperUtility\HelperUtility.csproj">
+      <Project>{317561b1-bfc4-45cd-880f-7f7db14e76bf}</Project>
+      <Name>HelperUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagerLayer\UpdateManagerLayer.csproj">
+      <Project>{fd1a022a-a9a9-4f80-8579-c232888ca642}</Project>
+      <Name>UpdateManagerLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{7bb4607c-212e-44b3-bd65-70d6f36e96fb}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

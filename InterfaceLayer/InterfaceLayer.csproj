@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{18987349-7AB6-4D38-B722-6D229B63A3EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InterfaceLayer</RootNamespace>
+    <AssemblyName>InterfaceLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BankAccountInterface.cs" />
+    <Compile Include="Base\ClientInterface.cs" />
+    <Compile Include="Base\EmpolyeeInterface.cs" />
+    <Compile Include="Base\MaterialInterface.cs" />
+    <Compile Include="Base\OrderTypeInterface.cs" />
+    <Compile Include="Base\ProjectCostInterface.cs" />
+    <Compile Include="Base\ProjectInCostInterface.cs" />
+    <Compile Include="Base\StorageInterface.cs" />
+    <Compile Include="Base\StorageRackInterface.cs" />
+    <Compile Include="Base\SupplierInterface.cs" />
+    <Compile Include="Finance\FinanceAccountingSubjectsInterface.cs" />
+    <Compile Include="Finance\FinanceBankAccessInterface.cs" />
+    <Compile Include="Finance\FinanceCollectionInterface.cs" />
+    <Compile Include="Finance\FinanceOtherExpensesInInterface.cs" />
+    <Compile Include="Finance\FinanceOtherExpensesOutInterface.cs" />
+    <Compile Include="Finance\FinancePaymentInterface.cs" />
+    <Compile Include="Finance\FinanceSummaryLibraryInterface.cs" />
+    <Compile Include="Finance\FinanceVerificationMainInterface.cs" />
+    <Compile Include="Finance\FinanceVoucherEntryInterface.cs" />
+    <Compile Include="Finance\FinanceVoucherManagementInterface.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purchase\PurchaseDetailInterface.cs" />
+    <Compile Include="Purchase\PurchaseMainInterface.cs" />
+    <Compile Include="Purchase\PurchaseOrderInterface.cs" />
+    <Compile Include="Sales\SalesDetailInterface.cs" />
+    <Compile Include="Sales\SalesMainInterface.cs" />
+    <Compile Include="Sales\SalesOrderInterface.cs" />
+    <Compile Include="Warehouse\WarehouseAdjustPriceInterface.cs" />
+    <Compile Include="Warehouse\WarehouseAllotInterface.cs" />
+    <Compile Include="Warehouse\WarehouseAssemblyInterface.cs" />
+    <Compile Include="Warehouse\WarehouseDisassemblyInterface.cs" />
+    <Compile Include="Warehouse\WarehouseInDetailInterface.cs" />
+    <Compile Include="Warehouse\WarehouseInInterface.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryDetailInterface.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryInterface.cs" />
+    <Compile Include="Warehouse\WarehouseInventoryLossInterface.cs" />
+    <Compile Include="Warehouse\WareHouseInventoryProfitInterface.cs" />
+    <Compile Include="Warehouse\WarehouseMainInterface.cs" />
+    <Compile Include="Warehouse\WarehouseOutDetailInterface.cs" />
+    <Compile Include="Warehouse\WarehouseOutInterface.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseLayer\BaseLayer.csproj">
+      <Project>{C4541CB9-F997-409A-801A-545A5FB60CF5}</Project>
+      <Name>BaseLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelperUtility\HelperUtility.csproj">
+      <Project>{317561b1-bfc4-45cd-880f-7f7db14e76bf}</Project>
+      <Name>HelperUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicLayer\LogicLayer.csproj">
+      <Project>{7a293828-e2a4-4049-a209-8caf1d6412af}</Project>
+      <Name>LogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{7bb4607c-212e-44b3-bd65-70d6f36e96fb}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

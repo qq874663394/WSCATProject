@@ -1,0 +1,340 @@
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\2016年8月29日094544\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\2016年8月29日094544\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\2016年8月29日094544\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\2016年8月29日094544\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\WSCATProject\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\619项目\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\619项目\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\619项目\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\619项目\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\619项目\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\619项目\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\619项目\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\619项目\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\619项目\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\619项目\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\619项目\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\619项目\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\619项目\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\619项目\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\619项目\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\619项目\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\2016年9月5日092343\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\2016年9月5日092343\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\2016年9月5日092343\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\2016年9月5日092343\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\619项目\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+E:\619项目\619项目\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\HelperUtility.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\LogicLayer.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\Model.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\NPOI.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\BaseLayer.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\HelperUtility.pdb
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\LogicLayer.pdb
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\Model.pdb
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\BaseLayer.pdb
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+C:\Users\Administrator.USER-20160704SV\Desktop\619\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\619\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\619\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\619\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+E:\619项目\619\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\619\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\619\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\619\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\619\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\619\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\619\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\619\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\619\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\619\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+E:\619项目\619\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\619\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\619\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\619\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\619\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\2016年9月14日085327\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\2016年9月14日085327\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\2016年9月14日085327\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\2016年9月14日085327\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+E:\619项目\2016年10月8日090841\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\2016年10月8日090841\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\2016年10月8日090841\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\2016年10月8日090841\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+E:\619项目\2016年10月18日155346\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\2016年10月18日155346\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\2016年10月18日155346\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\2016年10月18日155346\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\619项目20160924\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\新建文件夹 (2)\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+E:\619项目\2016年10月21日105415\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\2016年10月21日105415\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\2016年10月21日105415\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\2016年10月21日105415\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\BaseLayer.dll
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\HelperUtility.dll
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\LogicLayer.dll
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\Model.dll
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\NPOI.dll
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\BaseLayer.pdb
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\HelperUtility.pdb
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\LogicLayer.pdb
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\Model.pdb
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+E:\619项目\新建文件夹\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+E:\619项目\新建文件夹\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+E:\619项目\新建文件夹\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+E:\619项目\新建文件夹\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\BaseLayer.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\HelperUtility.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\LogicLayer.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\Model.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\NPOI.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\BaseLayer.pdb
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\HelperUtility.pdb
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\LogicLayer.pdb
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\Model.pdb
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+D:\用户目录\Documents\Tencent Files\1059107080\FileRecv\WSCATProject1.0\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\BaseLayer.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\HelperUtility.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\LogicLayer.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\Model.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\NPOI.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\BaseLayer.pdb
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\HelperUtility.pdb
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\LogicLayer.pdb
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\Model.pdb
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+D:\项目\2016年8月29日周一拉取的\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\BaseLayer.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\HelperUtility.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\LogicLayer.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\Model.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\NPOI.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\BaseLayer.pdb
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\HelperUtility.pdb
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\LogicLayer.pdb
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\Model.pdb
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\yang\Desktop\wscat\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+C:\Users\yang\Desktop\wscat\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+C:\Users\yang\Desktop\wscat\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+C:\Users\yang\Desktop\wscat\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\BaseLayer.dll
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\HelperUtility.dll
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\LogicLayer.dll
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\Model.dll
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\NPOI.dll
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\BaseLayer.pdb
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\HelperUtility.pdb
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\LogicLayer.pdb
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\Model.pdb
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+D:\新建文件夹 - 副本\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+D:\新建文件夹 - 副本\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+D:\新建文件夹 - 副本\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+D:\新建文件夹 - 副本\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\BaseLayer.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\HelperUtility.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\LogicLayer.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\Model.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\BaseLayer.pdb
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\HelperUtility.pdb
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\LogicLayer.pdb
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\Model.pdb
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+C:\Users\Administrator\Desktop\361498e28bfbf8c21f431fb2191b734a6babe156\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\BaseLayer.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\HelperUtility.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\LogicLayer.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\Model.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\BaseLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\HelperUtility.pdb
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\LogicLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\Model.pdb
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+C:\Users\Administrator\Desktop\2016-12-01\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\BaseLayer.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\HelperUtility.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\LogicLayer.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\Model.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\NPOI.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\BaseLayer.pdb
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\HelperUtility.pdb
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\LogicLayer.pdb
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\Model.pdb
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+D:\Projects\WSCAT\WSCATProject\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\InterfaceLayer.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\BaseLayer.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\HelperUtility.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\LogicLayer.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\Model.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\UpdateManagerLayer.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\BaseLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\HelperUtility.pdb
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\LogicLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\Model.pdb
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\bin\Debug\UpdateManagerLayer.pdb
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\obj\Debug\InterfaceLayer.dll
+C:\Users\Administrator\Desktop\2016-12-09\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
