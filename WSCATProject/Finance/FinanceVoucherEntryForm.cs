@@ -734,6 +734,7 @@ namespace WSCATProject.Finance
             //MessageBox.Show(_IndexRows.ToString());
 
         }
+
         /// <summary>
         /// supergrid数据填充
         /// </summary>
@@ -757,7 +758,7 @@ namespace WSCATProject.Finance
                 GridRow gr = (GridRow)superGridControlPingZheng.PrimaryGrid.Rows[i];   //获取
                 gr["gridColumnZhaiYao"].Value = XYEEncoding.strHexDecode(dt.Rows[i][7].ToString());
                 gr["gridColumnSubject"].Value = XYEEncoding.strHexDecode(dt.Rows[i][8].ToString());
-                gr["gridColumnid"].Value = dt.Rows[i]["id"].ToString();
+                gr["gridColumncode"].Value = dt.Rows[i]["code"].ToString();
                 string de = dt.Rows[i][9].ToString();
                 int first1 = de.IndexOf(".", 0); //截取小数点位置的索引
                 //借方金额
@@ -777,7 +778,9 @@ namespace WSCATProject.Finance
                 gr["gridColumn37"].Value = cre.Substring(first2 + 1, 1);
                 gr["gridColumn38"].Value = cre.Substring(first2 + 2, 1);
             }
+            superGridControlPingZheng.PrimaryGrid.NewRow(superGridControlPingZheng.PrimaryGrid.Rows.Count);
         }
+
         /// <summary>
         /// 上一单按钮
         /// </summary>
@@ -849,9 +852,9 @@ namespace WSCATProject.Finance
             //贷方
             else
             {
-                for (int j = item1.Length - 1; j > 0; j--)
+                for (int j = item2.Length - 1; j >= 0; j--)
                 {
-                    if (!string.IsNullOrWhiteSpace(gr[item2[j]].Value == null ? "" : gr[item1[j]].Value.ToString()))
+                    if (!string.IsNullOrWhiteSpace(gr[item2[j]].Value == null ? "" : gr[item2[j]].Value.ToString()))
                     {
                         money += gr[item2[j]].Value.ToString();
                     }
@@ -924,14 +927,17 @@ namespace WSCATProject.Finance
                             break;
                         }
                         FinanceVoucherEntryDetail fved = new FinanceVoucherEntryDetail();
-                        if (!string.IsNullOrWhiteSpace(this.lblcode.Text))
+                        if (gr["gridColumncode"].Value != null)
                         {
-                            fved.id = Convert.ToInt32(gr["gridColumnid"].Value);
+                            fved.code = gr["gridColumncode"].Value.ToString();
+                        }
+                        else
+                        {
+                            fved.code = XYEEncoding.strCodeHex(detailCode + i);//其它收款单详细code 
                         }
                         fved.debitAmount = Convert.ToDecimal(Money(1, i));
                         fved.creditAmount = Convert.ToDecimal(Money(2, i));
-                        fved.mainCode = financeVoucherEntry.code;//主表code
-                        fved.code = XYEEncoding.strCodeHex(detailCode + i);//其它收款单详细code  
+                        fved.mainCode = financeVoucherEntry.code;//主表code 
                         fved.summary = gr["gridColumnZhaiYao"].Value == null ? "" : XYEEncoding.strCodeHex(gr["gridColumnZhaiYao"].Value.ToString());//摘要
                         fved.subject = gr["gridColumnSubject"].Value == null ? "" : XYEEncoding.strCodeHex(gr["gridColumnSubject"].Value.ToString());//科目
                         GridRow dr = superGridControlPingZheng.PrimaryGrid.Rows[0] as GridRow;
@@ -1000,6 +1006,7 @@ namespace WSCATProject.Finance
                 MessageBox.Show("错误代码：2106-尝试点击后单数据错误" + ex.Message, "财务凭证条目单温馨提示");
             }
         }
+
         /// <summary>
         /// 新增凭证
         /// </summary>
@@ -1031,6 +1038,7 @@ namespace WSCATProject.Finance
         /// <param name="e"></param>
         private void superGridControlPingZheng_DoubleClick(object sender, EventArgs e)
         {
+            _IndexRows = superGridControlPingZheng.PrimaryGrid.ActiveRow.Index;
             SelectedElementCollection ge = superGridControlPingZheng.PrimaryGrid.GetSelectedCells();
             GridRow gr = (GridRow)superGridControlPingZheng.PrimaryGrid.Rows[_IndexRows];
             GridCell gc = null;
@@ -1047,7 +1055,7 @@ namespace WSCATProject.Finance
                 fslf.ShowDialog();
                 if (!string.IsNullOrWhiteSpace(FinanceSummaryLibraryForm.nodeName))
                 {
-                    gr[0].Value += FinanceSummaryLibraryForm.nodeName;
+                    gr[0].Value = FinanceSummaryLibraryForm.nodeName;
                 }
             }
             //科目
@@ -1057,7 +1065,7 @@ namespace WSCATProject.Finance
                 fas.ShowDialog();
                 if (!string.IsNullOrWhiteSpace(FinanceAccountingSubjectsForm.subjectName))
                 {
-                    gr[1].Value += FinanceAccountingSubjectsForm.subjectName;
+                    gr[1].Value = FinanceAccountingSubjectsForm.subjectName;
                 }
             }
         }

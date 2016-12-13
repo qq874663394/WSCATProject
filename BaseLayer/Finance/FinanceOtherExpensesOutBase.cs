@@ -168,10 +168,9 @@ namespace BaseLayer.Finance
 
                 StringBuilder strInsert = new StringBuilder();
                 strInsert.Append("insert into [T_FinanceOtherExpensesOutDetail] (");
-                strInsert.Append("outCode,projectOutCode,money,abstract,remark,Reserved1,updateDate)");
+                strInsert.Append("outCode,projectOutCode,money,material,remark,Reserved1,updateDate)");
                 strInsert.Append(" values (");
-                strInsert.Append("@outCode,@projectOutCode,@money,@abstract,@remark,@Reserved1,@updateDate)");
-                strInsert.Append(";select @@IDENTITY");
+                strInsert.Append("@outCode,@projectOutCode,@money,@material,@remark,@Reserved1,@updateDate)");
 
                 sqlDetail.Append("update [T_FinanceOtherExpensesOutDetail] set ");
                 //sqlDetail.Append("outCode=@outCode,");
@@ -181,7 +180,7 @@ namespace BaseLayer.Finance
                 sqlDetail.Append("remark=@remark,");
                 sqlDetail.Append("Reserved1=@Reserved1,");
                 sqlDetail.Append("updateDate=@updateDate");
-                sqlDetail.Append(" where id=@id ");
+                sqlDetail.Append(" where projectOutCode=@projectOutCode ");
                 foreach (var item in modelDetail)
                 {
                     SqlParameter[] spsDetail =
@@ -192,8 +191,7 @@ namespace BaseLayer.Finance
                     new SqlParameter("@material", SqlDbType.NVarChar,400),
                     new SqlParameter("@remark", SqlDbType.NVarChar,400),
                     new SqlParameter("@Reserved1", SqlDbType.NVarChar,50),
-                    new SqlParameter("@updateDate", SqlDbType.DateTime),
-                    new SqlParameter("@id", SqlDbType.Int),
+                    new SqlParameter("@updateDate", SqlDbType.DateTime)
                     };
                     spsDetail[0].Value = item.outCode;
                     spsDetail[1].Value = item.projectOutCode;
@@ -202,7 +200,6 @@ namespace BaseLayer.Finance
                     spsDetail[4].Value = item.remark;
                     spsDetail[5].Value = item.Reserved1;
                     spsDetail[6].Value = item.updateDate;
-                    spsDetail[7].Value = item.id;
                     list.Add(spsDetail);
                 }
                 result = DbHelperSQL.ExecuteSqlTranScalar(hashTable, sqlDetail.ToString(), strInsert.ToString(), list);

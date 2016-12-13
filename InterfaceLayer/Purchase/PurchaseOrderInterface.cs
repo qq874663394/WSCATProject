@@ -69,7 +69,7 @@ namespace InterfaceLayer.Purchase
         }
 
         /// <summary>
-        /// 获取默认的下一单数据
+        /// 获取下一单数据
         /// </summary>
         /// <param name="code">code</param>
         /// <returns></returns>

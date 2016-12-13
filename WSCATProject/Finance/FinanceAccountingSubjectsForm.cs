@@ -26,6 +26,7 @@ namespace WSCATProject.Finance
         public static string hotKey;  //快捷代码
         public static int nodeType;  //选项
         public static string subjectName; //科目名称
+        private int type;
         FinanceAccountingSubjectsInterface financeAccountingSubjectsInterface = new FinanceAccountingSubjectsInterface();
 
         /// <summary>
@@ -552,6 +553,7 @@ namespace WSCATProject.Finance
                     int count = updateCode.Length;
                     int frist = updateCode.IndexOf('-');
                     subjectName = updateCode.Substring(frist + 2, count - frist - 2);
+                    type = 1;
                     this.Close();
                 }
             }
@@ -567,6 +569,7 @@ namespace WSCATProject.Finance
                     int count = updateCode.Length;
                     int frist = updateCode.IndexOf('-');
                     subjectName = updateCode.Substring(frist + 2, count - frist - 2);
+                    type = 1;
                     this.Close();
                 }
             }
@@ -583,6 +586,7 @@ namespace WSCATProject.Finance
                     int count = updateCode.Length;
                     int frist = updateCode.IndexOf('-');
                     subjectName = updateCode.Substring(frist + 2, count - frist - 2);
+                    type = 1;
                     this.Close();
                 }
             }
@@ -598,6 +602,7 @@ namespace WSCATProject.Finance
                     int count = updateCode.Length;
                     int frist = updateCode.IndexOf('-');
                     subjectName = updateCode.Substring(frist + 2, count - frist - 2);
+                    type = 1;
                     this.Close();
                 }
             }
@@ -613,9 +618,24 @@ namespace WSCATProject.Finance
                     int count = updateCode.Length;
                     int frist = updateCode.IndexOf('-');
                     subjectName = updateCode.Substring(frist + 2, count - frist - 2);
+                    type = 1;
                     this.Close();
                 }
             }
+        }
+
+        /// <summary>
+        /// 退出事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FinanceAccountingSubjectsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (type == 0)
+            {
+                subjectName = "";
+            }
+            type = 0;
         }
     }
 }

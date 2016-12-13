@@ -2,14 +2,14 @@
 using System;
 namespace Model
 {
-	/// <summary>
-	/// 上下班时刻表
-	/// </summary>
-	[Serializable]
-	public partial class PurchaseMain
-	{
-		public PurchaseMain()
-		{}
+    /// <summary>
+    /// 上下班时刻表
+    /// </summary>
+    [Serializable]
+    public partial class PurchaseMain
+    {
+        public PurchaseMain()
+        { }
         #region Model
         private int _id;
         private int? _isclear = 1;
@@ -46,6 +46,7 @@ namespace Model
         private decimal? _invoicedamount;
         private decimal? _unbilledamount;
         private decimal? _purchaseamount;
+        private string _linkMan;
         /// <summary>
         /// 自增ID
         /// </summary>
@@ -325,6 +326,14 @@ namespace Model
         {
             set { _purchaseamount = value; }
             get { return _purchaseamount; }
+        }
+        /// <summary>
+        /// 联系人
+        /// </summary>
+        public string linkMan
+        {
+            set { _linkMan = value; }
+            get { return _linkMan; }
         }
         #endregion Model
     }

@@ -302,15 +302,12 @@ namespace WSCATProject.Finance
                 {
                     case "Label":
                         c.Enabled = false;
-                        c.ForeColor = Color.Gray;
                         break;
                     case "TextBoxX":
                         c.Enabled = false;
-                        c.BackColor = Color.White;
                         break;
                     case "ComboBoxEx":
                         c.Enabled = false;
-                        c.BackColor = Color.White;
                         break;
                     case "PictureBox":
                         c.Enabled = false;
@@ -323,11 +320,9 @@ namespace WSCATProject.Finance
                 {
                     case "Label":
                         c.Enabled = false;
-                        c.ForeColor = Color.Gray;
                         break;
                     case "TextBoxX":
                         c.Enabled = false;
-                        c.BackColor = Color.White;
                         break;
                     case "PictureBox":
                         c.Enabled = false;
@@ -337,6 +332,7 @@ namespace WSCATProject.Finance
             superGridControlShangPing.PrimaryGrid.ReadOnly = true;
             dateTimePicker1.Enabled = false;
             pictureBoxshenghe.Visible = true;
+            toolStripBtnSave.Enabled = false;
         }
 
         /// <summary>
@@ -350,15 +346,12 @@ namespace WSCATProject.Finance
                 {
                     case "Label":
                         c.Enabled = true;
-                        c.ForeColor = Color.Gray;
                         break;
                     case "TextBoxX":
                         c.Enabled = true;
-                        c.BackColor = Color.White;
                         break;
                     case "ComboBoxEx":
                         c.Enabled = true;
-                        c.BackColor = Color.White;
                         break;
                     case "PictureBox":
                         c.Enabled = true;
@@ -371,11 +364,9 @@ namespace WSCATProject.Finance
                 {
                     case "Label":
                         c.Enabled = true;
-                        c.ForeColor = Color.Gray;
                         break;
                     case "TextBoxX":
                         c.Enabled = true;
-                        c.BackColor = Color.White;
                         break;
                     case "PictureBox":
                         c.Enabled = true;
@@ -385,6 +376,7 @@ namespace WSCATProject.Finance
             superGridControlShangPing.PrimaryGrid.ReadOnly = false;
             dateTimePicker1.Enabled = true;
             pictureBoxshenghe.Visible = false;
+            toolStripBtnSave.Enabled = true;
         }
 
         /// <summary>
@@ -602,6 +594,8 @@ namespace WSCATProject.Finance
             //隐藏lbl清空
             lblCheckState.Text = "";
             lblcode.Text = "";
+            this.toolStripBtnQianDan.Enabled = true;
+            this.toolStripBtnHouDan.Enabled = false;
         }
 
         /// <summary>
@@ -1003,12 +997,15 @@ namespace WSCATProject.Finance
                         {
                             financeOtherExpenseOutDetail.money = Convert.ToDecimal(gr["gridColumnMoney"].Value);//金额
                         }
-                        if (!string.IsNullOrWhiteSpace(this.lblcode.Text))
+                        if (gr["gridColumncode"].Value != null)
                         {
-                            financeOtherExpenseOutDetail.id = Convert.ToInt32(gr["gridColumnid"].Value);
+                            financeOtherExpenseOutDetail.projectOutCode = gr["gridColumncode"].Value.ToString();
+                        }
+                        else
+                        {
+                            financeOtherExpenseOutDetail.projectOutCode = XYEEncoding.strCodeHex(_financeOtherPaymentCode + i);//其它收款单详细code  
                         }
                         financeOtherExpenseOutDetail.outCode = financeOtherExpensesOut.code;//主表code
-                        financeOtherExpenseOutDetail.projectOutCode = XYEEncoding.strCodeHex(_financeOtherPaymentCode + i);//其它收款单详细code  
                         financeOtherExpenseOutDetail.remark = gr["gridColumnbeizhu"].Value == null ? "" : XYEEncoding.strCodeHex(gr["gridColumnbeizhu"].Value.ToString());//备注  
                         GridRow dr = superGridControlShangPing.PrimaryGrid.Rows[0] as GridRow;
                         financeOtherExpenseOutDetailList.Add(financeOtherExpenseOutDetail);
@@ -1130,7 +1127,7 @@ namespace WSCATProject.Finance
                         }
                         if (!string.IsNullOrWhiteSpace(this.lblcode.Text))
                         {
-                            financeOtherExpenseOutDetail.id = Convert.ToInt32(gr["gridColumnid"].Value);
+                            financeOtherExpenseOutDetail.projectOutCode = gr["gridColumncode"].Value.ToString();
                         }
                         financeOtherExpenseOutDetail.outCode = financeOtherExpensesOut.code;//主表code
                         financeOtherExpenseOutDetail.projectOutCode = XYEEncoding.strCodeHex(_financeOtherPaymentCode + i);//其它收款单详细code  
@@ -1149,7 +1146,6 @@ namespace WSCATProject.Finance
             object financePaymentResult = financeOtherExpensesoutinter.AddOrUpdateToMainOrDetail(financeOtherExpensesOut, financeOtherExpenseOutDetailList);
             if (financePaymentResult != null)
             {
-
                 pictureBoxshenghe.Parent = pictureBoxtitle;
                 InitForm();
                 MessageBox.Show("保存和审核其它付款单数据成功", "其它付款单温馨提示");
@@ -1484,6 +1480,7 @@ namespace WSCATProject.Finance
                 gr["gridColumnMoney"].Value = dt.Rows[i]["money"].ToString();
                 gr["gridColumnbeizhu"].Value = XYEEncoding.strHexDecode(dt.Rows[i]["remark"].ToString());
                 gr["gridColumnid"].Value = dt.Rows[i]["id1"].ToString();
+                gr["gridColumncode"].Value = dt.Rows[i]["projectOutCode"].ToString();
                 gr["material"].Value = XYEEncoding.strHexDecode(dt.Rows[i]["material"].ToString());
                 _Money += decimal.Parse(dt.Rows[i]["money"].ToString());
             }

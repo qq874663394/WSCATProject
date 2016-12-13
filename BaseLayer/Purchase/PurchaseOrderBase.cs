@@ -143,7 +143,9 @@ namespace BaseLayer.Purchase
                 sqlMain.Append("makeMan=@makeMan,");
                 sqlMain.Append("examine=@examine,");
                 sqlMain.Append("checkState=@checkState,");
-                sqlMain.Append("depositReceived=@depositReceived");
+                sqlMain.Append("depositReceived=@depositReceived,");
+                sqlMain.Append("contacts=@contacts,");
+                sqlMain.Append("fax=@fax");
                 sqlMain.Append(" where code=@code");
                 SqlParameter[] spsMain =
                 {
@@ -158,7 +160,9 @@ namespace BaseLayer.Purchase
                     new SqlParameter("@makeMan", SqlDbType.NVarChar,40),
                     new SqlParameter("@examine", SqlDbType.NVarChar,40),
                     new SqlParameter("@checkState", SqlDbType.Int,4),
-                    new SqlParameter("@depositReceived", SqlDbType.Decimal,9)
+                    new SqlParameter("@depositReceived", SqlDbType.Decimal,9),
+                    new SqlParameter("@contacts", SqlDbType.NVarChar,40),
+                    new SqlParameter("@fax", SqlDbType.NVarChar,50)
                 };
                 spsMain[0].Value = model.supplierCode;
                 spsMain[1].Value = model.deliversDate;
@@ -172,6 +176,8 @@ namespace BaseLayer.Purchase
                 spsMain[9].Value = model.examine;
                 spsMain[10].Value = model.checkState;
                 spsMain[11].Value = model.depositReceived;
+                spsMain[12].Value = model.contacts;
+                spsMain[13].Value = model.fax;
 
                 hashTable.Add(sqlMain, spsMain);
                 sqlDetail.Append("update [T_PurchaseOrderDetail] set ");

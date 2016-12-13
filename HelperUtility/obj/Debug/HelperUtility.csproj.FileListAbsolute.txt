@@ -110,3 +110,8 @@ C:\Users\Administrator\Desktop\2016-12-09\HelperUtility\bin\Debug\NPOI.dll
 C:\Users\Administrator\Desktop\2016-12-09\HelperUtility\obj\Debug\HelperUtility.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\2016-12-09\HelperUtility\obj\Debug\HelperUtility.dll
 C:\Users\Administrator\Desktop\2016-12-09\HelperUtility\obj\Debug\HelperUtility.pdb
+C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\bin\Debug\HelperUtility.dll
+C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\bin\Debug\HelperUtility.pdb
+C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\obj\Debug\HelperUtility.dll
+C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\obj\Debug\HelperUtility.pdb

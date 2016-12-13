@@ -926,6 +926,7 @@
             this.lblcheckState.Name = "lblcheckState";
             this.lblcheckState.Size = new System.Drawing.Size(0, 12);
             this.lblcheckState.TabIndex = 3;
+            this.lblcheckState.Visible = false;
             // 
             // gridColumncode
             // 

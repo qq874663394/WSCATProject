@@ -260,13 +260,11 @@ fvem.code= (select top 1 code from T_FinanceVoucherEntryMain where id >
                 hashTable.Add(sqlMain, spsMain);
 
                 sqlDetail.Append("update [T_FinanceVoucherEntryDetail] set ");
-                //sqlDetail.Append("mainCode=@mainCode,");
                 sqlDetail.Append("summary=@summary,");
                 sqlDetail.Append("subject=@subject,");
                 sqlDetail.Append("debitAmount=@debitAmount,");
                 sqlDetail.Append("creditAmount=@creditAmount");
-                sqlDetail.Append(" where id=@id ");
-                //sqlDetail.Append(";select @@IDENTITY");
+                sqlDetail.Append(" where code=@code ");
 
                 StringBuilder sqlInsert = new StringBuilder();
                 sqlInsert.Append("insert into [T_FinanceVoucherEntryDetail] (");
@@ -283,14 +281,12 @@ fvem.code= (select top 1 code from T_FinanceVoucherEntryMain where id >
                     new SqlParameter("@subject", SqlDbType.NVarChar,50),
                     new SqlParameter("@debitAmount", SqlDbType.Decimal,9),
                     new SqlParameter("@creditAmount", SqlDbType.Decimal,9),
-                    new SqlParameter("@id", SqlDbType.Int)
                     };
-                    spsDetail[0].Value = item.mainCode;
-                    spsDetail[1].Value = item.summary;
-                    spsDetail[2].Value = item.subject;
-                    spsDetail[3].Value = item.debitAmount;
-                    spsDetail[4].Value = item.creditAmount;
-                    spsDetail[5].Value = item.id;
+                    spsDetail[0].Value = item.summary;
+                    spsDetail[1].Value = item.subject;
+                    spsDetail[2].Value = item.debitAmount;
+                    spsDetail[3].Value = item.creditAmount;
+                    spsDetail[4].Value = item.code;
                     list.Add(spsDetail);
                 }
                 result = DbHelperSQL.ExecuteSqlTranScalar(hashTable, sqlDetail.ToString(), sqlInsert.ToString(), list);

@@ -22,6 +22,7 @@ namespace WSCATProject.Finance
         public static string name; //修改传递的name数据
         public static string hotKey; //快捷代码
         public static string nodeName; //选中的节点
+        private int type; //双击状态
         FinanceSummaryLibraryInterface fsli = new FinanceSummaryLibraryInterface();
 
         public FinanceSummaryLibraryForm()
@@ -293,6 +294,7 @@ namespace WSCATProject.Finance
                 int frist = updateCode.IndexOf('-');
                 name = updateCode.Substring(frist + 2, count - frist - 2);
                 nodeName = name;
+                type = 1;
                 this.Close();
             }
         }
@@ -311,6 +313,7 @@ namespace WSCATProject.Finance
                 int frist = updateCode.IndexOf('-');
                 name = updateCode.Substring(frist + 2, count - frist - 2);
                 nodeName = name;
+                type = 1;
                 this.Close();
             }
         }
@@ -322,7 +325,17 @@ namespace WSCATProject.Finance
         /// <param name="e"></param>
         private void btnNo_Click(object sender, EventArgs e)
         {
+            nodeName = "";
             this.Close();
+        }
+
+        private void FinanceSummaryLibraryForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (type == 0)
+            {
+                nodeName = "";
+            }
+            type = 0;
         }
     }
 }

@@ -2,14 +2,14 @@
 using System;
 namespace Model
 {
-	/// <summary>
-	/// 上下班时刻表
-	/// </summary>
-	[Serializable]
-	public partial class PurchaseDetail
-	{
-		public PurchaseDetail()
-		{}
+    /// <summary>
+    /// 上下班时刻表
+    /// </summary>
+    [Serializable]
+    public partial class PurchaseDetail
+    {
+        public PurchaseDetail()
+        { }
         #region Model
         private int _id;
         private int? _isclear;
@@ -40,6 +40,7 @@ namespace Model
         private decimal? _tax;
         private decimal? _taxtotal;
         private decimal? _discountmoney;
+        private decimal? _discountRate;
         /// <summary>
         /// 栏号自增
         /// </summary>
@@ -271,6 +272,14 @@ namespace Model
         {
             set { _discountmoney = value; }
             get { return _discountmoney; }
+        }
+        /// <summary>
+        /// 折扣额
+        /// </summary>
+        public decimal? discountRate
+        {
+            set { _discountRate = value; }
+            get { return _discountRate; }
         }
         #endregion Model
     }

@@ -260,6 +260,7 @@
             this.gridColumn36 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn37 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn38 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn39 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridCell25 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             this.gridCell26 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             this.gridCell27 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -341,7 +342,6 @@
             this.gridCell79 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             this.gridCell80 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.gridColumn39 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMin)).BeginInit();
@@ -1490,7 +1490,7 @@
             // 
             // gridColumn39
             // 
-            this.gridColumn39.Name = "gridColumnid";
+            this.gridColumn39.Name = "gridColumncode";
             this.gridColumn39.Visible = false;
             // 
             // FinanceVoucherEntryForm

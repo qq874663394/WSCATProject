@@ -30,6 +30,8 @@ namespace WSCATProject.Purchase
         StorageInterface storage = new StorageInterface();//仓库
         BankAccountInterface bank = new BankAccountInterface();//结算账户
         PurchaseMainInterface purchaseMianInterface = new PurchaseMainInterface();
+        MaterialInterface materialInterface = new MaterialInterface();
+        private string code;
         #endregion
 
         #region 数据字段
@@ -550,6 +552,8 @@ namespace WSCATProject.Purchase
                 toolStripBtnSave.Click += ToolStripBtnSave_Click;//保存按钮
                 toolStripBtnShengHe.Click += ToolStripBtnShengHe_Click;//审核按钮
                 toolStripButtonXuanYuanDan.Click += ToolStripButtonXuanYuanDan_Click;//选源单的点击事件
+                toolStripBtnQianDan.Click += ToolStripBtnQianDan_Click;
+                toolStripBtnHouDan.Click += ToolStripBtnHouDan_Click;
                 dataGridViewFuJia.KeyDown += DataGridViewFuJia_KeyDown;
 
                 #region 初始化窗体
@@ -582,12 +586,151 @@ namespace WSCATProject.Purchase
                 pictureBoxTiaoXiangMa.Image = imgTemp;
                 //审核图标
                 pictureBoxShengHe.Parent = pictureBoxtitle;
+                toolStripBtnHouDan.Enabled = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("错误代码：3301-窗体加载时，初始化数据失败！请检查：" + ex.Message, "购货单温馨提示！");
                 this.Close();
                 return;
+            }
+        }
+
+        /// <summary>
+        /// supergrid数据填充
+        /// </summary>
+        /// <param name="dt"></param>
+        public void InitSupergridView(DataTable dt)
+        {
+            //清空行
+            superGridControlShangPing.PrimaryGrid.Rows.Clear();
+            //新增统计行
+            InitDataGridView();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i > 0)
+                {
+                    //新增行
+                    superGridControlShangPing.PrimaryGrid.NewRow(superGridControlShangPing.PrimaryGrid.Rows.Count);
+                }
+                GridRow gr = (GridRow)superGridControlShangPing.PrimaryGrid.Rows[i];   //获取
+                string materialCode = dt.Rows[i]["materialCode"].ToString();
+                DataTable dt1 = new DataTable();
+                dt1 = materialInterface.GetList(3, materialCode);
+                string storageName = storage.GetList(0, dt.Rows[i]["storageCode"].ToString()).Rows[0]["name"].ToString();
+                gr["gridColumnStock"].Value = XYEEncoding.strHexDecode(storageName);  //仓库
+                gr["material"].Value = XYEEncoding.strHexDecode(dt1.Rows[i]["name"].ToString());
+                gr["gridColumnname"].Value = XYEEncoding.strHexDecode(dt1.Rows[i]["name"].ToString());   //商品名称
+                gr["gridColumnModel"].Value = dt1.Rows[i]["model"].ToString();   //规格型号
+                gr["gridColumntiaoxingma"].Value = dt1.Rows[i]["barCode"].ToString();   //条形码
+                gr["gridColumnunit"].Value = XYEEncoding.strHexDecode(dt1.Rows[i]["unit"].ToString());   //单位
+                gr["gridColumndinggoushu"].Value = dt1.Rows[i]["number"].ToString();   //订购数量
+                gr["gridColumnNumber"].Value = dt.Rows[i]["number"].ToString();    //数量
+                gr["gridColumndanjia"].Value = dt.Rows[i]["discountBeforePrice"].ToString();   //单价
+                gr["gridColumnzhekoul"].Value = dt.Rows[i]["discountRate"].ToString();   //折扣率
+                gr["gridColumnzengzhishiu"].Value = XYEEncoding.strHexDecode(dt.Rows[i]["VATRate"].ToString());   //增值税税率
+                gr["gridColumnzhekoue"].Value = dt.Rows[i]["discountMoney"].ToString();   //折扣额
+                gr["gridColumnshuie"].Value = Convert.ToDecimal(dt.Rows[i]["tax"].ToString()) * Convert.ToDecimal(gr["gridColumnNumber"].Value); //税额
+                gr["gridColumnMoney "].Value = Convert.ToDecimal(gr["gridColumndanjia"].Value) * Convert.ToDecimal(gr["gridColumnNumber"].Value);   //金额
+                gr["gridColumnjiashuiheji"].Value = Convert.ToDecimal(gr["gridColumndanjia"].Value) + Convert.ToDecimal(gr["gridColumnNumber"].Value);  //价税合计
+                gr["gridColumnshengchandate"].Value = dt.Rows[i]["productionDate"].ToString();  //生产日期
+                gr["gridColumnbaozhiqi "].Value = dt.Rows[i]["qualityDate"].ToString();  //保质期
+                gr["gridColumnyouxiaoqi"].Value = dt.Rows[i]["effectiveDate"].ToString();  //有效期
+                gr["gridColumnyuandancode"].Value = dt.Rows[i]["tax"].ToString();  //税额
+                gr["gridColumnshengchandate"].Value = dt.Rows[i]["productionDate"].ToString();  //税额
+                gr["gridColumnbaozhiqi "].Value = dt.Rows[i]["tax"].ToString();  //税额
+            }
+        }
+
+        /// <summary>
+        /// 后单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripBtnHouDan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 前单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripBtnQianDan_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                //判断是否code是否存在
+                if (string.IsNullOrWhiteSpace(this.lblcode.Text))
+                {
+                    code = purchaseMianInterface.GetNewCode();
+                    dt = purchaseMianInterface.GetFLastData(code);
+                }
+                else
+                {
+                    code = this.lblcode.Text;
+                    dt = purchaseMianInterface.GetLastData(code);
+                    toolStripBtnHouDan.Enabled = true;
+                }
+
+                SupplierInterface supplierInterface = new SupplierInterface();
+                string suppliercode = dt.Rows[0]["supplierCode"].ToString();
+                string supplierName = supplierInterface.GetList(4, suppliercode).Rows[0]["name"].ToString(); //单位名称
+                string phone = supplierInterface.GetList(4, suppliercode).Rows[0]["phone"].ToString(); //手机
+                BankAccountInterface bankAccountInterface = new BankAccountInterface();
+                string openBank = bankAccountInterface.GetList(0, dt.Rows[0]["accountCode"].ToString(), false, false).Rows[0]["openBank"].ToString(); //银行名称
+                //文本框赋值
+                this.comboBoxExType.Text = XYEEncoding.strHexDecode(dt.Rows[0]["type"].ToString());  //单据类型
+                this.labtextboxTop2.Text = XYEEncoding.strHexDecode(supplierName);  //供应商
+                this.labtextboxTop8.Text = XYEEncoding.strHexDecode(dt.Rows[0]["linkMan"].ToString());//联系人
+                this.labtextboxTop9.Text = phone;
+                this.comboBoxExJieSuaType.Text = XYEEncoding.strHexDecode(dt.Rows[0]["payMethod"].ToString());  //结算方式
+                this.labtextboxTop4.Text = XYEEncoding.strHexDecode(openBank);  //开户银行
+                this.dateTimePickerFuKuan.Value = Convert.ToDateTime(dt.Rows[0]["data"].ToString());  //采购日期
+                this.labtextboxTop7.Text = dt.Rows[0]["unbilledAmount"].ToString();    //采购费用合计
+                this.labtextboxTop3.Text = dt.Rows[0]["purchaseAmount"].ToString();    //本次付款
+                this.labtextboxTop5.Text = dt.Rows[0]["purchaseAmount"].ToString();    //本次核销
+                if (Convert.ToInt32(dt.Rows[0]["urgentState"].ToString()) == 0)   //加急状态
+                {
+                    this.checkBoxJiaoJi.Checked = false;
+                }
+                else
+                {
+                    this.checkBoxJiaoJi.Checked = true;
+                }
+                this.labtextboxBotton2.Text = XYEEncoding.strHexDecode(dt.Rows[0]["remark"].ToString());//摘要
+                this.ltxtbSalsMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["salesMan"].ToString());
+                this.ltxtbMakeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["operationMan"].ToString());
+                this.ltxtbShengHeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["checkMan"].ToString());
+                this.lblcode.Text = dt.Rows[0]["code"].ToString();
+                //this.lblcheckState.Text = dt.Rows[0]["checkState"].ToString(); //审核
+                ////判断审核
+                //if (this.lblcheckState.Text == "1")
+                //{
+                //    picShengHe.Parent = pictureBoxtitle;
+                //    InitForm();  //标记控件不可用
+                //    toolStripBtnShengHe.Enabled = false;
+                //}
+                //else
+                //{
+                //    EnabledForm(); //标记控件可用
+                //    toolStripBtnShengHe.Enabled = true;
+                //}
+                resizablePanel1.Visible = false;
+                //InitSupergridView(dt);
+                //判断是否到上限
+                string lcode = dt.Rows[0]["code"].ToString();
+                dt = purchaseMianInterface.GetLastData(lcode);
+                if (dt.Rows.Count == 0)
+                {
+                    toolStripBtnQianDan.Enabled = false; //上一单没有数据
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("错误代码：2106-尝试点击前单数据错误" + ex.Message, "财务凭证条目单温馨提示");
             }
         }
 
@@ -1738,25 +1881,25 @@ namespace WSCATProject.Purchase
         private void PurchaseTicketForm_KeyDown(object sender, KeyEventArgs e)
         {
             //前单
-            if (e.KeyCode == Keys.B  )
+            if (e.KeyCode == Keys.B)
             {
                 MessageBox.Show("前单");
                 return;
             }
             //后单
-            if (e.KeyCode == Keys.A  )
+            if (e.KeyCode == Keys.A)
             {
                 MessageBox.Show("后单");
                 return;
             }
             //新增
-            if (e.KeyCode == Keys.N  )
+            if (e.KeyCode == Keys.N)
             {
                 MessageBox.Show("新增");
                 return;
             }
             //保存
-            if (e.KeyCode == Keys.S  )
+            if (e.KeyCode == Keys.S)
             {
                 Save();
                 return;
@@ -1772,19 +1915,19 @@ namespace WSCATProject.Purchase
                 return;
             }
             //打印
-            if (e.KeyCode == Keys.P  )
+            if (e.KeyCode == Keys.P)
             {
                 MessageBox.Show("打印");
                 return;
             }
             //导出Excel
-            if (e.KeyCode == Keys.T  )
+            if (e.KeyCode == Keys.T)
             {
                 MessageBox.Show("导出Excel");
                 return;
             }
             //关闭
-            if (e.KeyCode == Keys.X  )
+            if (e.KeyCode == Keys.X)
             {
                 this.Close();
                 this.Dispose();

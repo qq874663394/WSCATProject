@@ -98,6 +98,8 @@
             this.checkBoxJiaoJi = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.pictureBoxShengHe = new System.Windows.Forms.PictureBox();
             this.gridColumnwuliaocode = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.lblcode = new System.Windows.Forms.Label();
+            this.lblcheckState = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -517,8 +519,13 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.lblcheckState);
+            this.panel3.Controls.Add(this.lblcode);
             this.panel3.Location = new System.Drawing.Point(0, 251);
             this.panel3.Size = new System.Drawing.Size(1202, 349);
+            this.panel3.Controls.SetChildIndex(this.superGridControlShangPing, 0);
+            this.panel3.Controls.SetChildIndex(this.lblcode, 0);
+            this.panel3.Controls.SetChildIndex(this.lblcheckState, 0);
             // 
             // superGridControlShangPing
             // 
@@ -1083,6 +1090,24 @@
             this.gridColumnwuliaocode.ReadOnly = true;
             this.gridColumnwuliaocode.Visible = false;
             // 
+            // lblcode
+            // 
+            this.lblcode.AutoSize = true;
+            this.lblcode.Location = new System.Drawing.Point(377, 60);
+            this.lblcode.Name = "lblcode";
+            this.lblcode.Size = new System.Drawing.Size(0, 12);
+            this.lblcode.TabIndex = 2;
+            this.lblcode.Visible = false;
+            // 
+            // lblcheckState
+            // 
+            this.lblcheckState.AutoSize = true;
+            this.lblcheckState.Location = new System.Drawing.Point(335, 91);
+            this.lblcheckState.Name = "lblcheckState";
+            this.lblcheckState.Size = new System.Drawing.Size(0, 12);
+            this.lblcheckState.TabIndex = 3;
+            this.lblcheckState.Visible = false;
+            // 
             // PurchaseTicketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1109,6 +1134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtitle)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.resizablePanel1.ResumeLayout(false);
             this.resizablePanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMax)).EndInit();
@@ -1174,5 +1200,7 @@
         private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxJiaoJi;
    private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumnwuliaocode;
         private System.Windows.Forms.PictureBox pictureBoxShengHe;
+        private System.Windows.Forms.Label lblcode;
+        private System.Windows.Forms.Label lblcheckState;
     }
 }

@@ -45,6 +45,7 @@
             this.gridColumnid = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.lblcode = new System.Windows.Forms.Label();
             this.lblCheckState = new System.Windows.Forms.Label();
+            this.gridColumn1 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -468,6 +469,7 @@
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumnMoney);
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumnbeizhu);
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumnid);
+            this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumn1);
             this.superGridControlShangPing.PrimaryGrid.MultiSelect = false;
             this.superGridControlShangPing.PrimaryGrid.RowHeaderIndexOffset = 1;
             this.superGridControlShangPing.PrimaryGrid.ShowInsertRow = true;
@@ -610,6 +612,11 @@
             this.lblCheckState.TabIndex = 57;
             this.lblCheckState.Visible = false;
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Name = "gridColumncode";
+            this.gridColumn1.Visible = false;
+            // 
             // FinanceOtherPaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -667,5 +674,6 @@
         private DevComponents.Editors.ComboItem comboItem7;
         private System.Windows.Forms.Label lblcode;
         private System.Windows.Forms.Label lblCheckState;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn1;
     }
 }
