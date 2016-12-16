@@ -57,6 +57,9 @@
             this.remark = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.shengyuMoney = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.pictureBoxShengHe = new System.Windows.Forms.PictureBox();
+            this.lblcode = new System.Windows.Forms.Label();
+            this.lblcheckState = new System.Windows.Forms.Label();
+            this.gridColumn1 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -115,6 +118,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblcheckState);
+            this.panel2.Controls.Add(this.lblcode);
             this.panel2.Controls.Add(this.cboMethod);
             this.panel2.Controls.Add(this.cboType);
             this.panel2.Controls.Add(this.picBarCode);
@@ -149,6 +154,8 @@
             this.panel2.Controls.SetChildIndex(this.picBarCode, 0);
             this.panel2.Controls.SetChildIndex(this.cboType, 0);
             this.panel2.Controls.SetChildIndex(this.cboMethod, 0);
+            this.panel2.Controls.SetChildIndex(this.lblcode, 0);
+            this.panel2.Controls.SetChildIndex(this.lblcheckState, 0);
             // 
             // labtextboxTop6
             // 
@@ -254,7 +261,7 @@
             this.labtextboxTop5.Border.BorderGradientAngle = 0;
             this.labtextboxTop5.Border.Class = "SideNavStrip";
             this.labtextboxTop5.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labtextboxTop5.Location = new System.Drawing.Point(726, 47);
+            this.labtextboxTop5.Location = new System.Drawing.Point(738, 46);
             this.labtextboxTop5.Size = new System.Drawing.Size(150, 16);
             this.labtextboxTop5.Visible = false;
             // 
@@ -427,8 +434,8 @@
             this.labtextboxBotton2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labtextboxBotton2.FocusHighlightColor = System.Drawing.Color.AliceBlue;
             this.labtextboxBotton2.FocusHighlightEnabled = true;
-            this.labtextboxBotton2.Location = new System.Drawing.Point(726, 76);
-            this.labtextboxBotton2.Size = new System.Drawing.Size(150, 16);
+            this.labtextboxBotton2.Location = new System.Drawing.Point(740, 76);
+            this.labtextboxBotton2.Size = new System.Drawing.Size(136, 16);
             // 
             // ltxtbSalsMan
             // 
@@ -491,6 +498,7 @@
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.benciHeXiao);
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.shengyuMoney);
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.remark);
+            this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumn1);
             this.superGridControlShangPing.PrimaryGrid.FrozenColumnCount = 2;
             this.superGridControlShangPing.PrimaryGrid.RowHeaderIndexOffset = 1;
             this.superGridControlShangPing.PrimaryGrid.ShowInsertRow = true;
@@ -566,7 +574,7 @@
             this.comboItem6,
             this.comboItem7,
             this.comboItem8});
-            this.cboMethod.Location = new System.Drawing.Point(726, 46);
+            this.cboMethod.Location = new System.Drawing.Point(738, 46);
             this.cboMethod.Name = "cboMethod";
             this.cboMethod.Size = new System.Drawing.Size(150, 21);
             this.cboMethod.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -706,6 +714,29 @@
             this.pictureBoxShengHe.TabStop = false;
             this.pictureBoxShengHe.Visible = false;
             // 
+            // lblcode
+            // 
+            this.lblcode.AutoSize = true;
+            this.lblcode.Location = new System.Drawing.Point(615, 9);
+            this.lblcode.Name = "lblcode";
+            this.lblcode.Size = new System.Drawing.Size(0, 12);
+            this.lblcode.TabIndex = 56;
+            this.lblcode.Visible = false;
+            // 
+            // lblcheckState
+            // 
+            this.lblcheckState.AutoSize = true;
+            this.lblcheckState.Location = new System.Drawing.Point(615, 37);
+            this.lblcheckState.Name = "lblcheckState";
+            this.lblcheckState.Size = new System.Drawing.Size(0, 12);
+            this.lblcheckState.TabIndex = 57;
+            this.lblcheckState.Visible = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Name = "gridColumncode";
+            this.gridColumn1.Visible = false;
+            // 
             // PurchasePaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -768,5 +799,8 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn remark;
         private DevComponents.DotNetBar.SuperGrid.GridColumn shengyuMoney;
         private System.Windows.Forms.PictureBox pictureBoxShengHe;
+        private System.Windows.Forms.Label lblcheckState;
+        private System.Windows.Forms.Label lblcode;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn1;
     }
 }

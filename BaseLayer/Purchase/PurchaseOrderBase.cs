@@ -28,9 +28,9 @@ namespace BaseLayer.Purchase
             try
             {
                 sqlMain.Append("insert into [T_PurchaseOrder] (");
-                sqlMain.Append("supplierCode,deliversDate,deliversMethod,remark,code,date,deliversLocation,operation,makeMan,examine,checkState,depositReceived,contacts,fax)");
+                sqlMain.Append("supplierCode,deliversDate,deliversMethod,remark,code,date,deliversLocation,operation,makeMan,examine,checkState,depositReceived)");
                 sqlMain.Append(" values (");
-                sqlMain.Append("@supplierCode,@deliversDate,@deliversMethod,@remark,@code,@date,@deliversLocation,@operation,@makeMan,@examine,@checkState,@depositReceived,@contacts,@fax)");
+                sqlMain.Append("@supplierCode,@deliversDate,@deliversMethod,@remark,@code,@date,@deliversLocation,@operation,@makeMan,@examine,@checkState,@depositReceived)");
                 sqlMain.Append(";select @@IDENTITY");
                 SqlParameter[] spsMain =
                 {
@@ -45,9 +45,7 @@ namespace BaseLayer.Purchase
                     new SqlParameter("@makeMan", SqlDbType.NVarChar,40),
                     new SqlParameter("@examine", SqlDbType.NVarChar,40),
                     new SqlParameter("@checkState", SqlDbType.Int,4),
-                    new SqlParameter("@depositReceived", SqlDbType.Decimal,9),
-                    new SqlParameter("@contacts", SqlDbType.NVarChar,40),
-                    new SqlParameter("@fax", SqlDbType.NVarChar,50)
+                    new SqlParameter("@depositReceived", SqlDbType.Decimal,9)
                 };
                 spsMain[0].Value = model.supplierCode;
                 spsMain[1].Value = model.deliversDate;
@@ -61,8 +59,6 @@ namespace BaseLayer.Purchase
                 spsMain[9].Value = model.examine;
                 spsMain[10].Value = model.checkState;
                 spsMain[11].Value = model.depositReceived;
-                spsMain[12].Value = model.contacts;
-                spsMain[13].Value = model.fax;
 
                 hashTable.Add(sqlMain, spsMain);
 
@@ -143,9 +139,7 @@ namespace BaseLayer.Purchase
                 sqlMain.Append("makeMan=@makeMan,");
                 sqlMain.Append("examine=@examine,");
                 sqlMain.Append("checkState=@checkState,");
-                sqlMain.Append("depositReceived=@depositReceived,");
-                sqlMain.Append("contacts=@contacts,");
-                sqlMain.Append("fax=@fax");
+                sqlMain.Append("depositReceived=@depositReceived");
                 sqlMain.Append(" where code=@code");
                 SqlParameter[] spsMain =
                 {
@@ -161,8 +155,6 @@ namespace BaseLayer.Purchase
                     new SqlParameter("@examine", SqlDbType.NVarChar,40),
                     new SqlParameter("@checkState", SqlDbType.Int,4),
                     new SqlParameter("@depositReceived", SqlDbType.Decimal,9),
-                    new SqlParameter("@contacts", SqlDbType.NVarChar,40),
-                    new SqlParameter("@fax", SqlDbType.NVarChar,50)
                 };
                 spsMain[0].Value = model.supplierCode;
                 spsMain[1].Value = model.deliversDate;
@@ -176,8 +168,6 @@ namespace BaseLayer.Purchase
                 spsMain[9].Value = model.examine;
                 spsMain[10].Value = model.checkState;
                 spsMain[11].Value = model.depositReceived;
-                spsMain[12].Value = model.contacts;
-                spsMain[13].Value = model.fax;
 
                 hashTable.Add(sqlMain, spsMain);
                 sqlDetail.Append("update [T_PurchaseOrderDetail] set ");
@@ -404,7 +394,7 @@ po.code= (select top 1 code from T_PurchaseOrder where id =
                 sql = string.Format(@"select po.* ,pod.*
  from T_PurchaseOrder po,T_PurchaseOrderDetail pod
 where po.code=pod.mainCode and 
-po.code= (select top 1 code from T_PurchaseOrder where id >
+po.code= (select top 1 code from T_PurchaseOrder where id <
 (select id from T_PurchaseOrder where code = '{0}') order by id desc)", code);
                 dt = DbHelperSQL.Query(sql).Tables[0];
                 return dt;
@@ -416,7 +406,7 @@ po.code= (select top 1 code from T_PurchaseOrder where id >
         }
 
         /// <summary>
-        /// 获取默认的下一单数据
+        /// 下一单数据
         /// </summary>
         /// <param name="code">code</param>
         /// <returns></returns>
@@ -429,8 +419,8 @@ po.code= (select top 1 code from T_PurchaseOrder where id >
                 sql = string.Format(@"select po.* ,pod.*
  from T_PurchaseOrder po,T_PurchaseOrderDetail pod
 where po.code=pod.mainCode and 
-po.code= (select top 1 code from T_PurchaseOrder where id <
-(select id from T_PurchaseOrder where code = '{0}') order by id desc)", code);
+po.code= (select top 1 code from T_PurchaseOrder where id >
+(select id from T_PurchaseOrder where code = '{0}'))", code);
                 dt = DbHelperSQL.Query(sql).Tables[0];
                 return dt;
             }

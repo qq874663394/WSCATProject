@@ -545,8 +545,6 @@ C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\WSCATProject\obj\Deb
 C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\WSCATProject\bin\Debug\WSCATProject.exe.config
 C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\WSCATProject\bin\Debug\WSCATProject.pdb
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\bin\Debug\WSCATProject.exe.config
-C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\obj\Debug\WSCATProject.exe
-C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\obj\Debug\WSCATProject.pdb
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\bin\Debug\WSCATProject.exe
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\bin\Debug\WSCATProject.pdb
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\bin\Debug\BaseLayer.dll
@@ -623,6 +621,7 @@ C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\obj\Debug\WS
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\obj\Debug\WSCATProject.Warehouse.WareHouseOutMainForm.resources
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\obj\Debug\WSCATProject.Warehouse.WareHuseStorageRack.resources
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\obj\Debug\WSCATProject.csproj.GenerateResource.Cache
+<<<<<<< HEAD
 D:\Projects\WSCAT\WSCATProject\WSCATProject\obj\Debug\WSCATProject.csprojResolveAssemblyReference.cache
 D:\Projects\WSCAT\WSCATProject\WSCATProject\obj\Debug\WSCATProject.Base.AccountingSubjectsForm.resources
 D:\Projects\WSCAT\WSCATProject\WSCATProject\obj\Debug\WSCATProject.Base.AreaNode.resources
@@ -707,3 +706,7 @@ D:\Projects\WSCAT\WSCATProject\WSCATProject\obj\Debug\WSCATProject.exe
 D:\Projects\WSCAT\WSCATProject\WSCATProject\obj\Debug\WSCATProject.pdb
 D:\Projects\WSCAT\WSCATProject\WSCATProject\obj\Debug\WSCATProject.Base.MaterialForm.resources
 D:\Projects\WSCAT\WSCATProject\WSCATProject\obj\Debug\WSCATProject.Base.MaterialCreateForm.resources
+=======
+C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\obj\Debug\WSCATProject.exe
+C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\WSCATProject\obj\Debug\WSCATProject.pdb
+>>>>>>> 7b4ae094710a2b9cea69ac42290a8ce15bb3c8c3

@@ -26,8 +26,8 @@ namespace WSCATProject.Purchase
         private string _supplierCode;
         public string SupplierCode
         {
-            get {return _supplierCode; }
-            set{ _supplierCode = value; }
+            get { return _supplierCode; }
+            set { _supplierCode = value; }
         }
         CodingHelper ch = new CodingHelper();
         /// <summary>
@@ -111,7 +111,7 @@ namespace WSCATProject.Purchase
             }
             catch (Exception ex)
             {
-                MessageBox.Show("错误代码：3201-采购订单序时薄初始化数据错误！"+ex.Message, "销售订单序时薄温馨提示！");
+                MessageBox.Show("错误代码：3201-采购订单序时薄初始化数据错误！" + ex.Message, "销售订单序时薄温馨提示！");
                 this.Close();
             }
 
@@ -197,19 +197,19 @@ namespace WSCATProject.Purchase
                 return;
             }
             //打印
-            if (e.KeyCode == Keys.P  )
+            if (e.KeyCode == Keys.P)
             {
                 MessageBox.Show("打印");
                 return;
             }
             //导出Excel
-            if (e.KeyCode == Keys.T  )
+            if (e.KeyCode == Keys.T)
             {
                 MessageBox.Show("导出Excel");
                 return;
             }
             //关闭
-            if (e.KeyCode == Keys.X  )
+            if (e.KeyCode == Keys.X)
             {
                 this.Close();
                 this.Dispose();
@@ -223,7 +223,7 @@ namespace WSCATProject.Purchase
         /// <param name="e"></param>
         private void superGridControlShangPing_CellDoubleClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellDoubleClickEventArgs e)
         {
-          
+
             try
             {
                 if (superGridControlShangPing.PrimaryGrid.GetSelectedRows() != null)

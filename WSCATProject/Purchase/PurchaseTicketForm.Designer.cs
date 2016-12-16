@@ -100,6 +100,8 @@
             this.gridColumnwuliaocode = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.lblcode = new System.Windows.Forms.Label();
             this.lblcheckState = new System.Windows.Forms.Label();
+            this.gridColumn1 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn2 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -141,12 +143,12 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.pictureBoxShengHe);
+            this.panel1.Controls.SetChildIndex(this.pictureBoxShengHe, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBoxtitle, 0);
             this.panel1.Controls.SetChildIndex(this.labelTitle, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBoxMax, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBoxMin, 0);
             this.panel1.Controls.SetChildIndex(this.pictureBoxClose, 0);
-            this.panel1.Controls.SetChildIndex(this.pictureBoxShengHe, 0);
             // 
             // labelTitle
             // 
@@ -523,9 +525,9 @@
             this.panel3.Controls.Add(this.lblcode);
             this.panel3.Location = new System.Drawing.Point(0, 251);
             this.panel3.Size = new System.Drawing.Size(1202, 349);
-            this.panel3.Controls.SetChildIndex(this.superGridControlShangPing, 0);
             this.panel3.Controls.SetChildIndex(this.lblcode, 0);
             this.panel3.Controls.SetChildIndex(this.lblcheckState, 0);
+            this.panel3.Controls.SetChildIndex(this.superGridControlShangPing, 0);
             // 
             // superGridControlShangPing
             // 
@@ -557,6 +559,8 @@
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumnbeizhu);
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumncode);
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumnwuliaocode);
+            this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumn1);
+            this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumn2);
             this.superGridControlShangPing.PrimaryGrid.FrozenColumnCount = 3;
             this.superGridControlShangPing.PrimaryGrid.RowHeaderIndexOffset = 1;
             this.superGridControlShangPing.PrimaryGrid.ShowInsertRow = true;
@@ -1078,7 +1082,7 @@
             this.pictureBoxShengHe.Image = global::WSCATProject.Properties.Resources.审核;
             this.pictureBoxShengHe.Location = new System.Drawing.Point(679, 0);
             this.pictureBoxShengHe.Name = "pictureBoxShengHe";
-            this.pictureBoxShengHe.Size = new System.Drawing.Size(68, 59);
+            this.pictureBoxShengHe.Size = new System.Drawing.Size(68, 61);
             this.pictureBoxShengHe.TabIndex = 46;
             this.pictureBoxShengHe.TabStop = false;
             this.pictureBoxShengHe.Visible = false;
@@ -1107,6 +1111,16 @@
             this.lblcheckState.Size = new System.Drawing.Size(0, 12);
             this.lblcheckState.TabIndex = 3;
             this.lblcheckState.Visible = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Name = "gridColumngetCode";
+            this.gridColumn1.Visible = false;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Name = "gridColumnsonCode";
+            this.gridColumn2.Visible = false;
             // 
             // PurchaseTicketForm
             // 
@@ -1202,5 +1216,7 @@
         private System.Windows.Forms.PictureBox pictureBoxShengHe;
         private System.Windows.Forms.Label lblcode;
         private System.Windows.Forms.Label lblcheckState;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn1;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2;
     }
 }

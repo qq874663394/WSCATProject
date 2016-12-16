@@ -619,15 +619,13 @@ namespace WSCATProject.Purchase
                 }
                 purchaseorder.deliversDate = this.dateTimePicker2.Value;//交货日期
                 purchaseorder.deliversLocation = XYEEncoding.strCodeHex(txtAddress.Text);  //交货地点
-                purchaseorder.contacts = XYEEncoding.strCodeHex(txtLinkMan.Text);   //联系人
-                purchaseorder.fax = XYEEncoding.strCodeHex(txtFax.Text);  //传真
                 purchaseorder.depositReceived = Convert.ToDecimal(txtYiFuDingJin.Text.Trim() == "" ? 0.0M : Convert.ToDecimal(txtYiFuDingJin.Text));//已付订金
                 purchaseorder.remark = XYEEncoding.strCodeHex(txtRemark.Text == null ? "" : txtRemark.Text.Trim());//摘要
                 purchaseorder.makeMan = XYEEncoding.strCodeHex(ltxtbMakeMan.Text == null ? "" : ltxtbMakeMan.Text.Trim());//制单人
                 purchaseorder.examine = XYEEncoding.strCodeHex(ltxtbShengHeMan.Text == null ? "" : ltxtbShengHeMan.Text.Trim());//审核人
                 purchaseorder.checkState = 0;//审核状态
                 SupplierInterface supplierInterface = new SupplierInterface();
-                purchaseorder.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(txtSupply.Text), false, false).Rows[0]["code"].ToString();//供应商code
+                purchaseorder.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(txtSupply.Text)).Rows[0]["code"].ToString();//供应商code
             }
             catch (Exception ex)
             {
@@ -746,14 +744,10 @@ namespace WSCATProject.Purchase
                 {
                     MessageBox.Show("新增其它付款单数据成功", "采购订单温馨提示");
                     this.toolStripBtnHouDan.Enabled = false;
+                    this.lblcode.Text = purchaseorder.code;
+                    toolStripBtnQianDan.Enabled = true; //上一单启用
+                    toolStripBtnHouDan.Enabled = false; //下一单禁用
                 }
-                DataTable dt = new DataTable();
-                dt = purchaseOrderInterface.GetLastData(purchaseorder.code);
-                if (dt.Rows.Count == 0)
-                {
-                    toolStripBtnQianDan.Enabled = false; //上一单没有数据
-                }
-                this.lblcode.Text = purchaseorder.code;
             }
         }
 
@@ -832,15 +826,13 @@ namespace WSCATProject.Purchase
                 }
                 purchaseorder.deliversDate = this.dateTimePicker2.Value;//交货日期
                 purchaseorder.deliversLocation = XYEEncoding.strCodeHex(txtAddress.Text);  //交货地点
-                purchaseorder.contacts = XYEEncoding.strCodeHex(txtLinkMan.Text);   //联系人
-                purchaseorder.fax = XYEEncoding.strCodeHex(txtFax.Text);  //传真
                 purchaseorder.depositReceived = Convert.ToDecimal(txtYiFuDingJin.Text.Trim() == "" ? 0.0M : Convert.ToDecimal(txtYiFuDingJin.Text));//已付订金
                 purchaseorder.remark = XYEEncoding.strCodeHex(txtRemark.Text == null ? "" : txtRemark.Text.Trim());//摘要
                 purchaseorder.makeMan = XYEEncoding.strCodeHex(ltxtbMakeMan.Text == null ? "" : ltxtbMakeMan.Text.Trim());//制单人
                 purchaseorder.examine = XYEEncoding.strCodeHex(ltxtbShengHeMan.Text == null ? "" : ltxtbShengHeMan.Text.Trim());//审核人
                 purchaseorder.checkState = 1;//审核状态
                 SupplierInterface supplierInterface = new SupplierInterface();
-                purchaseorder.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(txtSupply.Text), false, false).Rows[0]["code"].ToString();//供应商code
+                purchaseorder.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(txtSupply.Text)).Rows[0]["code"].ToString();//供应商code
             }
             catch (Exception ex)
             {
@@ -1102,34 +1094,7 @@ namespace WSCATProject.Purchase
                 gr["gridColumnid"].Value = dt.Rows[i]["id1"].ToString();  //id
                 gr["gridColumncode"].Value = dt.Rows[i]["code1"].ToString();   //code
             }
-
-            try
-            {
-                GridRow g = (GridRow)superGridControlShangPing.PrimaryGrid.Rows[1];
-                //最后一行做统计行
-                GridRow gr = (GridRow)superGridControlShangPing.PrimaryGrid.LastSelectableRow;
-                ////计算金额
-                decimal number = Convert.ToDecimal(gr.Cells["CaiGouNumber"].FormattedValue);//订购数量
-                decimal price = Convert.ToDecimal(gr.Cells["price"].FormattedValue);//单价               
-                decimal money = number * price;//金额
-                gr.Cells["Money"].Value = money;
-                decimal discountRate = Convert.ToDecimal(gr.Cells["discountRate"].FormattedValue);//折扣率
-                decimal discountAfter = money * (discountRate / 100);
-                decimal discountMoney = money - discountAfter;//折扣额
-                gr.Cells["discountMoney"].Value = discountMoney;
-                decimal taxRate = Convert.ToDecimal(gr.Cells["faxRate"].FormattedValue);//增值税税率
-                decimal rateMoney = money * (taxRate / 100);//税额
-                gr.Cells["faxMoney"].Value = rateMoney;
-                decimal priceAndtax = money + rateMoney;//价税合计
-                gr.Cells["priceANDrate"].Value = priceAndtax;
-
-                TongJi();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("错误代码：3116-验证表格里的金额以及统计数量出错！请检查：" + ex.Message, "采购订单温馨提示！");
-            }
-
+            TongJi();
             superGridControlShangPing.PrimaryGrid.NewRow(superGridControlShangPing.PrimaryGrid.Rows.Count);
         }
 
@@ -1144,21 +1109,21 @@ namespace WSCATProject.Purchase
             try
             {
                 code = this.lblcode.Text;
-                dt = purchaseOrderInterface.GetLastData(code);
+                dt = purchaseOrderInterface.GetNextData(code);
                 SupplierInterface supplierInterface = new SupplierInterface();
                 string suppliercode = dt.Rows[0]["supplierCode"].ToString();
-                string supplierName = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["name"].ToString(); //单位名称
-                string phone = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["phone"].ToString(); //手机
+                string supplierName = supplierInterface.GetList(4, suppliercode).Rows[0]["name"].ToString(); //单位名称
+                string phone = supplierInterface.GetList(4, suppliercode).Rows[0]["phone"].ToString(); //手机
                 BankAccountInterface bankAccountInterface = new BankAccountInterface();
                 //文本框赋值
-                this.txtLinkMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["contacts"].ToString());   //联系人
+                this.txtLinkMan.Text = XYEEncoding.strHexDecode(supplierInterface.GetList(4, suppliercode).Rows[0]["linkMan"].ToString());   //联系人
                 this.txtPhone.Text = phone;  //手机
                 this.txtAddress.Text = XYEEncoding.strHexDecode(dt.Rows[0]["deliversLocation"].ToString());
                 this.txtSupply.Text = XYEEncoding.strHexDecode(supplierName);  //供应商
                 this.cboMethod.SelectedIndex = int.Parse(dt.Rows[0]["deliversMethod"].ToString());   //交货方式
                 this.dateTimePicker2.Value = Convert.ToDateTime(dt.Rows[0]["date"].ToString());   //交货日期
                 this.txtYiFuDingJin.Text = dt.Rows[0]["depositReceived"].ToString();  //已付定金
-                this.txtFax.Text = XYEEncoding.strHexDecode(dt.Rows[0]["fax"].ToString());   //传真
+                this.txtFax.Text = XYEEncoding.strHexDecode(supplierInterface.GetList(4, suppliercode).Rows[0]["fax"].ToString());   //传真
                 this.txtRemark.Text = XYEEncoding.strHexDecode(dt.Rows[0]["remark"].ToString());   //摘要
                 this.ltxtbSalsMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["operation"].ToString());
                 this.ltxtbMakeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["makeMan"].ToString());
@@ -1219,18 +1184,17 @@ namespace WSCATProject.Purchase
 
                 SupplierInterface supplierInterface = new SupplierInterface();
                 string suppliercode = dt.Rows[0]["supplierCode"].ToString();
-                string supplierName = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["name"].ToString(); //单位名称
-                string phone = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["phone"].ToString(); //手机
-                BankAccountInterface bankAccountInterface = new BankAccountInterface();
+                string supplierName = supplierInterface.GetList(4, suppliercode).Rows[0]["name"].ToString(); //单位名称
+                string phone = supplierInterface.GetList(4, suppliercode).Rows[0]["phone"].ToString(); //手机
                 //文本框赋值
-                this.txtLinkMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["contacts"].ToString());   //联系人
+                this.txtLinkMan.Text = XYEEncoding.strHexDecode(supplierInterface.GetList(4, suppliercode).Rows[0]["linkMan"].ToString());   //联系人
                 this.txtPhone.Text = phone;  //手机
                 this.txtAddress.Text = XYEEncoding.strHexDecode(dt.Rows[0]["deliversLocation"].ToString());
                 this.txtSupply.Text = XYEEncoding.strHexDecode(supplierName);  //供应商
                 this.cboMethod.SelectedIndex = int.Parse(dt.Rows[0]["deliversMethod"].ToString());   //交货方式
                 this.dateTimePicker2.Value = Convert.ToDateTime(dt.Rows[0]["date"].ToString());   //交货日期
+                this.txtFax.Text = XYEEncoding.strHexDecode(supplierInterface.GetList(4, suppliercode).Rows[0]["fax"].ToString());   //传真
                 this.txtYiFuDingJin.Text = dt.Rows[0]["depositReceived"].ToString();  //已付定金
-                this.txtFax.Text = XYEEncoding.strHexDecode(dt.Rows[0]["fax"].ToString());   //传真
                 this.txtRemark.Text = XYEEncoding.strHexDecode(dt.Rows[0]["remark"].ToString());   //摘要
 
                 this.ltxtbSalsMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["operation"].ToString());
@@ -1541,7 +1505,7 @@ namespace WSCATProject.Purchase
 
                 resizablePanel1.Location = new Point(230, 160);
                 string name = XYEEncoding.strCodeHex(this.txtSupply.Text.Trim());
-                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name, false, false));
+                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name));
                 resizablePanel1.Visible = true;
             }
             catch (Exception ex)

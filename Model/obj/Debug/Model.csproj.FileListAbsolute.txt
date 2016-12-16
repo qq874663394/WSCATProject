@@ -90,7 +90,6 @@ C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\Model\obj\Debug\Mode
 C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\Model\obj\Debug\Model.pdb
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\Model\bin\Debug\Model.dll
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\Model\bin\Debug\Model.pdb
-C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\Model\obj\Debug\Model.dll
 C:\Users\Administrator\Desktop\2016-12-13\WSCATProject\Model\obj\Debug\Model.pdb
 D:\Projects\WSCAT\WSCATProject\Model\bin\Debug\Model.dll

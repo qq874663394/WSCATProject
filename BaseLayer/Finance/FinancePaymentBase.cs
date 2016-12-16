@@ -152,7 +152,6 @@ namespace BaseLayer.Finance
                 sqlMain.Append("discount=@discount,");
                 sqlMain.Append("totalCollection=@totalCollection");
                 sqlMain.Append(" where code=@code ");
-                sqlMain.Append(";select @@IDENTITY");
                 SqlParameter[] spsMain =
                 {
                     new SqlParameter("@code", SqlDbType.NVarChar,45),
@@ -178,27 +177,27 @@ namespace BaseLayer.Finance
                     new SqlParameter("@discount", SqlDbType.Decimal,9),
                     new SqlParameter("@totalCollection", SqlDbType.Decimal,9)
                 };
-                spsMain[0].Value =model.code;
-                spsMain[1].Value =model.supplierCode;
-                spsMain[2].Value =model.supplierName;
-                spsMain[3].Value =model.accountCode;
-                spsMain[4].Value =model.accountName;
-                spsMain[5].Value =model.saleCode;
-                spsMain[6].Value =model.date;
-                spsMain[7].Value =model.operationMan;
-                spsMain[8].Value =model.checkMan;
+                spsMain[0].Value = model.code;
+                spsMain[1].Value = model.supplierCode;
+                spsMain[2].Value = model.supplierName;
+                spsMain[3].Value = model.accountCode;
+                spsMain[4].Value = model.accountName;
+                spsMain[5].Value = model.saleCode;
+                spsMain[6].Value = model.date;
+                spsMain[7].Value = model.operationMan;
+                spsMain[8].Value = model.checkMan;
                 spsMain[9].Value = model.salesMan;
-                spsMain[10].Value =model.salesCode;
-                spsMain[11].Value =model.checkState;
-                spsMain[12].Value =model.remark;
-                spsMain[13].Value =model.Reserved1;
-                spsMain[14].Value =model.Reserved2;
-                spsMain[15].Value =model.isClear;
-                spsMain[16].Value =model.financeCollectionState;
-                spsMain[17].Value =model.updatedate;
-                spsMain[18].Value =model.type;
-                spsMain[19].Value =model.settlementMethod;
-                spsMain[20].Value =model.discount;
+                spsMain[10].Value = model.salesCode;
+                spsMain[11].Value = model.checkState;
+                spsMain[12].Value = model.remark;
+                spsMain[13].Value = model.Reserved1;
+                spsMain[14].Value = model.Reserved2;
+                spsMain[15].Value = model.isClear;
+                spsMain[16].Value = model.financeCollectionState;
+                spsMain[17].Value = model.updatedate;
+                spsMain[18].Value = model.type;
+                spsMain[19].Value = model.settlementMethod;
+                spsMain[20].Value = model.discount;
                 spsMain[21].Value = model.totalCollection;
 
                 hashTable.Add(sqlMain, spsMain);
@@ -221,7 +220,6 @@ namespace BaseLayer.Finance
                 sqlDetail.Append("unCollection=@unCollection,");
                 sqlDetail.Append("remark=@remark");
                 sqlDetail.Append(" where code=@code ");
-                strInsert.Append(";select @@IDENTITY");
                 foreach (var item in modelDetail)
                 {
                     SqlParameter[] spsDetail =
@@ -238,20 +236,20 @@ namespace BaseLayer.Finance
                     new SqlParameter("@unCollection", SqlDbType.Decimal,9),
                     new SqlParameter("@remark", SqlDbType.NVarChar,400)
                     };
-                    spsDetail[0].Value =item.mainCode;
-                    spsDetail[1].Value =item.code;
-                    spsDetail[2].Value =item.purchaseCode;
-                    spsDetail[3].Value =item.salesDate;
-                    spsDetail[4].Value =item.salesType;
-                    spsDetail[5].Value =item.amountReceivable;
-                    spsDetail[6].Value =item.amountReceived;
-                    spsDetail[7].Value =item.amountUnpaid;
-                    spsDetail[8].Value =item.nowMoney;
+                    spsDetail[0].Value = item.mainCode;
+                    spsDetail[1].Value = item.code;
+                    spsDetail[2].Value = item.purchaseCode;
+                    spsDetail[3].Value = item.salesDate;
+                    spsDetail[4].Value = item.salesType;
+                    spsDetail[5].Value = item.amountReceivable;
+                    spsDetail[6].Value = item.amountReceived;
+                    spsDetail[7].Value = item.amountUnpaid;
+                    spsDetail[8].Value = item.nowMoney;
                     spsDetail[9].Value = item.unCollection;
                     spsDetail[10].Value = item.remark;
                     list.Add(spsDetail);
                 }
-                result = DbHelperSQL.ExecuteSqlTranScalar(hashTable, sqlDetail.ToString(),strInsert.ToString(), list);
+                result = DbHelperSQL.ExecuteSqlTranScalar(hashTable, sqlDetail.ToString(), strInsert.ToString(), list);
             }
             catch (Exception ex)
             {
@@ -299,6 +297,108 @@ namespace BaseLayer.Finance
                 throw ex;
             }
             return ds.Tables[0];
+        }
+        /// <summary>
+        /// 默认的上一单
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetFLastData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select fp.* ,fpd.*
+ from T_FinancePayment fp,T_FinancePaymentDetail fpd
+where fp.code=fpd.mainCode and 
+fp.code= (select top 1 code from T_FinancePayment where id =
+(select id from T_FinancePayment where code = '{0}') order by id desc)", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 获取上一单数据
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetLastData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select fp.* ,fpd.*
+ from T_FinancePayment fp,T_FinancePaymentDetail fpd
+where fp.code=fpd.mainCode and 
+fp.code= (select top 1 code from T_FinancePayment where id <
+(select id from T_FinancePayment where code = '{0}') order by id desc)", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 下一单数据
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetNextData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select fp.* ,fpd.*
+ from T_FinancePayment fp,T_FinancePaymentDetail fpd
+where fp.code=fpd.mainCode and 
+fp.code= (select top 1 code from T_FinancePayment where id >
+(select id from T_FinancePayment where code = '{0}'))", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        /// <summary>
+        /// 获取最新的code
+        /// </summary>
+        /// <returns></returns>
+        public string GetNewCode()
+        {
+            string sql = "";
+            object result = null;
+            try
+            {
+                sql = "select top 1 code from  T_FinancePayment order by id desc";
+                result = DbHelperSQL.GetSingle(sql);
+                if (result == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
