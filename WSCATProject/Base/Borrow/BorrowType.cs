@@ -1,6 +1,6 @@
-﻿using BLL;
-using DevComponents.DotNetBar.SuperGrid;
+﻿using DevComponents.DotNetBar.SuperGrid;
 using HelperUtility.Excel;
+using InterfaceLayer.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ namespace WSCATProject.Base
 {
     public partial class BorrowType : MaterialEmpolyee
     {
-        BorrowManager bm = new BorrowManager();
+        BorrowInterface bm = new BorrowInterface();
         public BorrowType()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace WSCATProject.Base
         {
             try
             {
-                superGridControl1.PrimaryGrid.DataSource = bm.SelBorrow();
+                superGridControl1.PrimaryGrid.DataSource = bm.GetList(999,"");
             }
             catch (Exception ex)
             {
@@ -84,8 +84,8 @@ namespace WSCATProject.Base
                 string code = row.Cells["gridColumn1"].Value.ToString();
                 try
                 {
-                    int result = bm.DelBorrow(code);
-                    if (result > 0)
+                    bool result = bm.Delete(int.Parse(code));
+                    if (result)
                     {
                         MessageBox.Show("删除成功!");
                         BindDGV();
@@ -117,7 +117,7 @@ namespace WSCATProject.Base
             {
                 try
                 {
-                    int result = bm.DelAllBorrow();
+                    int result = bm.Delete();
                     if (result > 0)
                     {
                         MessageBox.Show("删除成功!");

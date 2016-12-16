@@ -24,7 +24,7 @@ namespace Model
 		private int? _creditrank;
 		private decimal _availablebalance=0M;
 		private decimal _balance=0M;
-		private DateTime? _statementdate= Convert.ToDateTime(0);
+		private DateTime? _statementdate= DateTime.Now;
 		private string _linkman;
 		private string _mobilephone;
 		private string _remark;

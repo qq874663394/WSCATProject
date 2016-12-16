@@ -1,7 +1,5 @@
-﻿using BLL;
-using HelperUtility;
+﻿using HelperUtility;
 using HelperUtility.Encrypt;
-using Model;
 using System;
 using System.Data;
 using System.Windows.Forms;

@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.text_childName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.form_save = new System.Windows.Forms.Button();
             this.form_exit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // text_childName
             // 
-            this.textBox1.Location = new System.Drawing.Point(21, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 21);
-            this.textBox1.TabIndex = 0;
+            this.text_childName.Location = new System.Drawing.Point(21, 38);
+            this.text_childName.Name = "text_childName";
+            this.text_childName.Size = new System.Drawing.Size(218, 21);
+            this.text_childName.TabIndex = 0;
             // 
             // label1
             // 
@@ -58,7 +58,6 @@
             this.form_save.TabIndex = 2;
             this.form_save.Text = "保存(&A)";
             this.form_save.UseVisualStyleBackColor = true;
-            this.form_save.Click += new System.EventHandler(this.form_save_Click);
             // 
             // form_exit
             // 
@@ -79,7 +78,7 @@
             this.Controls.Add(this.form_exit);
             this.Controls.Add(this.form_save);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.text_childName);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -94,7 +93,7 @@
 
         #endregion
 
-        protected System.Windows.Forms.TextBox textBox1;
+        protected System.Windows.Forms.TextBox text_childName;
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Button form_save;
         protected System.Windows.Forms.Button form_exit;

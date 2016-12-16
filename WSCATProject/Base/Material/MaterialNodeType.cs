@@ -1,4 +1,5 @@
 ﻿
+using DevComponents.DotNetBar;
 using HelperUtility.Encrypt;
 using System;
 using System.Collections;
@@ -13,9 +14,8 @@ using System.Windows.Forms;
 
 namespace WSCATProject.Base
 {
-    public partial class MaterialNodeType : Form
+    public partial class MaterialNodeType : RibbonForm
     {
-        ProjectInCostManager picm = new ProjectInCostManager();
         public bool isflag = false; //添加地区的返回值
         public MaterialNodeType()
         {
@@ -81,30 +81,27 @@ namespace WSCATProject.Base
         /// <summary>
         /// //递归添加树的节点
         /// </summary>
-        /// <param name="ParentID">条件ID:默认D4</param>
-        /// <param name="pNode">父级ID：null</param>
-        /// <param name="dt">查询结果集:DataTable</param>
-        protected virtual void AddTree(string ParentID, TreeNode pNode, DataTable dts, string tableName)
+        /// <param name="ParentID">条件ID</param>
+        /// <param name="pNode">父级ID</param>
+        /// <param name="dt">查询结果集</param>
+        protected virtual void AddTree(object ParentID, TreeNode pNode, DataTable dts)
         {
-            if (ParentID == "")
-            {
-                ParentID = "D4";
-            }
-            string ParentId = "PIC_ParentId";
-            string Code = "PIC_Code";
-            string Name = "PIC_Name";
-            if (tableName == "C")
-            {
-                ParentId = "City_ParentId";
-                Code = "City_Code";
-                Name = "City_Name";
-            }
+            string ParentId = "parentId";
+            string Code = "code";
+            string Name = "name";
 
             DataTable dt = dts;
             DataView dvTree = new DataView(dt);
 
             //过滤ParentID,得到当前的所有子节点
-            dvTree.RowFilter = string.Format("{0} = '{1}'", ParentId, ParentID);
+            if (ParentID == null)
+            {
+                dvTree.RowFilter = string.Format("{0} is NULL", ParentId);
+            }
+            else
+            {
+                dvTree.RowFilter = string.Format("{0} = '{1}'", ParentId, ParentID);
+            }
 
             foreach (DataRowView Row in dvTree)
             {
@@ -112,23 +109,23 @@ namespace WSCATProject.Base
                 if (pNode == null)
                 {
                     //添加根节点    
-                    Node.Text = XYEEncoding.strHexDecode(Row[Name].ToString());
-                    Node.Tag = XYEEncoding.strHexDecode(Row[Code].ToString());
-
+                    Node.Text = Row[Name].ToString();
+                    Node.Tag = Row[Code].ToString();
                     treeView1.Nodes.Add(Node);
-                    AddTree(Row[Code].ToString(), Node, dts, tableName);
+                    AddTree(Row[Code].ToString(), Node, dts);
                     //展开第一级节点
                     Node.Expand();
                 }
                 else
                 {
                     //添加当前节点的子节点                  
-                    Node.Text = XYEEncoding.strHexDecode(Row[Name].ToString());
-                    Node.Tag = XYEEncoding.strHexDecode(Row[Code].ToString());
+                    Node.Text = Row[Name].ToString();
+                    Node.Tag = Row[Code].ToString();
                     pNode.Nodes.Add(Node);
-                    AddTree(Row[Code].ToString(), Node, dts, tableName);     //再次递归 
+                    AddTree(Row[Code].ToString(), Node, dts);     //再次递归 
                 }
             }
+            Console.WriteLine("123");
         }
         #endregion
         private void toolStripButton1_DropDownOpening(object sender, EventArgs e)

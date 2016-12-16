@@ -677,8 +677,8 @@ namespace WSCATProject.Purchase
 
                 SupplierInterface supplierInterface = new SupplierInterface();
                 string suppliercode = dt.Rows[0]["supplierCode"].ToString();
-                string supplierName = supplierInterface.GetList(4, suppliercode).Rows[0]["name"].ToString(); //单位名称
-                string phone = supplierInterface.GetList(4, suppliercode).Rows[0]["phone"].ToString(); //手机
+                string supplierName = supplierInterface.GetList(4, suppliercode,false,false).Rows[0]["name"].ToString(); //单位名称
+                string phone = supplierInterface.GetList(4, suppliercode,false,false).Rows[0]["phone"].ToString(); //手机
                 BankAccountInterface bankAccountInterface = new BankAccountInterface();
                 string openBank = bankAccountInterface.GetList(0, dt.Rows[0]["accountCode"].ToString(), false, false).Rows[0]["openBank"].ToString(); //银行名称
                 //文本框赋值
@@ -950,7 +950,7 @@ namespace WSCATProject.Purchase
 
                 resizablePanel1.Location = new Point(439, 150);
                 string name = XYEEncoding.strCodeHex(this.labtextboxTop2.Text.Trim());
-                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name));
+                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name,false,false));
                 resizablePanel1.Visible = true;
             }
             catch (Exception ex)

@@ -76,7 +76,6 @@
             this.gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.toolStrip1.SuspendLayout();
@@ -384,7 +383,6 @@
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn12);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn13);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn14);
-            this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn15);
             this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
             this.superGridControl1.Size = new System.Drawing.Size(939, 410);
             this.superGridControl1.TabIndex = 1;
@@ -392,95 +390,88 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.DataPropertyName = "Su_Code";
+            this.gridColumn1.DataPropertyName = "code";
             this.gridColumn1.DefaultNewRowCellValue = "";
             this.gridColumn1.HeaderText = "编码";
             this.gridColumn1.Name = "gridColumn1";
             // 
             // gridColumn2
             // 
-            this.gridColumn2.DataPropertyName = "Su_Name";
+            this.gridColumn2.DataPropertyName = "name";
             this.gridColumn2.HeaderText = "单位名称";
             this.gridColumn2.Name = "gridColumn2";
             // 
             // gridColumn3
             // 
-            this.gridColumn3.DataPropertyName = "Su_Address";
+            this.gridColumn3.DataPropertyName = "address";
             this.gridColumn3.HeaderText = "通讯地址";
             this.gridColumn3.Name = "gridColumn3";
             // 
             // gridColumn4
             // 
-            this.gridColumn4.DataPropertyName = "Su_Empname";
+            this.gridColumn4.DataPropertyName = "linkMan";
             this.gridColumn4.HeaderText = "联系人";
             this.gridColumn4.Name = "gridColumn4";
             // 
             // gridColumn5
             // 
-            this.gridColumn5.DataPropertyName = "Su_EmpPhone";
+            this.gridColumn5.DataPropertyName = "mobilePhone";
             this.gridColumn5.HeaderText = "联系手机";
             this.gridColumn5.Name = "gridColumn5";
             // 
             // gridColumn6
             // 
-            this.gridColumn6.DataPropertyName = "Su_Phone";
+            this.gridColumn6.DataPropertyName = "phone";
             this.gridColumn6.HeaderText = "常用电话";
             this.gridColumn6.Name = "gridColumn6";
             // 
             // gridColumn7
             // 
-            this.gridColumn7.DataPropertyName = "Su_fax";
+            this.gridColumn7.DataPropertyName = "fax";
             this.gridColumn7.HeaderText = "传真";
             this.gridColumn7.Name = "gridColumn7";
             // 
             // gridColumn8
             // 
-            this.gridColumn8.DataPropertyName = "Su_Email";
+            this.gridColumn8.DataPropertyName = "email";
             this.gridColumn8.HeaderText = "邮箱";
             this.gridColumn8.Name = "gridColumn8";
             // 
             // gridColumn9
             // 
-            this.gridColumn9.DataPropertyName = "Su_Credit";
+            this.gridColumn9.DataPropertyName = "credit";
             this.gridColumn9.HeaderText = "信用等级";
             this.gridColumn9.Name = "gridColumn9";
             // 
             // gridColumn10
             // 
-            this.gridColumn10.DataPropertyName = "Su_Money";
+            this.gridColumn10.DataPropertyName = "availableBalance";
             this.gridColumn10.HeaderText = "账款额度";
             this.gridColumn10.Name = "gridColumn10";
             // 
             // gridColumn11
             // 
-            this.gridColumn11.DataPropertyName = "Su_Surplus";
+            this.gridColumn11.DataPropertyName = "balance";
             this.gridColumn11.HeaderText = "剩余额度";
             this.gridColumn11.Name = "gridColumn11";
             // 
             // gridColumn12
             // 
-            this.gridColumn12.DataPropertyName = "Su_Reckoning";
+            this.gridColumn12.DataPropertyName = "statementDate";
             this.gridColumn12.HeaderText = "月结日";
             this.gridColumn12.Name = "gridColumn12";
             // 
             // gridColumn13
             // 
-            this.gridColumn13.DataPropertyName = "Su_CityName";
+            this.gridColumn13.DataPropertyName = "cityName";
             this.gridColumn13.HeaderText = "城市";
             this.gridColumn13.Name = "gridColumn13";
             // 
             // gridColumn14
             // 
-            this.gridColumn14.DataPropertyName = "Su_Remark";
+            this.gridColumn14.DataPropertyName = "remark";
             this.gridColumn14.HeaderText = "备注";
             this.gridColumn14.Name = "gridColumn14";
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.DataPropertyName = "Su_EnableStr";
-            this.gridColumn15.HeaderText = "是否禁用";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.NullString = "";
             // 
             // splitter1
             // 
@@ -558,7 +549,6 @@
         private System.Windows.Forms.ToolStripMenuItem 导出到ExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn15;
         private DevComponents.DotNetBar.Controls.ComboBoxEx comboBox1;
         private DevComponents.Editors.ComboItem comboItem1;
         private DevComponents.Editors.ComboItem comboItem2;

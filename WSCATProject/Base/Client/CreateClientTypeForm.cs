@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using Model;
 using HelperUtility;
 using HelperUtility.Encrypt;
-using BLL;
 
 namespace WSCATProject.Base
 {

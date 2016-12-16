@@ -1816,7 +1816,7 @@ namespace WSCATProject.Finance
 
                 resizablePanel1.Location = new Point(560, 190);
                 string name = XYEEncoding.strCodeHex(this.labtextboxTop5.Text.Trim());
-                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name));
+                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name,false,false));
                 resizablePanel1.Visible = true;
             }
             catch (Exception ex)
@@ -1884,7 +1884,7 @@ namespace WSCATProject.Finance
 
                 resizablePanel1.Location = new Point(630, 190);
                 string name = XYEEncoding.strCodeHex(this.labtextboxTop4.Text.Trim());
-                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name));
+                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name, false, false));
                 resizablePanel1.Visible = true;
             }
             catch (Exception ex)

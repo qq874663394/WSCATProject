@@ -676,7 +676,7 @@ namespace WSCATProject.Purchase
 
                 resizablePanel1.Location = new Point(550, 160);
                 string name = XYEEncoding.strCodeHex(this.labtextboxTop2.Text.Trim());
-                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name));
+                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name,false,false));
                 resizablePanel1.Visible = true;
             }
             catch (Exception ex)

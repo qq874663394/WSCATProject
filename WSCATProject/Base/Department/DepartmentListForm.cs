@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL;
 using Model;
 using DevComponents.DotNetBar.SuperGrid;
+using InterfaceLayer.Base;
 
 namespace WSCATProject.Base.Department
 {
@@ -21,11 +21,11 @@ namespace WSCATProject.Base.Department
             InitializeComponent();
         }
 
-        DepartmentManager depm = new DepartmentManager();
+        DepartmentInterface depm = new DepartmentInterface();
         private void DepartmentListForm_Load(object sender, EventArgs e)
         {
             superGridControl1.PrimaryGrid.AutoGenerateColumns = false;
-            this.superGridControl1.PrimaryGrid.DataSource = depm.GetListDep();
+            this.superGridControl1.PrimaryGrid.DataSource = depm.GetList(999, "", false);
         }
 
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,14 +39,14 @@ namespace WSCATProject.Base.Department
         {
             if (superGridControl1.GetSelectedRows().Count > 0)
             {
-              Model.Department dep = new Model.Department();
+                BaseDepartment dep = new BaseDepartment();
                 SelectedElementCollection col = superGridControl1.GetSelectedRows();
                 if (col.Count > 0)
                 {
                     GridRow gridRow = col[0] as GridRow;
-                    dep.Dt_Code = gridRow["gridColumn2"].Value.ToString();
-                    dep.Dt_Name = gridRow["gridColumn4"].Value.ToString();
-                    dep.Dt_RoleCode = gridRow["gridColumn3"].Value.ToString();
+                    dep.code = gridRow["gridColumn2"].Value.ToString();
+                    dep.name = gridRow["gridColumn4"].Value.ToString();
+                    dep.roleCode = gridRow["gridColumn3"].Value.ToString();
                 }
                 InDepartment updatedep = new InDepartment();
                 updatedep._update = true;
@@ -66,12 +66,12 @@ namespace WSCATProject.Base.Department
                 SelectedElementCollection col = superGridControl1.GetSelectedRows();
                 if (col.Count > 0)
                 {
-                    
+
                     GridRow gridRow = col[0] as GridRow;
                     try
                     {
-                        int result = depm.FalseDelClear(gridRow["gridColumn2"].Value.ToString());
-                        if (result==1)
+                        bool result = depm.Delete(gridRow["gridColumn2"].Value.ToString());
+                        if (result)
                         {
                             MessageBox.Show("删除成功!");
 
@@ -100,7 +100,7 @@ namespace WSCATProject.Base.Department
         private void 刷新ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             superGridControl1.PrimaryGrid.AutoGenerateColumns = false;
-            this.superGridControl1.PrimaryGrid.DataSource = depm.GetListDep();
+            this.superGridControl1.PrimaryGrid.DataSource = depm.GetList(999,"",false);
         }
 
         private void 新增ToolStripMenuItem1_Click(object sender, EventArgs e)

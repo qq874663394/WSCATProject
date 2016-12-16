@@ -1,6 +1,6 @@
 ﻿namespace WSCATProject.Base
 {
-    partial class CityType
+    partial class AreaNode
     {
         /// <summary>
         /// Required designer variable.
@@ -30,20 +30,33 @@
         {
             this.SuspendLayout();
             // 
-            // treeView1
+            // textBox1
             // 
-            this.treeView1.LineColor = System.Drawing.Color.Black;
-            this.treeView1.Size = new System.Drawing.Size(254, 337);
+            this.text_childName.Location = new System.Drawing.Point(18, 38);
             // 
-            // CityType
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(18, 21);
+            this.label1.TabIndex = 3;
+            // 
+            // form_save
+            // 
+            this.form_save.Location = new System.Drawing.Point(80, 68);
+            this.form_save.TabIndex = 1;
+            this.form_save.Click += new System.EventHandler(this.form_save_Click);
+            // 
+            // form_exit
+            // 
+            this.form_exit.Location = new System.Drawing.Point(161, 68);
+            // 
+            // CityNode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 362);
-            this.Name = "CityType";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ClientSize = new System.Drawing.Size(254, 112);
+            this.Name = "CityNode";
+            this.Text = "CityNode";
+            this.Load += new System.EventHandler(this.AreaNode_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

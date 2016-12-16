@@ -1,20 +1,19 @@
-﻿using BLL;
-using HelperUtility;
+﻿using HelperUtility;
+using InterfaceLayer.Base;
 using Model;
 using System;
 using System.Windows.Forms;
 
 namespace WSCATProject.Base
 {
-    public partial class CityNode : MaterialNodes
+    public partial class AreaNode : MaterialNodes
     {
-        CityManager cm = new CityManager();
-        public CityNode()
+        public AreaNode()
         {
             InitializeComponent();
         }
 
-        private void CityNode_Load(object sender, EventArgs e)
+        private void AreaNode_Load(object sender, EventArgs e)
         {
             if (state == 0)
             {
@@ -32,33 +31,39 @@ namespace WSCATProject.Base
             {
                 label1.Text = "请输入修改后的名称：";
                 Text = "请输入节点...";
-                textBox1.Text = txtName;
+                text_childName.Text = txtName;
                 return;
             }
         }
-
-        private void form_save_Click_1(object sender, EventArgs e)
+        /// <summary>
+        /// 保存按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void form_save_Click(object sender, EventArgs e)
         {
             if (InsTextIsNull() == false)
             {
                 return;
             }
-            City city = null;
-            CityType ct = (CityType)Owner;
+            AreaInterface _dal = new AreaInterface();
+            BaseArea area = null;
+            AreaType ct = (AreaType)Owner;
+            area = new BaseArea()
+            {
+                name = text_childName.Text.Trim(),
+                isClear = 1,
+                isEnable = 1,
+                code = BuildCode.ModuleCode("A"),
+                parentId = code,
+                updateDate = DateTime.Now
+            };
             try
             {
                 switch (state)
                 {
                     case 0:
-                        city = new City()
-                        {
-                            City_Name = textBox1.Text.Trim(),
-                            City_Clear = 1,
-                            City_Enable = 1,
-                            City_Code = BuildCode.ModuleCode("CN"),
-                            City_ParentId = code
-                        };
-                        int result = cm.InsCity(city);
+                        int result = _dal.Add(area);
                         if (result > 0)
                         {
                             MessageBox.Show("保存成功!");
@@ -74,15 +79,7 @@ namespace WSCATProject.Base
                             return;
                         }
                     case 1:
-                        city = new City()
-                        {
-                            City_Name = textBox1.Text.Trim(),
-                            City_Clear = 1,
-                            City_Enable = 1,
-                            City_Code = BuildCode.ModuleCode("CN"),
-                            City_ParentId = code
-                        };
-                        result = cm.InsCity(city);
+                        result = _dal.Add(area);
                         if (result > 0)
                         {
                             MessageBox.Show("保存成功!");
@@ -98,7 +95,7 @@ namespace WSCATProject.Base
                             return;
                         }
                     case 2:
-                        result = cm.UpdateNameCity(textBox1.Text, code, txtName);
+                        result = _dal.Update(area);
                         if (result > 0)
                         {
                             MessageBox.Show("保存成功!");

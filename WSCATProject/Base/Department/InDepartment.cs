@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL;
 using Model;
 using HelperUtility;
 using HelperUtility.Encrypt;
+using InterfaceLayer.Base;
 
 namespace WSCATProject.Base.Department
 {
@@ -22,23 +22,23 @@ namespace WSCATProject.Base.Department
         }
         public bool _update { get; set; }
 
-        public Model.Department _Department { get; set; }
+        public BaseDepartment _Department { get; set; }
 
         RoleManager role = new RoleManager();
-        DepartmentManager depm = new DepartmentManager();
+        DepartmentInterface depm = new DepartmentInterface();
         private void InDepartment_Load(object sender, EventArgs e)
         {
             //绑定角色下拉框
             DataTable dt = role.GetAllList().Tables[0];
             comboBoxEx1.DataSource = dt;
-            comboBoxEx1.DisplayMember = "Role_Name";
-            comboBoxEx1.ValueMember = "Role_Code";
+            comboBoxEx1.DisplayMember = "Name";
+            comboBoxEx1.ValueMember = "Code";
             comboBoxEx1.SelectedIndex = 0;
 
             if (_update)
             {
-                this.textBoxXName.Text = _Department.Dt_Name;
-                this.comboBoxEx1.Text = _Department.Dt_RoleCode;
+                this.textBoxXName.Text = _Department.name;
+                this.comboBoxEx1.Text = _Department.roleCode;
             }
         }
         //取消按钮
@@ -50,16 +50,16 @@ namespace WSCATProject.Base.Department
         //保存按钮
         private void buttonX2_Click(object sender, EventArgs e)
         {
-            Model.Department dep = new Model.Department();
+            BaseDepartment dep = new BaseDepartment();
             try
             {
                 if (_update == false)
                 {
-                    dep.Dt_Name = XYEEncoding.strCodeHex(this.textBoxXName.Text.Trim());
-                    dep.Dt_RoleCode = comboBoxEx1.SelectedValue == null ? "" : XYEEncoding.strCodeHex(comboBoxEx1.SelectedValue.ToString());
-                    dep.Dt_Code = XYEEncoding.strCodeHex(BuildCode.ModuleCode("DT"));
-                    dep.Dt_Clear = 1;
-                    int result = depm.InsDepartment(dep);
+                    dep.name = XYEEncoding.strCodeHex(this.textBoxXName.Text.Trim());
+                    dep.roleCode = comboBoxEx1.SelectedValue == null ? "" : XYEEncoding.strCodeHex(comboBoxEx1.SelectedValue.ToString());
+                    dep.code = XYEEncoding.strCodeHex(BuildCode.ModuleCode("DT"));
+                    dep.isClear = 1;
+                    int result = depm.Add(dep);
                     if (result == 1)
                     {
                         MessageBox.Show("部门添加成功！");
@@ -71,11 +71,11 @@ namespace WSCATProject.Base.Department
                 }
                 else
                 {
-                    dep.Dt_Name = this.textBoxXName.Text.Trim();
-                    dep.Dt_RoleCode = comboBoxEx1.SelectedValue == null ? "" : comboBoxEx1.SelectedValue.ToString();
-                    dep.Dt_Code = _Department.Dt_Code;
-                    int r = depm.UpdateDepartment(dep);
-                    if (r == 1)
+                    dep.name = this.textBoxXName.Text.Trim();
+                    dep.roleCode = comboBoxEx1.SelectedValue == null ? "" : comboBoxEx1.SelectedValue.ToString();
+                    dep.code = _Department.code;
+                    bool r = depm.Update(dep);
+                    if (r)
                     {
                         MessageBox.Show("修改部门成功！");
                     }
@@ -94,16 +94,16 @@ namespace WSCATProject.Base.Department
         //保存并退出按钮
         private void buttonX3_Click(object sender, EventArgs e)
         {
-            Model.Department dep = new Model.Department();
+            BaseDepartment dep = new Model.BaseDepartment();
             try
             {
                 if (_update == false)
                 {
-                    dep.Dt_Name = XYEEncoding.strCodeHex(this.textBoxXName.Text.Trim());
-                    dep.Dt_RoleCode = comboBoxEx1.SelectedValue == null ? "" : XYEEncoding.strCodeHex(comboBoxEx1.SelectedValue.ToString());
-                    dep.Dt_Code = XYEEncoding.strCodeHex(BuildCode.ModuleCode("DT"));
-                    dep.Dt_Clear = 1;
-                    int result = depm.InsDepartment(dep);
+                    dep.name = XYEEncoding.strCodeHex(this.textBoxXName.Text.Trim());
+                    dep.roleCode = comboBoxEx1.SelectedValue == null ? "" : XYEEncoding.strCodeHex(comboBoxEx1.SelectedValue.ToString());
+                    dep.code = XYEEncoding.strCodeHex(BuildCode.ModuleCode("DT"));
+                    dep.isClear = 1;
+                    int result = depm.Add(dep);
                     if (result == 1)
                     {
                         MessageBox.Show("部门添加成功！");
@@ -117,11 +117,11 @@ namespace WSCATProject.Base.Department
                 }
                 else
                 {
-                    dep.Dt_Name = this.textBoxXName.Text.Trim();
-                    dep.Dt_RoleCode = comboBoxEx1.SelectedValue == null ? "" : comboBoxEx1.SelectedValue.ToString();
-                    dep.Dt_Code = _Department.Dt_Code;
-                    int r = depm.UpdateDepartment(dep);
-                    if (r == 1)
+                    dep.name = this.textBoxXName.Text.Trim();
+                    dep.roleCode = comboBoxEx1.SelectedValue == null ? "" : comboBoxEx1.SelectedValue.ToString();
+                    dep.code = _Department.code;
+                    bool r = depm.Update(dep);
+                    if (r)
                     {
                         MessageBox.Show("修改部门成功！");
                         this.Close();

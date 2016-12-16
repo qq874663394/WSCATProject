@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using Model;
 using HelperUtility;
+using WSCATProject.Base;
+using InterfaceLayer.Base;
 
 namespace WSCATProject.Base
 {
@@ -12,23 +14,24 @@ namespace WSCATProject.Base
             InitializeComponent();
         }
 
-        private readonly MaterialTypeManager mtm = new MaterialTypeManager();
+        private readonly AreaInterface mtm = new AreaInterface();
         
-        public MaterialType _MaterialType { get; set; }
+        public BaseArea _MaterialType { get; set; }
         public string _MType_Code { get; set; }
 
         private void form_save_Click(object sender, EventArgs e)
         {
             if (_MaterialType == null)
             {
-                
-                MaterialType materialType = new MaterialType()
+
+                BaseArea materialType = new BaseArea()
                 {
-                    MT_Name = textBox1.Text.Trim(),
-                    MT_ParentID = _MType_Code,
-                    MT_Clear = 1,
-                    MT_Enable = 1,
-                    MT_Code = BuildCode.ModuleCode("MT")
+                    code = BuildCode.ModuleCode("mt"),
+                    name = textBox1.Text.Trim(),
+                    parentId = _MType_Code,
+                    isClear = 1,
+                    isEnable = 1,
+                    updateDate = DateTime.Now
                 };
                 try
                 {
@@ -54,11 +57,11 @@ namespace WSCATProject.Base
             }
             else
             {
-                _MaterialType.MT_Name = textBox1.Text.Trim();
+                _MaterialType.name = textBox1.Text.Trim();
                 try
                 {
-                    bool result = mtm.UpdateByCode(_MaterialType);
-                    if (result)
+                    int result = mtm.Update(_MaterialType);
+                    if (result>0)
                     {
                         MaterialForm materialForm = (MaterialForm)this.Owner;
                         materialForm.Isflag = true;
@@ -89,7 +92,7 @@ namespace WSCATProject.Base
         {
             if (_MaterialType != null)
             {
-                textBox1.Text = _MaterialType.MT_Name;
+                textBox1.Text = _MaterialType.name;
             }
         }
     }

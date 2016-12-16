@@ -98,12 +98,6 @@ C:\Users\Administrator\Desktop\2016-12-01\HelperUtility\bin\Debug\HelperUtility.
 C:\Users\Administrator\Desktop\2016-12-01\HelperUtility\bin\Debug\NPOI.dll
 C:\Users\Administrator\Desktop\2016-12-01\HelperUtility\obj\Debug\HelperUtility.dll
 C:\Users\Administrator\Desktop\2016-12-01\HelperUtility\obj\Debug\HelperUtility.pdb
-D:\Projects\WSCAT\WSCATProject\HelperUtility\bin\Debug\HelperUtility.dll
-D:\Projects\WSCAT\WSCATProject\HelperUtility\bin\Debug\HelperUtility.pdb
-D:\Projects\WSCAT\WSCATProject\HelperUtility\bin\Debug\NPOI.dll
-D:\Projects\WSCAT\WSCATProject\HelperUtility\obj\Debug\HelperUtility.csprojResolveAssemblyReference.cache
-D:\Projects\WSCAT\WSCATProject\HelperUtility\obj\Debug\HelperUtility.dll
-D:\Projects\WSCAT\WSCATProject\HelperUtility\obj\Debug\HelperUtility.pdb
 C:\Users\Administrator\Desktop\2016-12-09\HelperUtility\bin\Debug\HelperUtility.dll
 C:\Users\Administrator\Desktop\2016-12-09\HelperUtility\bin\Debug\HelperUtility.pdb
 C:\Users\Administrator\Desktop\2016-12-09\HelperUtility\bin\Debug\NPOI.dll
@@ -115,3 +109,9 @@ C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\bin\De
 C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\bin\Debug\NPOI.dll
 C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\obj\Debug\HelperUtility.dll
 C:\Users\Administrator\Desktop\新建文件夹\WSCATProject\HelperUtility\obj\Debug\HelperUtility.pdb
+D:\Projects\WSCAT\WSCATProject\HelperUtility\bin\Debug\HelperUtility.dll
+D:\Projects\WSCAT\WSCATProject\HelperUtility\bin\Debug\HelperUtility.pdb
+D:\Projects\WSCAT\WSCATProject\HelperUtility\bin\Debug\NPOI.dll
+D:\Projects\WSCAT\WSCATProject\HelperUtility\obj\Debug\HelperUtility.csprojResolveAssemblyReference.cache
+D:\Projects\WSCAT\WSCATProject\HelperUtility\obj\Debug\HelperUtility.dll
+D:\Projects\WSCAT\WSCATProject\HelperUtility\obj\Debug\HelperUtility.pdb

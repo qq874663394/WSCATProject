@@ -946,7 +946,7 @@ namespace WSCATProject.Finance
                 financeOtherExpensesOut.isClear = 1;
                 financeOtherExpensesOut.updateDate = DateTime.Now;
                 SupplierInterface supplierInterface = new SupplierInterface();
-                financeOtherExpensesOut.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(labtextboxTop2.Text)).Rows[0]["code"].ToString();//供应商code
+                financeOtherExpensesOut.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(labtextboxTop2.Text), false, false).Rows[0]["code"].ToString();//供应商code
                 BankAccountInterface bankAccountInterface = new BankAccountInterface();
                 financeOtherExpensesOut.accountCode = bankAccountInterface.GetList(3, XYEEncoding.strCodeHex(labtextboxTop4.Text), false, false).Rows[0]["code"].ToString();//结算账户code
                 EmpolyeeInterface empolyeeInterface = new EmpolyeeInterface();
@@ -1074,7 +1074,7 @@ namespace WSCATProject.Finance
                 financeOtherExpensesOut.isClear = 1;
                 financeOtherExpensesOut.updateDate = DateTime.Now;
                 SupplierInterface supplierInterface = new SupplierInterface();
-                financeOtherExpensesOut.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(labtextboxTop2.Text)).Rows[0]["code"].ToString();//供应商code
+                financeOtherExpensesOut.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(labtextboxTop2.Text),false,false).Rows[0]["code"].ToString();//供应商code
                 BankAccountInterface bankAccountInterface = new BankAccountInterface();
                 financeOtherExpensesOut.accountCode = bankAccountInterface.GetList(3, XYEEncoding.strCodeHex(labtextboxTop4.Text), false, false).Rows[0]["code"].ToString();//结算账户code
                 EmpolyeeInterface empolyeeInterface = new EmpolyeeInterface();
@@ -1328,7 +1328,7 @@ namespace WSCATProject.Finance
 
                 resizablePanel1.Location = new Point(230, 160);
                 string name = XYEEncoding.strCodeHex(this.labtextboxTop2.Text.Trim());
-                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name));
+                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name, false, false));
                 resizablePanel1.Visible = true;
             }
             catch (Exception ex)
@@ -1506,7 +1506,7 @@ namespace WSCATProject.Finance
                 dt = financeOtherExpensesoutinter.GetNextDetail(code);
                 SupplierInterface supplierInterface = new SupplierInterface();
                 string suppliercode = dt.Rows[0]["supplierCode"].ToString();
-                string supplierName = supplierInterface.GetList(4, suppliercode).Rows[0]["name"].ToString(); //单位名称
+                string supplierName = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["name"].ToString(); //单位名称
                 BankAccountInterface bankAccountInterface = new BankAccountInterface();
                 string openBank = bankAccountInterface.GetList(0, dt.Rows[0]["accountCode"].ToString(), false, false).Rows[0]["openBank"].ToString(); //银行名称
                 //文本框赋值
@@ -1578,7 +1578,7 @@ namespace WSCATProject.Finance
                 SupplierInterface supplierInterface = new SupplierInterface();
                 string suppliercode = dt.Rows[0]["supplierCode"].ToString();
 
-                string supplierName = supplierInterface.GetList(4, suppliercode).Rows[0]["name"].ToString(); //单位名称
+                string supplierName = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["name"].ToString(); //单位名称
                 BankAccountInterface bankAccountInterface = new BankAccountInterface();
                 string openBank = bankAccountInterface.GetList(0, dt.Rows[0]["accountCode"].ToString(), false, false).Rows[0]["openBank"].ToString(); //银行名称
                 //文本框赋值

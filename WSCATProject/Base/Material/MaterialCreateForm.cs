@@ -12,6 +12,7 @@ using HelperUtility;
 using HelperUtility.Encrypt;
 using DevComponents.DotNetBar.Controls;
 using DevComponents.AdvTree;
+using InterfaceLayer.Base;
 
 namespace WSCATProject.Base
 {
@@ -22,9 +23,9 @@ namespace WSCATProject.Base
             InitializeComponent();
         }
 
-        private Model.Material material = null;
+        private BaseMaterial material = null;
 
-        public Model.Material Material
+        public BaseMaterial Material
         {
             get
             {
@@ -39,8 +40,8 @@ namespace WSCATProject.Base
 
         private void MaterialCreateForm_Load(object sender, EventArgs e)
         {
-            MaterialTypeManager mtm = new MaterialTypeManager();
-            DataTable dt = mtm.GetList("").Tables[0];
+            MaterialTypeInterface mtm = new MaterialTypeInterface();
+            DataTable dt = mtm.GetList(999, "", false, false);
             DataView dvTree = new DataView(dt);
             AddTree("", null, dvTree);
             bindCombo();
@@ -54,46 +55,46 @@ namespace WSCATProject.Base
             {
                 if (!string.IsNullOrWhiteSpace(textBoxXName.Text))
                 {
-                    Model.Material material = new Model.Material();
-                    material.Ma_Barcode = XYEEncoding.strCodeHex(textBoxXBarcode.Text.Trim());
-                    material.Ma_Clear = 1;
-                    material.Ma_Code = XYEEncoding.strCodeHex(BuildCode.ModuleCode("MA"));
+                    BaseMaterial material = new BaseMaterial();
+                    material.barCode = XYEEncoding.strCodeHex(textBoxXBarcode.Text.Trim());
+                    material.isClear = 1;
+                    material.code = XYEEncoding.strCodeHex(BuildCode.ModuleCode("MA"));
                     if (dateTimeInputCreate.Text != "")
                     {
-                        material.Ma_CreateDate = dateTimeInputCreate.Value.Date;
+                        material.createDate = dateTimeInputCreate.Value.Date;
                     }
-                    material.Ma_Enable = checkBoxXEnable.Checked ? 0 : 1;
+                    material.isEnable = checkBoxXEnable.Checked ? 0 : 1;
                     if (dateTimeInputInput.Text != "")
                     {
-                        material.Ma_InDate = dateTimeInputInput.Value.Date;
+                        material.inDate = dateTimeInputInput.Value.Date;
                     }
-                    material.Ma_InPrice = Convert.ToDecimal(textBoxXInPrice.Text.Trim());
-                    material.Ma_Model = XYEEncoding.strCodeHex(textBoxXTypeModel.Text.Trim());
-                    material.Ma_Name = XYEEncoding.strCodeHex(textBoxXName.Text.Trim());
-                    material.Ma_PicName = "";
-                    material.Ma_Price = Convert.ToDecimal(textBoxXOutPrice.Text.Trim());
-                    material.Ma_PriceA = Convert.ToDecimal(textBoxXPA.Text.Trim());
-                    material.Ma_PriceB = Convert.ToDecimal(textBoxXPB.Text.Trim());
-                    material.Ma_PriceC = Convert.ToDecimal(textBoxXPC.Text.Trim());
-                    material.Ma_PriceD = Convert.ToDecimal(textBoxXPD.Text.Trim());
-                    material.Ma_PriceE = 0;
-                    material.Ma_Remark = XYEEncoding.strCodeHex(textBoxXRemark.Text.Trim());
-                    material.Ma_RFID = XYEEncoding.strCodeHex(textBoxXRFID.Text.Trim());
+                    material.inPrice = Convert.ToDecimal(textBoxXInPrice.Text.Trim());
+                    material.model = XYEEncoding.strCodeHex(textBoxXTypeModel.Text.Trim());
+                    material.name = XYEEncoding.strCodeHex(textBoxXName.Text.Trim());
+                    material.picName = "";
+                    material.outPrice = Convert.ToDecimal(textBoxXOutPrice.Text.Trim());
+                    material.price = Convert.ToDecimal(textBoxXPA.Text.Trim());
+                    material.priceB = Convert.ToDecimal(textBoxXPB.Text.Trim());
+                    material.priceC = Convert.ToDecimal(textBoxXPC.Text.Trim());
+                    material.priceD = Convert.ToDecimal(textBoxXPD.Text.Trim());
+                    material.priceE = 0;
+                    material.remark = XYEEncoding.strCodeHex(textBoxXRemark.Text.Trim());
+                    //material.Ma_RFID = XYEEncoding.strCodeHex(textBoxXRFID.Text.Trim());
                     if (comboBoxExSupplier.SelectedText != null &&
                         comboBoxExSupplier.SelectedValue != null)
                     {
-                        material.Ma_SupID = XYEEncoding.strCodeHex(comboBoxExSupplier.SelectedValue.ToString());
-                        material.Ma_Supplier = XYEEncoding.strCodeHex(comboBoxExSupplier.SelectedText);
+                        material.supplierCode = XYEEncoding.strCodeHex(comboBoxExSupplier.SelectedValue.ToString());
+                        material.supplierName = XYEEncoding.strCodeHex(comboBoxExSupplier.SelectedText);
                     }
                     if (comboTreeType.SelectedNode != null)
                     {
-                        material.Ma_TypeID = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.Tag.ToString());
-                        material.Ma_TypeName = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.FullPath.Replace(';', '/'));
+                        material.typeID = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.Tag.ToString());
+                        material.typeName = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.FullPath.Replace(';', '/'));
                     }
-                    material.Ma_Unit = textBoxXUnit.Text.Trim();
-                    material.Ma_zhujima = XYEEncoding.strCodeHex(textBoxXzhujima.Text.Trim());
+                    material.unit = textBoxXUnit.Text.Trim();
+                    material.materialDaima = XYEEncoding.strCodeHex(textBoxXzhujima.Text.Trim());
 
-                    MaterialManager mm = new MaterialManager();
+                    MaterialInterface mm = new MaterialInterface();
 
                     try
                     {
@@ -125,41 +126,41 @@ namespace WSCATProject.Base
             {
                 if (!string.IsNullOrWhiteSpace(textBoxXName.Text))
                 {
-                    material.Ma_Barcode = XYEEncoding.strCodeHex(textBoxXBarcode.Text.Trim());
+                    material.barCode = XYEEncoding.strCodeHex(textBoxXBarcode.Text.Trim());
                     if (dateTimeInputCreate.Text != "")
                     {
-                        material.Ma_CreateDate = dateTimeInputCreate.Value;
+                        material.createDate = dateTimeInputCreate.Value;
                     }
                     if (dateTimeInputInput.Text != "")
                     {
-                        material.Ma_InDate = dateTimeInputInput.Value;
+                        material.inDate = dateTimeInputInput.Value;
                     }
-                    material.Ma_InPrice = Convert.ToDecimal(textBoxXInPrice.Text.Trim());
-                    material.Ma_Model = XYEEncoding.strCodeHex(textBoxXTypeModel.Text.Trim());
-                    material.Ma_Name = XYEEncoding.strCodeHex(textBoxXName.Text.Trim());
-                    material.Ma_Price = Convert.ToDecimal(textBoxXOutPrice.Text.Trim());
-                    material.Ma_PriceA = Convert.ToDecimal(textBoxXPA.Text.Trim());
-                    material.Ma_PriceB = Convert.ToDecimal(textBoxXPB.Text.Trim());
-                    material.Ma_PriceC = Convert.ToDecimal(textBoxXPC.Text.Trim());
-                    material.Ma_PriceD = Convert.ToDecimal(textBoxXPD.Text.Trim());
-                    material.Ma_PriceE = 0;
-                    material.Ma_Remark = XYEEncoding.strCodeHex(textBoxXRemark.Text.Trim());
-                    material.Ma_RFID = XYEEncoding.strCodeHex(textBoxXRFID.Text.Trim());
+                    material.inPrice = Convert.ToDecimal(textBoxXInPrice.Text.Trim());
+                    material.model = XYEEncoding.strCodeHex(textBoxXTypeModel.Text.Trim());
+                    material.name = XYEEncoding.strCodeHex(textBoxXName.Text.Trim());
+                    material.outPrice = Convert.ToDecimal(textBoxXOutPrice.Text.Trim());
+                    material.price = Convert.ToDecimal(textBoxXPA.Text.Trim());
+                    material.priceB = Convert.ToDecimal(textBoxXPB.Text.Trim());
+                    material.priceC = Convert.ToDecimal(textBoxXPC.Text.Trim());
+                    material.priceD = Convert.ToDecimal(textBoxXPD.Text.Trim());
+                    material.priceE = 0;
+                    material.remark = XYEEncoding.strCodeHex(textBoxXRemark.Text.Trim());
+                    //material.Ma_RFID = XYEEncoding.strCodeHex(textBoxXRFID.Text.Trim());
                     if (comboBoxExSupplier.SelectedText != null &&
                         comboBoxExSupplier.SelectedValue != null)
                     {
-                        material.Ma_SupID = XYEEncoding.strCodeHex(comboBoxExSupplier.SelectedValue.ToString());
-                        material.Ma_Supplier = XYEEncoding.strCodeHex(comboBoxExSupplier.SelectedText);
+                        material.supplierCode = XYEEncoding.strCodeHex(comboBoxExSupplier.SelectedValue.ToString());
+                        material.supplierName = XYEEncoding.strCodeHex(comboBoxExSupplier.SelectedText);
                     }
                     if (comboTreeType.SelectedNode != null)
                     {
-                        material.Ma_TypeID = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.Tag.ToString());
-                        material.Ma_TypeName = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.FullPath.Replace(';', '/'));
+                        material.typeID = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.Tag.ToString());
+                        material.typeName = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.FullPath.Replace(';', '/'));
                     }
-                    material.Ma_Unit = textBoxXUnit.Text.Trim();
-                    material.Ma_zhujima = XYEEncoding.strCodeHex(textBoxXzhujima.Text.Trim());
+                    material.unit = textBoxXUnit.Text.Trim();
+                    material.materialDaima = XYEEncoding.strCodeHex(textBoxXzhujima.Text.Trim());
 
-                    MaterialManager mm = new MaterialManager();
+                    MaterialInterface mm = new MaterialInterface();
 
                     try
                     {
@@ -245,25 +246,25 @@ namespace WSCATProject.Base
         {
             if(material != null)
             {
-                textBoxXBarcode.Text = material.Ma_Barcode;
-                if (material.Ma_CreateDate != null)
+                textBoxXBarcode.Text = material.barCode;
+                if (material.createDate != null)
                 {
-                    dateTimeInputCreate.Value = material.Ma_CreateDate.Value;
+                    dateTimeInputCreate.Value = material.createDate.Value;
                 }
-                if (material.Ma_InDate != null)
+                if (material.inDate != null)
                 {
-                    dateTimeInputInput.Value = material.Ma_InDate.Value;
+                    dateTimeInputInput.Value = material.inDate.Value;
                 }
-                textBoxXInPrice.Text = material.Ma_InPrice.ToString();
-                textBoxXTypeModel.Text = material.Ma_Model;
-                textBoxXName.Text = material.Ma_Name;
-                textBoxXOutPrice.Text = material.Ma_Price.ToString();
-                textBoxXPA.Text = material.Ma_PriceA.ToString();
-                textBoxXPB.Text = material.Ma_PriceB.ToString();
-                textBoxXPC.Text = material.Ma_PriceC.ToString();
-                textBoxXPD.Text = material.Ma_PriceD.ToString();
-                textBoxXRemark.Text = material.Ma_Remark;
-                textBoxXRFID.Text = material.Ma_RFID;
+                textBoxXInPrice.Text = material.inPrice.ToString();
+                textBoxXTypeModel.Text = material.model;
+                textBoxXName.Text = material.name;
+                textBoxXOutPrice.Text = material.outPrice.ToString();
+                textBoxXPA.Text = material.price.ToString();
+                textBoxXPB.Text = material.priceB.ToString();
+                textBoxXPC.Text = material.priceC.ToString();
+                textBoxXPD.Text = material.priceD.ToString();
+                textBoxXRemark.Text = material.remark;
+                //textBoxXRFID.Text = material;
                 //if (comboBoxExSupplier.SelectedText != null &&
                 //    comboBoxExSupplier.SelectedValue != null)
                 //{
@@ -275,13 +276,13 @@ namespace WSCATProject.Base
                 //    material.Ma_TypeID = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.Tag.ToString());
                 //    material.Ma_TypeName = XYEEncoding.strCodeHex(comboTreeType.SelectedNode.FullPath.Replace(';', '/'));
                 //}
-                textBoxXUnit.Text = material.Ma_Unit.ToString();
-                textBoxXzhujima.Text = material.Ma_zhujima;
+                textBoxXUnit.Text = material.unit.ToString();
+                textBoxXzhujima.Text = material.materialDaima;
 
-                if (!string.IsNullOrWhiteSpace(material.Ma_TypeName) && comboTreeType.Nodes.Count > 0)
+                if (!string.IsNullOrWhiteSpace(material.typeName) && comboTreeType.Nodes.Count > 0)
                 {
                     comboTreeType.SelectedIndex = 0;
-                    string[] areas = material.Ma_TypeName.Split('/');
+                    string[] areas = material.typeName.Split('/');
                     int len = areas.Length;
                     //判断头节点的文本是否是当前树的头结点 不是则不调用遍历(节点不存在于当前树状结构)
                     if (comboTreeType.Nodes[0].Text == areas[0])

@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
     <Reference Include="NPOI, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\HelperUtility\NPOI.dll</HintPath>
@@ -38,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,9 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseHelper.cs" />
+    <Compile Include="Base\AreaBase.cs" />
     <Compile Include="Base\BankAccountBase.cs" />
+    <Compile Include="Base\BorrowBase.cs" />
     <Compile Include="Base\ClientBase.cs" />
+    <Compile Include="Base\DepartmentBase.cs" />
     <Compile Include="Base\EmpolyeeBase.cs" />
+    <Compile Include="Base\MaterialTypeBase.cs" />
+    <Compile Include="Base\ProfessionBase.cs" />
+    <Compile Include="Base\RoleBase.cs" />
     <Compile Include="Finance\FinanceAccountingSubjectsBase.cs" />
     <Compile Include="Finance\FinanceSummaryLibraryBase.cs" />
     <Compile Include="Finance\FinanceVoucherEntryBase.cs" />

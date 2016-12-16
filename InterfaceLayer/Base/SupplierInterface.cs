@@ -1,4 +1,5 @@
 ﻿using LogicLayer.Base;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,14 +21,30 @@ namespace InterfaceLayer.Base
             return sl.SelSupplierTable();
         }
         /// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int Add(BaseSupplier model)
+        {
+            return sl.Add(model);
+        }
+        /// <summary>
+        /// 更新一条数据
+        /// </summary>
+        public int Update(BaseSupplier model)
+        {
+            return sl.Update(model);
+        }
+        /// <summary>
         /// 复合查询
         /// </summary>
-        /// <param name="fieldName">0:模糊name,1:模糊cityName,2:isEnable,3:isClear,</param>
-        /// <param name="fieldValue">条件值</param>
+        /// <param name="fieldName">字段名:0:模糊查询name 1:模糊查询cityName 4:code 5:name</param>
+        /// <param name="fieldValue"></param>
+        /// <param name="isClear">true检索所有,false只检索未禁用</param>
+        /// <param name="isEnable">true检索所有,false只检索未禁用</param>
         /// <returns></returns>
-        public DataTable GetList(int fieldName, string fieldValue)
+        public DataTable GetList(int fieldName, string fieldValue, bool isClear, bool isEnable)
         {
-            return sl.GetList(fieldName, fieldValue);
+            return sl.GetList(fieldName, fieldValue, isClear, isEnable);
         }
         /// <summary>
         /// 根据供应商code查询所有采购单
@@ -37,6 +54,28 @@ namespace InterfaceLayer.Base
         public DataTable GetPurchaseList(string code)
         {
             return sl.GetPurchaseList(code);
+        }
+        /// <summary>
+        /// 自定义where查询
+        /// </summary>
+        /// <returns></returns>
+        public DataTable SelSupplierByWhere(string SQLWhere)
+        {
+            return sl.SelSupplierByWhere(SQLWhere);
+        }
+        /// <summary>
+        /// 删除全部数据
+        /// </summary>
+        public bool DeleteAll()
+        {
+            return sl.DeleteAll();
+        }
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(string code)
+        {
+            return sl.Delete(code);
         }
         /// <summary>
         /// true存在，false不存在

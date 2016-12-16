@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using BLL;
 using HelperUtility.Encrypt;
 using DevComponents.DotNetBar.SuperGrid;
 

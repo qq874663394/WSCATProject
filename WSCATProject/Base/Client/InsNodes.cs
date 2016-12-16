@@ -1,6 +1,6 @@
-﻿using BLL;
-using HelperUtility;
+﻿using HelperUtility;
 using HelperUtility.Encrypt;
+using InterfaceLayer.Base;
 using Model;
 using System;
 using System.Windows.Forms;
@@ -14,23 +14,24 @@ namespace WSCATProject.Base
             InitializeComponent();
         }
 
-        private readonly CityManager cm = new CityManager();
+        private readonly AreaInterface cm = new AreaInterface();
 
         public string city_code { get; set; }
-        public City city { get; set; }
+        public BaseArea city { get; set; }
 
         private void form_save_Click(object sender, EventArgs e)
         {
-            if(city == null)
+            if (city == null)
             {
                 ClientForm clientForm = (ClientForm)this.Owner;
-                City city = new City()
+                BaseArea city = new BaseArea()
                 {
-                    City_Name = XYEEncoding.strCodeHex(textBox1.Text.Trim()),
-                    City_ParentId = XYEEncoding.strCodeHex(city_code),
-                    City_Clear = 1,
-                    City_Enable = 1,
-                    City_Code = XYEEncoding.strCodeHex(BuildCode.ModuleCode("City"))
+                    name = XYEEncoding.strCodeHex(textBox1.Text.Trim()),
+                    parentId = XYEEncoding.strCodeHex(city_code),
+                    isClear = 1,
+                    isEnable = 1,
+                    code = XYEEncoding.strCodeHex(BuildCode.ModuleCode("area")),
+                    updateDate = DateTime.Now
                 };
                 try
                 {
@@ -48,19 +49,19 @@ namespace WSCATProject.Base
                         Close();
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("新增地区资料错误,请检查服务器连接.错误信息:" + ex.Message);
                 }
-                
+
             }
             else
             {
-                city.City_Name = textBox1.Text.Trim();
+                city.name = textBox1.Text.Trim();
                 try
                 {
-                    bool result = cm.UpdateByCode(city);
-                    if (result)
+                    int result = cm.Update(city);
+                    if (result>0)
                     {
                         ClientForm clientForm = (ClientForm)this.Owner;
                         clientForm.Isflag = true;
@@ -89,9 +90,9 @@ namespace WSCATProject.Base
 
         private void InsNodes_Load(object sender, EventArgs e)
         {
-            if(city != null)
+            if (city != null)
             {
-                textBox1.Text = city.City_Name;
+                textBox1.Text = city.name;
             }
         }
     }

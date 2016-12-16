@@ -1,8 +1,8 @@
-﻿using BLL;
-using DevComponents.AdvTree;
+﻿using DevComponents.AdvTree;
 using DevComponents.DotNetBar.Controls;
 using HelperUtility;
 using HelperUtility.Encrypt;
+using InterfaceLayer.Base;
 using Model;
 using System;
 using System.Data;
@@ -13,9 +13,10 @@ namespace WSCATProject
 {
     public partial class InsSupplier : Form
     {
-        SupplierManager sm = new SupplierManager();
-        ProfessionManager pm = new ProfessionManager();
-        CityManager cm = new CityManager();
+        CodingHelper ch = new CodingHelper();
+        SupplierInterface sm = new SupplierInterface();
+        ProfessionInterface pm = new ProfessionInterface();
+        AreaInterface cm = new AreaInterface();
         public InsSupplier()
         {
             InitializeComponent();
@@ -46,23 +47,23 @@ namespace WSCATProject
             }
             //if (supplierMaterial.stats == 0)
             //{
-            //    su_code.Text = BuildCode.ModuleCode("Supplier");
-            //    //    int result = InsSupplierFun();
-            //    //    if (result > 0)
-            //    //    {
-            //    //        MessageBox.Show(string.Format("编号：{0},新增成功", su_code.ToString()));
-            //    //        supplierMaterial.isflag = true;
-            //    //    }
-            //    //    else
-            //    //    {
-            //    //        MessageBox.Show("未知错误，添加失败");
-            //    //        supplierMaterial.isflag = false;
-            //    //    }
+            //    su_code.Text = BuildCode.ModuleCode("su");
+            //    int result = InsSupplierFun();
+            //    if (result > 0)
+            //    {
+            //        MessageBox.Show(string.Format("编号：{0},新增成功", su_code.ToString()));
+            //        supplierMaterial.isflag = true;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("未知错误，添加失败");
+            //        supplierMaterial.isflag = false;
+            //    }
             //}
-            //if (supplierMaterial.stats == 1)
-            //{
-            //    BindControl();
-            //}
+            if (supplierMaterial.stats == 1)
+            {
+                BindControl();
+            }
         }
         #endregion
 
@@ -70,23 +71,23 @@ namespace WSCATProject
         private void BindControl()
         {
             SupplierForm supplierMaterial = (SupplierForm)this.Owner;
-            Supplier supplier = sm.SelUpdateSupplierByCode(supplierMaterial.code);
-            su_name.Text = supplier.Su_Name;
+            DataTable supplier = ch.DataTableReCoding(sm.GetList(4, XYEEncoding.strCodeHex(supplierMaterial.code), false, false));
+            su_name.Text = supplier.Rows[0]["name"].ToString();
             su_code.Text = supplierMaterial.code;
-            su_phone.Text = supplier.Su_Phone;
-            su_address.Text = supplier.Su_Address;
-            su_fax.Text = supplier.Su_fax;
-            su_email.Text = supplier.Su_Email;
-            su_bankaccounts.Text = supplier.Su_Bankaccounts;
-            su_bank.Text = supplier.Su_Bank;
-            su_credit.RatingValue = supplier.Su_Credit;
-            su_money.Text = supplier.Su_Money;
-            su_surplus.Text = supplier.Su_Surplus;
-            su_Reckoning.Text = supplier.Su_Reckoning;
-            su_empname.Text = supplier.Su_Empname;
-            su_empPhone.Text = supplier.Su_EmpPhone;
-            su_remark.Text = supplier.Su_Remark;
-            su_enable.Checked = supplier.Su_Enable == 1 ? false : true;
+            su_phone.Text = supplier.Rows[0]["phone"].ToString();//.Su_Phone;
+            su_address.Text = supplier.Rows[0]["address"].ToString();
+            su_fax.Text = supplier.Rows[0]["fax"].ToString();
+            su_email.Text = supplier.Rows[0]["email"].ToString();
+            su_bankaccounts.Text = supplier.Rows[0]["bankCard"].ToString();
+            su_bank.Text = supplier.Rows[0]["openBank"].ToString();
+            su_credit.RatingValue = supplier.Rows[0]["creditRank"].ToString();
+            su_money.Text = supplier.Rows[0]["availableBalance"].ToString();
+            su_surplus.Text = supplier.Rows[0]["balance"].ToString();
+            su_Reckoning.Text = supplier.Rows[0]["statementDate"].ToString();
+            su_empname.Text = supplier.Rows[0]["linkMan"].ToString();
+            su_empPhone.Text = supplier.Rows[0]["mobilePhone"].ToString();
+            su_remark.Text = supplier.Rows[0]["remark"].ToString();
+            su_enable.Checked = Convert.ToInt32(supplier.Rows[0]["isEnable"]) == 1 ? false : true;
         }
         #endregion
 
@@ -118,33 +119,33 @@ namespace WSCATProject
         /// <returns></returns>
         private int InsSupplierFun(int state)
         {
-            Supplier supplier = new Supplier();
-            supplier.Su_Code = su_code.Text.Trim();
-            supplier.Su_Name = su_name.Text.Trim();
-            supplier.Su_Phone = su_phone.Text.Trim();
-            supplier.Su_Address = su_address.Text.Trim();
-            supplier.Su_fax = su_fax.Text.Trim();
-            supplier.Su_Email = su_email.Text.Trim();
-            supplier.Su_Bankaccounts = su_bankaccounts.Text.Trim();
-            supplier.Su_Bank = su_bank.Text.Trim();
-            supplier.Su_Money = su_money.Text.Trim();
-            supplier.Su_Surplus = su_surplus.Text.Trim();
-            supplier.Su_Reckoning = su_Reckoning.Text.Trim();
-            supplier.Su_Empname = su_empname.Text.Trim();
-            supplier.Su_EmpPhone = su_empPhone.Text.Trim();
-            supplier.Su_Remark = su_remark.Text.Trim();
-            supplier.Su_Clear = 1;
-            supplier.Su_Credit = su_credit.RatingValue.ToString();
-            supplier.Su_Enable = su_enable.Checked ? 0 : 1;
-            supplier.Su_Area = comboTree1.SelectedNode == null ? "所有地区" : comboTree1.SelectedNode.FullPath.Replace(";", "/");
-            supplier.Su_ProCode = "0";
+            BaseSupplier supplier = new BaseSupplier();
+            supplier.code = XYEEncoding.strCodeHex(su_code.Text.Trim());
+            supplier.name = XYEEncoding.strCodeHex(su_name.Text.Trim());
+            supplier.phone = XYEEncoding.strCodeHex(su_phone.Text.Trim());
+            supplier.address = XYEEncoding.strCodeHex(su_address.Text.Trim());
+            supplier.fax = XYEEncoding.strCodeHex(su_fax.Text.Trim());
+            supplier.email = XYEEncoding.strCodeHex(su_email.Text.Trim());
+            supplier.bankCard = XYEEncoding.strCodeHex(su_bankaccounts.Text.Trim());
+            supplier.openBank = XYEEncoding.strCodeHex(su_bank.Text.Trim());
+            supplier.availableBalance = su_money.Text.Trim() == "" ? 0 : Convert.ToDecimal(su_money.Text.Trim());
+            supplier.balance = su_surplus.Text.Trim() == "" ? 0 : Convert.ToDecimal(su_surplus.Text.Trim());
+            supplier.statementDate = su_Reckoning.Text.Trim() == "" ? Convert.ToDateTime("2000-01-01") : Convert.ToDateTime(su_Reckoning.Text.Trim());
+            supplier.linkMan = XYEEncoding.strCodeHex(su_empname.Text.Trim());
+            supplier.mobilePhone = XYEEncoding.strCodeHex(su_empPhone.Text.Trim());
+            supplier.remark = XYEEncoding.strCodeHex(su_remark.Text.Trim());
+            supplier.isClear = 1;
+            supplier.creditRank = Convert.ToInt32(su_credit.RatingValue);
+            supplier.isEnable = su_enable.Checked ? 0 : 1;
+            supplier.cityName = comboTree1.SelectedNode == null ? XYEEncoding.strCodeHex("所有地区") : XYEEncoding.strCodeHex(comboTree1.SelectedNode.FullPath.Replace(";", "/"));
+            supplier.industryCode = "0";
             if (state == 0)
             {
-                return sm.InsSupplier(supplier);
+                return sm.Add(supplier);
             }
             else
             {
-                return sm.UpdateSupplier(supplier);
+                return sm.Update(supplier);
             }
         }
         #endregion
@@ -209,34 +210,30 @@ namespace WSCATProject
         /// <param name="ControlName">控件名：必选</param>
         private void AddTree(string ParentID, Node pNode, string table, ComboTree ControlName)
         {
-            if (ParentID == "")
-            {
-                ParentID = "D4";
-            }
-            string ParentId = "City_ParentId";
-            string Code = "City_Code";
-            string Name = "City_Name";
+            string ParentId = "parentId";
+            string Code = "code";
+            string Name = "name";
             try
             {
-                DataTable dt = cm.SelCityTable();
-                if (table == "P")
-                {
-                    ParentId = "ST_ParentId";
-                    Code = "ST_Code";
-                    Name = "ST_Name";
-                    dt = pm.SelProfession();
-                }
+                DataTable dt = cm.GetList(999, "", false, false);
                 DataView dvTree = new DataView(dt);
                 //过滤ParentID,得到当前的所有子节点
-                dvTree.RowFilter = string.Format("{0} = '{1}'", ParentId, ParentID);
+                if (ParentID == null)
+                {
+                    dvTree.RowFilter = string.Format("{0} is NULL", ParentId);
+                }
+                else
+                {
+                    dvTree.RowFilter = string.Format("{0} = '{1}'", ParentId, ParentID);
+                }
                 foreach (DataRowView Row in dvTree)
                 {
                     Node node = new Node();
                     if (pNode == null)
                     {
                         //添加根节点    
-                        node.Text = XYEEncoding.strHexDecode(Row[Name].ToString());
-                        node.Tag = XYEEncoding.strHexDecode(Row[Code].ToString());
+                        node.Text = Row[Name].ToString();
+                        node.Tag = Row[Code].ToString();
                         ControlName.Nodes.Add(node);
                         AddTree(Row[Code].ToString(), node, table, ControlName);
                         //展开第一级节点
@@ -245,8 +242,8 @@ namespace WSCATProject
                     else
                     {
                         //添加当前节点的子节点                  
-                        node.Text = XYEEncoding.strHexDecode(Row[Name].ToString());
-                        node.Tag = XYEEncoding.strHexDecode(Row[Code].ToString());
+                        node.Text = Row[Name].ToString();
+                        node.Tag = Row[Code].ToString();
                         pNode.Nodes.Add(node);
                         AddTree(Row[Code].ToString(), node, table, ControlName);     //再次递归 
                     }

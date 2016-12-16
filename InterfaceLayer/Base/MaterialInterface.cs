@@ -1,4 +1,5 @@
 ﻿using LogicLayer.Base;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,20 @@ namespace InterfaceLayer.Base
     public class MaterialInterface
     {
         MaterialLogic _dal = new MaterialLogic();
+        /// <summary>
+        /// 增加一条数据
+        /// </summary>
+        public int Add(BaseMaterial model)
+        {
+            return _dal.Add(model);
+        }
+        /// <summary>
+        /// 更新一条数据
+        /// </summary>
+        public bool Update(BaseMaterial model)
+        {
+            return _dal.Update(model);
+        }
         public int SetMaterialNumber(string materialCode, string price)
         {
             return _dal.SetMaterialNumber(materialCode, price);
@@ -33,6 +48,20 @@ namespace InterfaceLayer.Base
         public bool Exists(string code)
         {
             return _dal.Exists(code);
+        }
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(string code)
+        {
+            return _dal.Delete(code);
+        }
+        /// <summary>
+        /// 删除全部数据
+        /// </summary>
+        public bool DeleteAll()
+        {
+            return _dal.DeleteAll();
         }
     }
 }

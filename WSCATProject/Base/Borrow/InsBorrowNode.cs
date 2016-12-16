@@ -1,5 +1,4 @@
-﻿using BLL;
-using Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,7 +7,7 @@ namespace WSCATProject.Base
 {
     public partial class InsBorrowNode : MaterialNodes
     {
-        BorrowManager bm = new BorrowManager();
+        //BorrowInterface bm = new BorrowManager();
         public InsBorrowNode()
         {
             InitializeComponent();
@@ -27,7 +26,7 @@ namespace WSCATProject.Base
                 label1.Text = "请输入修改后的名称";
                 try
                 {
-                    List<Borrow> list = bm.SelBorrowByTypeID(Convert.ToInt32(bt.id));
+                    List<BaseBorrow> list = bm.SelBorrowByTypeID(Convert.ToInt32(bt.id));
                     textBox1.Text = list[0].Bo_TypeName;
                 }
                 catch (Exception ex)

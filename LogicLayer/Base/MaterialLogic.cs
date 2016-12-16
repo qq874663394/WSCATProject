@@ -17,6 +17,70 @@ namespace LogicLayer.Base
         MaterialBase _dal = new MaterialBase();
         LogBase _logDal = new LogBase();
         BaseUpdataManager baseUpdate = new BaseUpdataManager();
+        /// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int Add(BaseMaterial model)
+        {
+            int result = 0;
+            Log logmodel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseMaterial",
+                operationTime = DateTime.Now,
+                objective = "新增数据",
+                operationContent = "新增数据,code=" + model.code
+            };
+            try
+            {
+                result = _dal.Add(model);
+                logmodel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                logmodel.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logmodel);
+            }
+            return result;
+        }
+        /// <summary>
+        /// 更新一条数据
+        /// </summary>
+        public bool Update(BaseMaterial model)
+        {
+            bool result = false;
+            Log logmodel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseMaterial",
+                operationTime = DateTime.Now,
+                objective = "修改数据",
+                operationContent = "修改数据,code=" + model.code
+            };
+            try
+            {
+                result = _dal.Update(model);
+                logmodel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                logmodel.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logmodel);
+            }
+            return result;
+        }
         public int SetMaterialNumber(string materialCode, string price)
         {
             int result = 0;
@@ -135,6 +199,70 @@ namespace LogicLayer.Base
                 _logDal.Add(model);
             }
             return isflag;
+        }
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(string code)
+        {
+            bool result = false;
+            Log logmodel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseMaterial",
+                operationTime = DateTime.Now,
+                objective = "删除数据",
+                operationContent = "删除指定数据,code=" + code
+            };
+            try
+            {
+                result = _dal.Delete(code);
+                logmodel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                logmodel.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logmodel);
+            }
+            return result;
+        }
+        /// <summary>
+        /// 删除全部数据
+        /// </summary>
+        public bool DeleteAll()
+        {
+            bool result = false;
+            Log logmodel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseMaterial",
+                operationTime = DateTime.Now,
+                objective = "删除数据",
+                operationContent = "删除全部数据"
+            };
+            try
+            {
+                result = _dal.DeleteAll();
+                logmodel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                logmodel.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logmodel);
+            }
+            return result;
         }
     }
 }

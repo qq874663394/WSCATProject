@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using InterfaceLayer.Base;
+using Model;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -6,11 +7,11 @@ using WSCATProject.Base;
 
 namespace WSCATProject.Base
 {
-    public partial class CityType : MaterialNodeType
+    public partial class AreaType : MaterialNodeType
     {
-        CityManager cm = new CityManager();
-        CityNode cn = null;
-        public CityType()
+        private AreaNode cn = null;
+        private AreaInterface cm = new AreaInterface();
+        public AreaType()
         {
             InitializeComponent();
             //菜单工具栏
@@ -30,6 +31,7 @@ namespace WSCATProject.Base
             Text = "地区资料";
             BindTreeViewList();
         }
+
         #region 操作-刷新
         /// <summary>
         /// 操作-刷新
@@ -79,7 +81,7 @@ namespace WSCATProject.Base
             {
                 try
                 {
-                    int result = cm.UpdateAllClearCity();
+                    int result = cm.UpdateAllClear(0, 999, "");
                     if (result > 0)
                     {
                         MessageBox.Show("删除成功!");
@@ -113,12 +115,12 @@ namespace WSCATProject.Base
             {
                 if (treeView1.SelectedNode == null)
                 {
-                    return;
+                    MessageBox.Show("请选择地区!");
                 }
                 string code = treeView1.SelectedNode.Tag.ToString();
                 try
                 {
-                    int result = cm.UpdateClearCity(code);
+                    int result = cm.UpdateAllClear(0, 0, code);
                     if (result > 0)
                     {
                         MessageBox.Show("删除成功!");
@@ -148,7 +150,11 @@ namespace WSCATProject.Base
         /// <param name="e"></param>
         private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cn = new CityNode();
+            if (treeView1.SelectedNode == null)
+            {
+                MessageBox.Show("请选择地区!");
+            }
+            cn = new AreaNode();
             cn.state = 2;
             cn.txtName = treeView1.SelectedNode.Text;
             cn.code = treeView1.SelectedNode.Tag.ToString();
@@ -169,7 +175,11 @@ namespace WSCATProject.Base
         /// <param name="e"></param>
         private void 新增下级分类ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cn = new CityNode();
+            if (treeView1.SelectedNode == null)
+            {
+                MessageBox.Show("请选择地区!");
+            }
+            cn = new AreaNode();
             cn.state = 1;
             cn.txtName = treeView1.SelectedNode.Text;
             cn.code = treeView1.SelectedNode.Tag.ToString();
@@ -190,7 +200,11 @@ namespace WSCATProject.Base
         /// <param name="e"></param>
         private void 新增同级分类ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cn = new CityNode();
+            if (treeView1.SelectedNode == null)
+            {
+                MessageBox.Show("请选择地区!");
+            }
+            cn = new AreaNode();
             cn.state = 0;
             cn.txtName = treeView1.SelectedNode.Text;
             cn.code = treeView1.SelectedNode.Parent.Tag.ToString();
@@ -211,8 +225,8 @@ namespace WSCATProject.Base
         {
             try
             {
-                DataTable dts = cm.SelCityTable();
-                base.AddTree("D4", null, dts, "C");
+                DataTable dts = cm.GetList(999, "", false, false);
+                base.AddTree(null, null, dts);
             }
             catch (Exception ex)
             {

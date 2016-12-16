@@ -1,7 +1,7 @@
-﻿using BLL;
-using DevComponents.DotNetBar.SuperGrid;
+﻿using DevComponents.DotNetBar.SuperGrid;
 using HelperUtility.Encrypt;
 using HelperUtility.Excel;
+using InterfaceLayer.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,7 @@ namespace WSCATProject.Base
     public partial class BankAccountForm : MaterialEmpolyee
     {
         CodingHelper ch = new CodingHelper();
-        BankAccountManager bam = new BankAccountManager();
+        BankAccountInterface bam = new BankAccountInterface();
         public BankAccountForm()
         {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace WSCATProject.Base
         {
             try
             {
-                superGridControl1.PrimaryGrid.DataSource = bam.SelBankAccount(isDisplayEnable);
+                superGridControl1.PrimaryGrid.DataSource = bam.GetList(999,"",false,isDisplayEnable);
             }
             catch (Exception ex)
             {

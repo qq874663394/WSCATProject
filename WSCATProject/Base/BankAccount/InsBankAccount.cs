@@ -1,6 +1,6 @@
-﻿using BLL;
-using HelperUtility;
+﻿using HelperUtility;
 using HelperUtility.Encrypt;
+using InterfaceLayer.Base;
 using Model;
 using System;
 using System.Windows.Forms;
@@ -9,7 +9,7 @@ namespace WSCATProject.Base
 {
     public partial class InsBankAccount : Form
     {
-        BankAccountManager bm = new BankAccountManager();
+        BankAccountInterface bm = new BankAccountInterface();
         public InsBankAccount()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace WSCATProject.Base
                         textBox1.Text = BuildCode.ModuleCode("BA");
                         break;
                     case 1:
-                        BankAccount tba = bm.SelBankAccountByCode(bam.id);
+                        BaseBankAccount tba = bm.SelBankAccountByCode(bam.id);
                         textBox1.Text = XYEEncoding.strHexDecode(tba.Ba_Code);
                         textBox3.Text = XYEEncoding.strHexDecode(tba.Ba_CardHolder);
                         textBox2.Text = XYEEncoding.strHexDecode(tba.Ba_Account);

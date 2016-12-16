@@ -11,6 +11,7 @@ using Model;
 
 using HelperUtility.Encrypt;
 using HelperUtility;
+using InterfaceLayer.Base;
 
 namespace WSCATProject.Base
 {
@@ -20,31 +21,32 @@ namespace WSCATProject.Base
         {
             InitializeComponent();
         }
-        
+
         /// <summary>
         /// 父级CODE 
         /// </summary>
         public string matype_code { get; set; }
-        
+
         /// <summary>
         /// 实体 若该实体为空 则为创建 否则为修改
         /// </summary>
-        public MaterialType materialType { get; set; }
+        public BaseMaterialType materialType { get; set; }
 
         private void form_save_Click(object sender, EventArgs e)
         {
-            if(materialType == null)
+            if (materialType == null)
             {
-                MaterialTypeManager mtm = new MaterialTypeManager();
+                MaterialTypeInterface mtm = new MaterialTypeInterface();
                 MaterialTypeForm clientForm = (MaterialTypeForm)this.Owner;
-                MaterialType materialType = new MaterialType()
+                BaseMaterialType materialType = new BaseMaterialType()
                 {
-                    MT_Code = BuildCode.ModuleCode("MT"),
-                    MT_Name = textBox1.Text.Trim(),
-                    MT_ParentID = matype_code,
-                    MT_Clear = 1,
-                    MT_Enable = 1,
-                    MT_ID = 0
+                    code = BuildCode.ModuleCode("MT"),
+                    name = textBox1.Text.Trim(),
+                    parentId = matype_code,
+                    isClear = 1,
+                    isEnable = 1,
+                    id = 0,
+                    updateDate = DateTime.Now
                 };
                 try
                 {
@@ -62,7 +64,7 @@ namespace WSCATProject.Base
                         Close();
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("商品插入异常:" + ex.Message);
                     Close();
@@ -70,10 +72,10 @@ namespace WSCATProject.Base
             }
             else
             {
-                MaterialTypeManager mtm = new MaterialTypeManager();
+                MaterialTypeInterface mtm = new MaterialTypeInterface();
                 try
                 {
-                    if (mtm.UpdateByCode(materialType))
+                    if (mtm.Update(materialType))
                     {
                         MessageBox.Show("更改成功!");
                         Close();

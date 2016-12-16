@@ -1,5 +1,4 @@
-﻿using BLL;
-using DevComponents.DotNetBar.SuperGrid;
+﻿using DevComponents.DotNetBar.SuperGrid;
 using HelperUtility.Encrypt;
 using HelperUtility.Excel;
 using System;

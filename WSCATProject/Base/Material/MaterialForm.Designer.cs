@@ -59,6 +59,7 @@ namespace WSCATProject.Base
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.导出到ExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.刷新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Ma_Daima = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn1 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn2 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
@@ -124,7 +125,6 @@ namespace WSCATProject.Base
             this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.Ma_Daima = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -412,10 +412,16 @@ namespace WSCATProject.Base
             this.刷新ToolStripMenuItem.Text = "刷新";
             this.刷新ToolStripMenuItem.Click += new System.EventHandler(this.刷新ToolStripMenuItem_Click);
             // 
+            // Ma_Daima
+            // 
+            this.Ma_Daima.DataPropertyName = "materialDaima";
+            this.Ma_Daima.HeaderText = "商品代码";
+            this.Ma_Daima.Name = "Ma_Daima";
+            // 
             // gridColumn1
             // 
             this.gridColumn1.DataPropertyName = "id";
-            this.gridColumn1.HeaderText = "ID";
+            this.gridColumn1.HeaderText = "id";
             this.gridColumn1.Name = "Ma_ID";
             this.gridColumn1.Visible = false;
             // 
@@ -1007,12 +1013,6 @@ namespace WSCATProject.Base
             this.删除ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
-            // 
-            // Ma_Daima
-            // 
-            this.Ma_Daima.DataPropertyName = "materialDaima";
-            this.Ma_Daima.HeaderText = "商品代码";
-            this.Ma_Daima.Name = "Ma_Daima";
             // 
             // MaterialForm
             // 

@@ -190,7 +190,7 @@ namespace WSCATProject.Warehouse
             try
             {
                 //供应商
-                _AllSupply = supply.GetList(99, "");
+                _AllSupply = supply.GetList(99, "", false, false);
 
                 //业务员
                 _AllEmployee = employee.SelSupplierTable(false);
@@ -1122,7 +1122,7 @@ namespace WSCATProject.Warehouse
                 dataGridViewFuJia.Columns.Add(dgvc);
 
                 resizablePanel1.Location = new Point(550, 160);
-                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supply.GetList(0, "" + XYEEncoding.strCodeHex(labtextboxTop6.Text.Trim()) + ""));
+                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supply.GetList(0, "" + XYEEncoding.strCodeHex(labtextboxTop6.Text.Trim()) + "", false, false));
                 resizablePanel1.Visible = true;
                 _Click = 3;
             }

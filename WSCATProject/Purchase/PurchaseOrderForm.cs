@@ -627,7 +627,7 @@ namespace WSCATProject.Purchase
                 purchaseorder.examine = XYEEncoding.strCodeHex(ltxtbShengHeMan.Text == null ? "" : ltxtbShengHeMan.Text.Trim());//审核人
                 purchaseorder.checkState = 0;//审核状态
                 SupplierInterface supplierInterface = new SupplierInterface();
-                purchaseorder.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(txtSupply.Text)).Rows[0]["code"].ToString();//供应商code
+                purchaseorder.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(txtSupply.Text), false, false).Rows[0]["code"].ToString();//供应商code
             }
             catch (Exception ex)
             {
@@ -840,7 +840,7 @@ namespace WSCATProject.Purchase
                 purchaseorder.examine = XYEEncoding.strCodeHex(ltxtbShengHeMan.Text == null ? "" : ltxtbShengHeMan.Text.Trim());//审核人
                 purchaseorder.checkState = 1;//审核状态
                 SupplierInterface supplierInterface = new SupplierInterface();
-                purchaseorder.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(txtSupply.Text)).Rows[0]["code"].ToString();//供应商code
+                purchaseorder.supplierCode = supplierInterface.GetList(5, XYEEncoding.strCodeHex(txtSupply.Text), false, false).Rows[0]["code"].ToString();//供应商code
             }
             catch (Exception ex)
             {
@@ -1147,8 +1147,8 @@ namespace WSCATProject.Purchase
                 dt = purchaseOrderInterface.GetLastData(code);
                 SupplierInterface supplierInterface = new SupplierInterface();
                 string suppliercode = dt.Rows[0]["supplierCode"].ToString();
-                string supplierName = supplierInterface.GetList(4, suppliercode).Rows[0]["name"].ToString(); //单位名称
-                string phone = supplierInterface.GetList(4, suppliercode).Rows[0]["phone"].ToString(); //手机
+                string supplierName = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["name"].ToString(); //单位名称
+                string phone = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["phone"].ToString(); //手机
                 BankAccountInterface bankAccountInterface = new BankAccountInterface();
                 //文本框赋值
                 this.txtLinkMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["contacts"].ToString());   //联系人
@@ -1219,8 +1219,8 @@ namespace WSCATProject.Purchase
 
                 SupplierInterface supplierInterface = new SupplierInterface();
                 string suppliercode = dt.Rows[0]["supplierCode"].ToString();
-                string supplierName = supplierInterface.GetList(4, suppliercode).Rows[0]["name"].ToString(); //单位名称
-                string phone = supplierInterface.GetList(4, suppliercode).Rows[0]["phone"].ToString(); //手机
+                string supplierName = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["name"].ToString(); //单位名称
+                string phone = supplierInterface.GetList(4, suppliercode, false, false).Rows[0]["phone"].ToString(); //手机
                 BankAccountInterface bankAccountInterface = new BankAccountInterface();
                 //文本框赋值
                 this.txtLinkMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["contacts"].ToString());   //联系人
@@ -1541,7 +1541,7 @@ namespace WSCATProject.Purchase
 
                 resizablePanel1.Location = new Point(230, 160);
                 string name = XYEEncoding.strCodeHex(this.txtSupply.Text.Trim());
-                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name));
+                dataGridViewFuJia.DataSource = ch.DataTableReCoding(supplier.GetList(0, name, false, false));
                 resizablePanel1.Visible = true;
             }
             catch (Exception ex)

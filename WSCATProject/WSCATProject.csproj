@@ -85,23 +85,53 @@
     <Compile Include="Base\AccountingSubjectsForm.Designer.cs">
       <DependentUpon>AccountingSubjectsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Base\Area\AreaNode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Area\AreaNode.Designer.cs">
+      <DependentUpon>AreaNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Area\AreaType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Area\AreaType.Designer.cs">
+      <DependentUpon>AreaType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Material\MaterialCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Material\MaterialCreateForm.Designer.cs">
+      <DependentUpon>MaterialCreateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\Material\MaterialForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Base\Material\MaterialForm.Designer.cs">
       <DependentUpon>MaterialForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\Shelves\InShelvesForm.cs">
+    <Compile Include="Base\Material\MaterialNodes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Base\Shelves\InShelvesForm.Designer.cs">
-      <DependentUpon>InShelvesForm.cs</DependentUpon>
+    <Compile Include="Base\Material\MaterialNodes.Designer.cs">
+      <DependentUpon>MaterialNodes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\Shelves\ShelvesListForm.cs">
+    <Compile Include="Base\Material\MaterialNodeType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Base\Shelves\ShelvesListForm.Designer.cs">
-      <DependentUpon>ShelvesListForm.cs</DependentUpon>
+    <Compile Include="Base\Material\MaterialNodeType.Designer.cs">
+      <DependentUpon>MaterialNodeType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Supplier\InsSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Supplier\InsSupplier.Designer.cs">
+      <DependentUpon>InsSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Supplier\SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Supplier\SupplierForm.Designer.cs">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Finance\FinanceAccountingSubjectsForm.cs">
       <SubType>Form</SubType>
@@ -364,14 +394,29 @@
     <EmbeddedResource Include="Base\AccountingSubjectsForm.resx">
       <DependentUpon>AccountingSubjectsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Base\Area\AreaNode.resx">
+      <DependentUpon>AreaNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Area\AreaType.resx">
+      <DependentUpon>AreaType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Material\MaterialCreateForm.resx">
+      <DependentUpon>MaterialCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\Material\MaterialForm.resx">
       <DependentUpon>MaterialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Base\Shelves\InShelvesForm.resx">
-      <DependentUpon>InShelvesForm.cs</DependentUpon>
+    <EmbeddedResource Include="Base\Material\MaterialNodes.resx">
+      <DependentUpon>MaterialNodes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Base\Shelves\ShelvesListForm.resx">
-      <DependentUpon>ShelvesListForm.cs</DependentUpon>
+    <EmbeddedResource Include="Base\Material\MaterialNodeType.resx">
+      <DependentUpon>MaterialNodeType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Supplier\InsSupplier.resx">
+      <DependentUpon>InsSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Supplier\SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Finance\FinanceAccountingSubjectsForm.resx">
       <DependentUpon>FinanceAccountingSubjectsForm.cs</DependentUpon>

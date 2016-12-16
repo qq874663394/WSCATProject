@@ -1,5 +1,4 @@
-﻿using BLL;
-using HelperUtility.Encrypt;
+﻿using HelperUtility.Encrypt;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -7,18 +6,20 @@ using System.Data;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.SuperGrid;
 using HelperUtility.Excel;
+using InterfaceLayer.Base;
 
 namespace WSCATProject.Base
 {
     public partial class SupplierForm : Form
     {
+        CodingHelper ch = new CodingHelper();
         public SupplierForm()
         {
             InitializeComponent();
         }
-        CityManager cm = new CityManager();
-        SupplierManager sm = new SupplierManager();
-        ProfessionManager pm = new ProfessionManager();
+        AreaInterface cm = new AreaInterface();
+        SupplierInterface sm = new SupplierInterface();
+        ProfessionInterface pm = new ProfessionInterface();
         public bool isflag = false; //添加地区的返回值
         public string code;  //标识
         public int stats;  //0为新增  1为修改
@@ -89,14 +90,14 @@ namespace WSCATProject.Base
         {
             try
             {
-                List<Supplier> list = sm.SelSupplier(false);
-                superGridControl1.PrimaryGrid.DataSource = list;
+                DataTable dt = ch.DataTableReCoding(sm.GetList(999, "", false, false));
+                superGridControl1.PrimaryGrid.DataSource = dt;
                 superGridControl1.PrimaryGrid.ShowInsertRow = false;
 
                 GridPanel panel = superGridControl1.PrimaryGrid;
                 GridColumnCollection columns = panel.Columns;
 
-                panel.ColumnHeader.GroupHeaders.Add(GetSlCompanyInfoHeader(columns,"CodeAndName", "编码及单位名称", "gridColumn1", "gridColumn3"));
+                panel.ColumnHeader.GroupHeaders.Add(GetSlCompanyInfoHeader(columns, "CodeAndName", "编码及单位名称", "gridColumn1", "gridColumn3"));
                 panel.ColumnHeader.GroupHeaders.Add(GetSlCompanyInfoHeader(columns, "Contact", "联系方式", "gridColumn4", "gridColumn10"));
             }
             catch (Exception ex)
@@ -113,7 +114,6 @@ namespace WSCATProject.Base
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void contextMenuStrip1_Opening(object sender,
-
 System.ComponentModel.CancelEventArgs e)
         {
             ///判断集合中有数据才进入后面的if  否则直接跳出
@@ -139,7 +139,7 @@ System.ComponentModel.CancelEventArgs e)
         {
             try
             {
-                List<Supplier> list = new List<Supplier>();
+                DataTable dt = new DataTable();
                 string SQLWhere = "";
                 string treeName = treeView1.SelectedNode.Text;
                 string treeTag = treeView1.SelectedNode.Tag.ToString();
@@ -175,8 +175,8 @@ System.ComponentModel.CancelEventArgs e)
                         MessageBox.Show("类型选择错误，请重新选择！");
                         break;
                 }
-                list = sm.SelSupplierByWhere(SQLWhere);  //拼接where
-                superGridControl1.PrimaryGrid.DataSource = list;
+                dt = sm.SelSupplierByWhere(SQLWhere);  //拼接where
+                superGridControl1.PrimaryGrid.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -193,22 +193,14 @@ System.ComponentModel.CancelEventArgs e)
         /// <param name="e"></param>
         private void comboBoxEx1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             try
             {
                 int cbType = Convert.ToInt32(comboBox1.SelectedValue.ToString());
                 if (cbType == 1)
                 {
                     treeView1.Nodes.Clear();
-                    DataTable dt = cm.SelCityTable();
-                    AddTree("", null, "", dt);  //加载节点数据
-                    return;
-                }
-                if (cbType == 2)
-                {
-                    DataTable dt = pm.SelProfession();
-                    treeView1.Nodes.Clear();
-                    AddTree("", null, "P", dt);  //加载节点数据
+                    DataTable dt = cm.GetList(999, "", false, false);
+                    AddTree(null, null, dt);  //加载节点数据
                     return;
                 }
                 else
@@ -231,44 +223,42 @@ System.ComponentModel.CancelEventArgs e)
         /// <param name="ParentID">条件ID</param>
         /// <param name="pNode">父级ID：null</param>
         /// <param name="table">表名：默认：T_City，可选：P</param>
-        private void AddTree(string ParentID, TreeNode pNode, string table, DataTable dt)
+        private void AddTree(object ParentID, TreeNode pNode, DataTable dt)
         {
-            if (ParentID == "")
-            {
-                ParentID = "D4";
-            }
-            string ParentId = "City_ParentId";
-            string Code = "City_Code";
-            string Name = "City_Name";
-            if (table == "P")
-            {
-                ParentId = "ST_ParentId";
-                Code = "ST_Code";
-                Name = "ST_Name";
-            }
+
+            string ParentId = "parentId";
+            string Code = "code";
+            string Name = "name";
             DataView dvTree = new DataView(dt);
             //过滤ParentID,得到当前的所有子节点
-            dvTree.RowFilter = string.Format("{0} = '{1}'", ParentId, ParentID);
+            if (ParentID == null)
+            {
+                dvTree.RowFilter = string.Format("{0} is NULL", ParentId);
+            }
+            else
+            {
+                dvTree.RowFilter = string.Format("{0} = '{1}'", ParentId, ParentID);
+            }
             foreach (DataRowView Row in dvTree)
             {
                 TreeNode Node = new TreeNode();
                 if (pNode == null)
                 {
                     //添加根节点    
-                    Node.Text = XYEEncoding.strHexDecode(Row[Name].ToString());
-                    Node.Tag = XYEEncoding.strHexDecode(Row[Code].ToString());
+                    Node.Text = Row[Name].ToString();
+                    Node.Tag = Row[Code].ToString();
                     treeView1.Nodes.Add(Node);
-                    AddTree(Row[Code].ToString(), Node, table, dt);
+                    AddTree(Row[Code].ToString(), Node, dt);
                     //展开第一级节点
                     Node.Expand();
                 }
                 else
                 {
                     //添加当前节点的子节点                  
-                    Node.Text = XYEEncoding.strHexDecode(Row[Name].ToString());
-                    Node.Tag = XYEEncoding.strHexDecode(Row[Code].ToString());
+                    Node.Text = Row[Name].ToString();
+                    Node.Tag = Row[Code].ToString();
                     pNode.Nodes.Add(Node);
-                    AddTree(Row[Code].ToString(), Node, table, dt);     //再次递归 
+                    AddTree(Row[Code].ToString(), Node, dt);     //再次递归 
                 }
             }
         }
@@ -312,8 +302,15 @@ System.ComponentModel.CancelEventArgs e)
         /// <param name="e"></param>
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            string cityName = treeView1.SelectedNode.Text.ToString();
-            superGridControl1.PrimaryGrid.DataSource = sm.SelSupplierByCityCode(cityName);
+            if (treeView1.SelectedNode == null || treeView1.SelectedNode.Text == "所有地区")
+            {
+                BindSupGrid();
+            }
+            else
+            {
+                string cityName = treeView1.SelectedNode.Text.ToString();
+                superGridControl1.PrimaryGrid.DataSource = sm.GetList(1, cityName, false, false);
+            }
         }
         #endregion
 
@@ -337,7 +334,7 @@ System.ComponentModel.CancelEventArgs e)
         /// 合并列方法
         /// </summary>
         /// <returns></returns>
-        private ColumnGroupHeader GetSlCompanyInfoHeader(GridColumnCollection columns, string 
+        private ColumnGroupHeader GetSlCompanyInfoHeader(GridColumnCollection columns, string
 name, string headerText, string startName, string endName)
         {
             ColumnGroupHeader cgh = new ColumnGroupHeader();
@@ -383,7 +380,7 @@ name, string headerText, string startName, string endName)
                     try
                     {
                         string cityName = treeView1.SelectedNode.Text.ToString();
-                        superGridControl1.PrimaryGrid.DataSource = sm.SelSupplierByCityCode(cityName);
+                        superGridControl1.PrimaryGrid.DataSource = ch.DataTableReCoding(sm.GetList(1, cityName, false, false));
                     }
                     catch (Exception ex)
                     {
@@ -403,7 +400,7 @@ name, string headerText, string startName, string endName)
         private void DelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectedElementCollection col = superGridControl1.PrimaryGrid.GetSelectedRows();
-            int result = 0;
+            bool result = false;
             if (col.Count > 0)
             {
                 if (DialogResult.Yes == MessageBox.Show("确定全部删除吗? 删除后将不可恢复!", "WACAT管家", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
@@ -412,17 +409,17 @@ name, string headerText, string startName, string endName)
                     try
                     {
                         code = row.Cells["gridColumn1"].Value.ToString();
-                        result = sm.FalseDelClear(code);
+                        result = sm.Delete(XYEEncoding.strCodeHex(code));
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("删除失败,请检查服务器连接并尝试重新删除.错误:" + ex.Message);
                     }
 
-                    if (result > 0)
+                    if (result)
                     {
                         MessageBox.Show("删除成功!");
-                        List<Supplier> list = new List<Supplier>();
+                        DataTable dt = new DataTable();
                         string treeName = treeView1.SelectedNode.Text;
                         string searchType = toolStripComboBox2.Text.Trim();
                         string searchKey = XYEEncoding.strCodeHex(toolStripSelTxt.Text.Trim());
@@ -454,8 +451,8 @@ name, string headerText, string startName, string endName)
                         }
                         try
                         {
-                            list = sm.SelSupplierByWhere(SQLWhere);
-                            superGridControl1.PrimaryGrid.DataSource = list;
+                            dt = sm.SelSupplierByWhere(SQLWhere);
+                            superGridControl1.PrimaryGrid.DataSource = dt;
                         }
                         catch (Exception ex)
                         {
@@ -505,7 +502,7 @@ name, string headerText, string startName, string endName)
                         try
                         {
                             string cityName = treeView1.SelectedNode.Text.ToString();
-                            superGridControl1.PrimaryGrid.DataSource = sm.SelSupplierByCityCode(cityName);
+                            superGridControl1.PrimaryGrid.DataSource = ch.DataTableReCoding(sm.GetList(1, cityName, false, false));
                         }
                         catch (Exception ex)
                         {
@@ -540,7 +537,7 @@ name, string headerText, string startName, string endName)
                 try
                 {
                     string cityName = treeView1.SelectedNode.Text.ToString();
-                    superGridControl1.PrimaryGrid.DataSource = sm.SelSupplierByCityCode(cityName);
+                    superGridControl1.PrimaryGrid.DataSource = ch.DataTableReCoding(sm.GetList(1, cityName, false, false));
                 }
                 catch (Exception ex)
                 {
@@ -686,15 +683,13 @@ name, string headerText, string startName, string endName)
             {
                 if (isflag == false)
                 {
-                    List<Supplier> list = sm.SelSupplier(true);
-                    superGridControl1.PrimaryGrid.DataSource = list;
+                    superGridControl1.PrimaryGrid.DataSource = sm.GetList(999, "", false, true);
                     isflag = true;
                     return;
                 }
                 if (isflag == true)
                 {
-                    List<Supplier> list = sm.SelSupplier(false);
-                    superGridControl1.PrimaryGrid.DataSource = list;
+                    superGridControl1.PrimaryGrid.DataSource = sm.GetList(999, "", false, false);
                     isflag = false;
                     return;
                 }
@@ -716,8 +711,8 @@ name, string headerText, string startName, string endName)
         {
             if (DialogResult.Yes == MessageBox.Show("确定全部删除吗？删除后将不可恢复！", "WACAT管家", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
             {
-                int result = sm.FalseALLDelClear();
-                if (result > 0)
+                bool result = sm.DeleteAll();
+                if (result)
                 {
                     if (treeView1.SelectedNode == null || treeView1.SelectedNode.Text == "所有地区")
                     {
@@ -729,7 +724,7 @@ name, string headerText, string startName, string endName)
                         try
                         {
                             string cityName = treeView1.SelectedNode.Text.ToString();
-                            superGridControl1.PrimaryGrid.DataSource = sm.SelSupplierByCityCode(cityName);
+                            superGridControl1.PrimaryGrid.DataSource = sm.GetList(1, cityName, false, false);
                         }
                         catch (Exception ex)
                         {

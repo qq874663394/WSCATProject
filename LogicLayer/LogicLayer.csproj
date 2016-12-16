@@ -41,13 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\AreaLogic.cs" />
     <Compile Include="Base\BankAccountLogic.cs" />
+    <Compile Include="Base\BorrowLogic.cs" />
     <Compile Include="Base\ClientLogic.cs" />
+    <Compile Include="Base\DepartmentLogic.cs" />
     <Compile Include="Base\EmpolyeeLogic.cs" />
     <Compile Include="Base\MaterialLogic.cs" />
+    <Compile Include="Base\MaterialTypeLogic.cs" />
     <Compile Include="Base\OrderTypeLogic.cs" />
+    <Compile Include="Base\ProfessionLogic.cs" />
     <Compile Include="Base\ProjectCostLogic.cs" />
     <Compile Include="Base\ProjectInCostLogic.cs" />
+    <Compile Include="Base\RoleLogic.cs" />
     <Compile Include="Base\StorageLogic.cs" />
     <Compile Include="Base\StorageRackLogic.cs" />
     <Compile Include="Base\SupplierLogic.cs" />

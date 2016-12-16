@@ -50,12 +50,82 @@ namespace LogicLayer.Base
             return dt;
         }
         /// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int Add(BaseSupplier model)
+        {
+            LogBase lb = new LogBase();
+            int result = 0;
+            Log logmodel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseSupplier",
+                operationTime = DateTime.Now,
+                objective = "新增数据",
+                operationContent = "新增数据,code=" + model.code
+            };
+            try
+            {
+                result = sb.Add(model);
+                logmodel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                logmodel.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                lb.Add(logmodel);
+            }
+            return result;
+        }
+        /// <summary>
+        /// 更新一条数据
+        /// </summary>
+        public int Update(BaseSupplier model)
+        {
+            LogBase lb = new LogBase();
+            bool result = false;
+            Log logmodel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseSupplier",
+                operationTime = DateTime.Now,
+                objective = "修改数据",
+                operationContent = "修改数据,code=" + model.code
+            };
+            try
+            {
+                result = sb.Update(model);
+                logmodel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                logmodel.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                lb.Add(logmodel);
+            }
+            if (result)
+            {
+                return 1;
+            }
+            return 0;
+        }
+        /// <summary>
         /// 复合查询
         /// </summary>
-        /// <param name="fieldName">0:模糊name,1:模糊cityName,2:isEnable,3:isClear,</param>
+        /// <param name="fieldName">0:模糊name,1:模糊cityName,4:code,5:name,</param>
         /// <param name="fieldValue">条件值</param>
         /// <returns></returns>
-        public DataTable GetList(int fieldName, string fieldValue)
+        public DataTable GetList(int fieldName, string fieldValue, bool isClear, bool isEnable)
         {
             string strWhere = "";
             DataTable dt = null;
@@ -74,25 +144,26 @@ namespace LogicLayer.Base
                 switch (fieldName)
                 {
                     case 0:
-                        strWhere += string.Format("name like '%{0}%'", fieldValue);
+                        strWhere += string.Format(" and name like '%{0}%'", fieldValue);
                         break;
                     case 1:
-                        strWhere += string.Format("cityName like '%{0}%'", fieldValue);
-                        break;
-                    case 2:
-                        strWhere += string.Format("isEnable = {0}", fieldValue);
-                        break;
-                    case 3:
-                        strWhere += string.Format("isClear = {0}", fieldValue);
+                        strWhere += string.Format(" and cityName like '%{0}%'", fieldValue);
                         break;
                     case 4:
-                        strWhere += string.Format("code = '{0}'", fieldValue);
+                        strWhere += string.Format(" and code = '{0}'", fieldValue);
                         break;
                     case 5:
-                        strWhere += string.Format("name = '{0}'", fieldValue);
+                        strWhere += string.Format(" and name = '{0}'", fieldValue);
                         break;
                 }
-
+                if (isClear == false)
+                {
+                    strWhere += string.Format(" and isClear=1");
+                }
+                if (isEnable == false)
+                {
+                    strWhere += string.Format(" and isEnable=1");
+                }
                 model.operationContent = "查询T_BaseSupplier表的所有数据,条件:" + strWhere;
                 dt = sb.GetList(strWhere);
                 model.result = 1;
@@ -108,6 +179,107 @@ namespace LogicLayer.Base
             }
             return dt;
         }
+        /// <summary>
+        /// 自定义where查询
+        /// </summary>
+        /// <returns></returns>
+        public DataTable SelSupplierByWhere(string SQLWhere)
+        {
+            DataTable dt = null;
+            LogBase lb = new LogBase();
+            Log model = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseSupplier",
+                operationTime = DateTime.Now,
+                objective = "查询员工信息"
+            };
+            try
+            {
+                model.operationContent = "查询T_BaseSupplier表的所有数据,条件:" + SQLWhere;
+                dt = sb.SelSupplierByWhere(SQLWhere);
+                model.result = 1;
+            }
+            catch (Exception ex)
+            {
+                model.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                lb.Add(model);
+            }
+            return dt;
+        }
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(string code)
+        {
+            LogBase lb = new LogBase();
+            bool result = false;
+            Log logmodel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseSupplier",
+                operationTime = DateTime.Now,
+                objective = "删除数据",
+                operationContent = "删除指定数据,code=" + code
+            };
+            try
+            {
+                result = sb.Delete(code);
+                logmodel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                logmodel.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                lb.Add(logmodel);
+            }
+            return result;
+        }
+        /// <summary>
+        /// 删除全部数据
+        /// </summary>
+        public bool DeleteAll()
+        {
+            LogBase lb = new LogBase();
+            bool result = false;
+            Log logmodel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                operationTable = "T_BaseSupplier",
+                operationTime = DateTime.Now,
+                objective = "删除数据",
+                operationContent = "删除全部数据"
+            };
+            try
+            {
+                result = sb.DeleteAll();
+                logmodel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                logmodel.result = 0;
+                throw ex;
+            }
+            finally
+            {
+                lb.Add(logmodel);
+            }
+            return result;
+        }
+
         public DataTable GetPurchaseList(string code)
         {
             DataTable dt = null;

@@ -19,10 +19,6 @@ namespace WSCATProject.Base
         {
             InitializeComponent();
         }
-
-        protected virtual void form_save_Click(object sender, EventArgs e)
-        {
-        }
         #region 非空验证
         /// <summary>
         /// 非空验证
@@ -30,7 +26,7 @@ namespace WSCATProject.Base
         /// <returns></returns>
         protected bool InsTextIsNull()
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrWhiteSpace(text_childName.Text))
             {
                 MessageBox.Show("节点名称不能为空！");
                 return false;

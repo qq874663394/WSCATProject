@@ -22,6 +22,7 @@ using WSCATProject.Warehouse;
 using WSCATProject.Sales;
 using WSCATProject.Purchase;
 using WSCATProject.Finance;
+using WSCATProject.Base;
 
 namespace WSCATProject
 {
@@ -626,14 +627,14 @@ namespace WSCATProject
         //~-货品按钮
         private void buttonItemMate_Click(object sender, EventArgs e)
         {
-            //MaterialForm mf = new MaterialForm();
-            //mf.ShowDialog();
+            MaterialForm mf = new MaterialForm();
+            mf.ShowDialog();
         }
         //~-供应商按钮
         private void buttonItemSupplier_Click(object sender, EventArgs e)
         {
-            //SupplierForm su = new SupplierForm();
-            //su.ShowDialog();
+            SupplierForm su = new SupplierForm();
+            su.ShowDialog();
         }
         //~-货品分类按钮
         private void buttonItemType_Click(object sender, EventArgs e)
@@ -650,8 +651,8 @@ namespace WSCATProject
         //~-地区按钮
         private void buttonItemCity_Click_1(object sender, EventArgs e)
         {
-            //CityType ct = new CityType();
-            //ct.ShowDialog();
+            AreaType area = new AreaType();
+            area.ShowDialog();
         }
         //~-仓库资料按钮
         private void buttonItemStock_Click(object sender, EventArgs e)
@@ -2101,6 +2102,29 @@ namespace WSCATProject
         private void buttonItem38_Click(object sender, EventArgs e)
         {
             pbFinanceBank_Click(sender, e);
+        }
+
+        private void but_area_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonInRegion_Click(object sender, EventArgs e)
+        {
+            AreaType area = new AreaType();
+            area.ShowDialog();
+        }
+
+        private void buttonInDistributo_Click(object sender, EventArgs e)
+        {
+            SupplierForm su = new SupplierForm();
+            su.ShowDialog();
+        }
+
+        private void buttonInOrder_Click(object sender, EventArgs e)
+        {
+            MaterialForm mf = new MaterialForm();
+            mf.ShowDialog();
         }
     }
 }

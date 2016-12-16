@@ -58,7 +58,7 @@ namespace BaseLayer.Base
             int result = 0;
             try
             {
-                sql = string.Format("update from T_BaseStorageRack set isClear=0 where code='{1}'", code);
+                sql = string.Format("update T_BaseStorageRack set isClear=0 where code='{1}'", code);
                 result = DbHelperSQL.ExecuteSql(sql);
             }
             catch(Exception ex)
@@ -80,7 +80,7 @@ namespace BaseLayer.Base
             int result = 0;
             try
             {
-                sql = string.Format("update from T_BaseStorageRack set {0}='{1}' where code='{2}'", fieldName, fieldValue, code);
+                sql = string.Format("update T_BaseStorageRack set {0}='{1}' where code='{2}'", fieldName, fieldValue, code);
                 result = DbHelperSQL.ExecuteSql(sql);
             }
             catch(Exception ex)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -58,7 +59,7 @@ namespace BaseLayer.Base
                 sql = "select * from T_BaseSupplier";
                 if (!string.IsNullOrWhiteSpace(strWhere))
                 {
-                    sql += " where " + strWhere;
+                    sql += " where 1=1 " + strWhere;
                 }
                 dt = DbHelperSQL.Query(sql).Tables[0];
             }
@@ -68,6 +69,222 @@ namespace BaseLayer.Base
             }
             return dt;
         }
+        #region 自定义where查询
+        /// <summary>
+        /// 自定义where查询
+        /// </summary>
+        /// <returns></returns>
+        public DataTable SelSupplierByWhere(string SQLWhere)
+        {
+            string sql = string.Format("select * from T_BaseSupplier ");
+            if (!string.IsNullOrWhiteSpace(SQLWhere))
+            {
+                sql = string.Format("{0} where {1} and isEnable=1 and isClear=1", sql, SQLWhere);
+            }
+            else
+            {
+                sql += SQLWhere + " where isEnable=1 and isClear=1";
+            }
+            return DbHelperSQL.Query(sql).Tables[0];
+        }
+        /// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int Add(BaseSupplier model)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("insert into [T_BaseSupplier] (");
+            strSql.Append("name,phone,address,fax,email,bankCard,openBank,industryInvolved,industryCode,creditRank,availableBalance,balance,statementDate,linkMan,mobilePhone,remark,isEnable,isClear,reserved1,reserved2,code,cityName,updateDate)");
+            strSql.Append(" values (");
+            strSql.Append("@name,@phone,@address,@fax,@email,@bankCard,@openBank,@industryInvolved,@industryCode,@creditRank,@availableBalance,@balance,@statementDate,@linkMan,@mobilePhone,@remark,@isEnable,@isClear,@reserved1,@reserved2,@code,@cityName,@updateDate)");
+            strSql.Append(";select @@IDENTITY");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@name", SqlDbType.NVarChar,50),
+                    new SqlParameter("@phone", SqlDbType.NVarChar,22),
+                    new SqlParameter("@address", SqlDbType.NVarChar,58),
+                    new SqlParameter("@fax", SqlDbType.NVarChar,26),
+                    new SqlParameter("@email", SqlDbType.NVarChar,64),
+                    new SqlParameter("@bankCard", SqlDbType.NVarChar,45),
+                    new SqlParameter("@openBank", SqlDbType.NVarChar,40),
+                    new SqlParameter("@industryInvolved", SqlDbType.NVarChar,16),
+                    new SqlParameter("@industryCode", SqlDbType.NVarChar,45),
+                    new SqlParameter("@creditRank", SqlDbType.Int,4),
+                    new SqlParameter("@availableBalance", SqlDbType.Decimal,9),
+                    new SqlParameter("@balance", SqlDbType.Decimal,9),
+                    new SqlParameter("@statementDate", SqlDbType.DateTime),
+                    new SqlParameter("@linkMan", SqlDbType.NVarChar,16),
+                    new SqlParameter("@mobilePhone", SqlDbType.NVarChar,22),
+                    new SqlParameter("@remark", SqlDbType.NVarChar,400),
+                    new SqlParameter("@isEnable", SqlDbType.Int,4),
+                    new SqlParameter("@isClear", SqlDbType.Int,4),
+                    new SqlParameter("@reserved1", SqlDbType.NVarChar,50),
+                    new SqlParameter("@reserved2", SqlDbType.NVarChar,50),
+                    new SqlParameter("@code", SqlDbType.NVarChar,45),
+                    new SqlParameter("@cityName", SqlDbType.NVarChar,58),
+                    new SqlParameter("@updateDate", SqlDbType.DateTime)};
+            parameters[0].Value =model.name;
+            parameters[1].Value =model.phone;
+            parameters[2].Value =model.address;
+            parameters[3].Value =model.fax;
+            parameters[4].Value =model.email;
+            parameters[5].Value =model.bankCard;
+            parameters[6].Value =model.openBank;
+            parameters[7].Value =model.industryInvolved;
+            parameters[8].Value =model.industryCode;
+            parameters[9].Value = model.creditRank;
+            parameters[10].Value =model.availableBalance;
+            parameters[11].Value =model.balance;
+            parameters[12].Value =model.statementDate;
+            parameters[13].Value =model.linkMan;
+            parameters[14].Value =model.mobilePhone;
+            parameters[15].Value =model.remark;
+            parameters[16].Value =model.isEnable;
+            parameters[17].Value =model.isClear;
+            parameters[18].Value =model.reserved1;
+            parameters[19].Value =model.reserved2;
+            parameters[20].Value =model.code;
+            parameters[21].Value =model.cityName;
+            parameters[22].Value = model.updateDate;
+
+            object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);
+            if (obj == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt32(obj);
+            }
+        }
+        /// <summary>
+		/// 更新一条数据
+		/// </summary>
+		public bool Update(BaseSupplier model)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update [T_BaseSupplier] set ");
+            strSql.Append("name=@name,");
+            strSql.Append("phone=@phone,");
+            strSql.Append("address=@address,");
+            strSql.Append("fax=@fax,");
+            strSql.Append("email=@email,");
+            strSql.Append("bankCard=@bankCard,");
+            strSql.Append("openBank=@openBank,");
+            strSql.Append("industryInvolved=@industryInvolved,");
+            strSql.Append("industryCode=@industryCode,");
+            strSql.Append("creditRank=@creditRank,");
+            strSql.Append("availableBalance=@availableBalance,");
+            strSql.Append("balance=@balance,");
+            strSql.Append("statementDate=@statementDate,");
+            strSql.Append("linkMan=@linkMan,");
+            strSql.Append("mobilePhone=@mobilePhone,");
+            strSql.Append("remark=@remark,");
+            strSql.Append("isEnable=@isEnable,");
+            strSql.Append("isClear=@isClear,");
+            strSql.Append("reserved1=@reserved1,");
+            strSql.Append("reserved2=@reserved2,");
+            strSql.Append("cityName=@cityName,");
+            strSql.Append("updateDate=@updateDate");
+            strSql.Append(" where code=@code ");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@name", SqlDbType.NVarChar,50),
+                    new SqlParameter("@phone", SqlDbType.NVarChar,22),
+                    new SqlParameter("@address", SqlDbType.NVarChar,58),
+                    new SqlParameter("@fax", SqlDbType.NVarChar,26),
+                    new SqlParameter("@email", SqlDbType.NVarChar,64),
+                    new SqlParameter("@bankCard", SqlDbType.NVarChar,45),
+                    new SqlParameter("@openBank", SqlDbType.NVarChar,40),
+                    new SqlParameter("@industryInvolved", SqlDbType.NVarChar,16),
+                    new SqlParameter("@industryCode", SqlDbType.NVarChar,45),
+                    new SqlParameter("@creditRank", SqlDbType.Int,4),
+                    new SqlParameter("@availableBalance", SqlDbType.Decimal,9),
+                    new SqlParameter("@balance", SqlDbType.Decimal,9),
+                    new SqlParameter("@statementDate", SqlDbType.DateTime),
+                    new SqlParameter("@linkMan", SqlDbType.NVarChar,16),
+                    new SqlParameter("@mobilePhone", SqlDbType.NVarChar,22),
+                    new SqlParameter("@remark", SqlDbType.NVarChar,400),
+                    new SqlParameter("@isEnable", SqlDbType.Int,4),
+                    new SqlParameter("@isClear", SqlDbType.Int,4),
+                    new SqlParameter("@reserved1", SqlDbType.NVarChar,50),
+                    new SqlParameter("@reserved2", SqlDbType.NVarChar,50),
+                    new SqlParameter("@code", SqlDbType.NVarChar,45),
+                    new SqlParameter("@cityName", SqlDbType.NVarChar,58),
+                    new SqlParameter("@updateDate", SqlDbType.DateTime)};
+            parameters[0].Value =model.name;
+            parameters[1].Value =model.phone;
+            parameters[2].Value =model.address;
+            parameters[3].Value =model.fax;
+            parameters[4].Value =model.email;
+            parameters[5].Value =model.bankCard;
+            parameters[6].Value =model.openBank;
+            parameters[7].Value =model.industryInvolved;
+            parameters[8].Value =model.industryCode;
+            parameters[9].Value = model.creditRank;
+            parameters[10].Value =model.availableBalance;
+            parameters[11].Value =model.balance;
+            parameters[12].Value =model.statementDate;
+            parameters[13].Value =model.linkMan;
+            parameters[14].Value =model.mobilePhone;
+            parameters[15].Value =model.remark;
+            parameters[16].Value =model.isEnable;
+            parameters[17].Value =model.isClear;
+            parameters[18].Value =model.reserved1;
+            parameters[19].Value =model.reserved2;
+            parameters[20].Value =model.code;
+            parameters[21].Value =model.cityName;
+            parameters[22].Value =model.updateDate;
+
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(string code)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update [T_BaseSupplier] set isClear=0 ");
+            strSql.Append(" where code=@code ");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@code", SqlDbType.NVarChar,50)};
+            parameters[0].Value = code;
+
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 删除全部数据
+        /// </summary>
+        public bool DeleteAll()
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update [T_BaseSupplier] set isClear=0 ");
+
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString());
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
         /// <summary>
         /// 根据供应商code查询所有采购单
         /// </summary>
