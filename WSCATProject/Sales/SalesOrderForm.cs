@@ -30,6 +30,7 @@ namespace WSCATProject.Sales
         StorageInterface storage = new StorageInterface();//交货地点
         MaterialInterface materialInterface = new MaterialInterface();
         SalesOrderInterface saleorderinterface = new SalesOrderInterface();
+        string code;
         #endregion
 
         #region 数据字段
@@ -460,57 +461,89 @@ namespace WSCATProject.Sales
         /// </summary>
         private void InitForm()
         {
-            labTop1.ForeColor = Color.Gray;
-            labtxtDanJuType.Border.BorderBottomColor = Color.Gray;
-            labtxtDanJuType.ForeColor = Color.Gray;
-            labtxtDanJuType.ReadOnly = true;
-            labTop2.ForeColor = Color.Gray;
-            labtextboxTop2.Border.BorderBottomColor = Color.Gray;
-            labtextboxTop2.ForeColor = Color.Red;
-            labtextboxTop2.ReadOnly = true;
-            labTop3.ForeColor = Color.Gray;
-            labtextboxTop3.Border.BorderBottomColor = Color.Gray;
-            labtextboxTop3.ForeColor = Color.Gray;
-            labtextboxTop3.ReadOnly = true;
-            labTop4.ForeColor = Color.Gray;
-            cboMethod.BackColor = Color.Gray;
-            cboMethod.ForeColor = Color.Gray;
-            cboMethod.Enabled = false;
-            labTop5.ForeColor = Color.Gray;
-            labtextboxTop5.Border.BorderBottomColor = Color.Gray;
-            labtextboxTop5.ForeColor = Color.Gray;
-            labtextboxTop5.ReadOnly = true;
-            labTop6.ForeColor = Color.Gray;
+            foreach (Control c in panel2.Controls)
+            {
+                switch (c.GetType().Name)
+                {
+                    case "Label":
+                        c.Enabled = false;
+                        break;
+                    case "TextBoxX":
+                        c.Enabled = false;
+                        break;
+                    case "ComboBoxEx":
+                        c.Enabled = false;
+                        break;
+                    case "PictureBox":
+                        c.Enabled = false;
+                        break;
+                }
+            }
+            foreach (Control c in panel5.Controls)
+            {
+                switch (c.GetType().Name)
+                {
+                    case "Label":
+                        c.Enabled = false;
+                        break;
+                    case "TextBoxX":
+                        c.Enabled = false;
+                        break;
+                    case "PictureBox":
+                        c.Enabled = false;
+                        break;
+                }
+            }
             dateTimePicker2.Enabled = false;
-            dateTimePicker2.CalendarForeColor = Color.Gray;
-            labTop7.ForeColor = Color.Gray;
-            labtextboxTop7.Border.BorderBottomColor = Color.Gray;
-            labtextboxTop7.ForeColor = Color.Gray;
-            labtextboxTop7.ReadOnly = true;
-            labTop8.ForeColor = Color.Gray;
-            labtextboxTop8.Border.BorderBottomColor = Color.Gray;
-            labtextboxTop8.ForeColor = Color.Gray;
-            labtextboxTop8.ReadOnly = true;
-            labTop9.ForeColor = Color.Gray;
-            labtextboxTop9.Border.BorderBottomColor = Color.Gray;
-            labtextboxTop9.ForeColor = Color.Gray;
-            labtextboxTop9.ReadOnly = true;
-            textBoxOddNumbers.BackColor = Color.FromArgb(240, 240, 240);
-            this.panel2.BackColor = Color.FromArgb(240, 240, 240);
-            this.panel5.BackColor = Color.FromArgb(240, 240, 240);
-            this.superGridControlShangPing.BackColor = Color.Gray;
-            this.superGridControlShangPing.Enabled = false;
-            ltxtbSalsMan.ReadOnly = true;
-            ltxtbMakeMan.ReadOnly = true;
-            ltxtbShengHeMan.ReadOnly = true;
+            superGridControlShangPing.PrimaryGrid.ReadOnly = true;
             picShengHe.Visible = true;
-            picShengHe.Parent = pictureBoxtitle;
-            dateTimePicker1.Enabled = false;
-            labeldata.ForeColor = Color.Gray;
-            labelprie.ForeColor = Color.Gray;
-            labelprie.BackColor = Color.FromArgb(240, 240, 240);
+            toolStripBtnSave.Enabled = false;
         }
 
+        /// <summary>
+        /// 标示那个控件可用
+        /// </summary>
+        private void EnabledForm()
+        {
+            foreach (Control c in panel2.Controls)
+            {
+                switch (c.GetType().Name)
+                {
+                    case "Label":
+                        c.Enabled = true;
+                        break;
+                    case "TextBoxX":
+                        c.Enabled = true;
+                        break;
+                    case "ComboBoxEx":
+                        c.Enabled = true;
+                        break;
+                    case "PictureBox":
+                        c.Enabled = true;
+                        break;
+                }
+            }
+            foreach (Control c in panel5.Controls)
+            {
+                switch (c.GetType().Name)
+                {
+                    case "Label":
+                        c.Enabled = true;
+                        break;
+                    case "TextBoxX":
+                        c.Enabled = true;
+                        break;
+                    case "PictureBox":
+                        c.Enabled = true;
+                        break;
+                }
+            }
+            dateTimePicker2.Enabled = true;
+            superGridControlShangPing.PrimaryGrid.ReadOnly = false;
+            picShengHe.Visible = false;
+            this.toolStripBtnShengHe.Enabled = true;
+            toolStripBtnSave.Enabled = true;
+        }
         #endregion
 
         /// <summary>
@@ -577,6 +610,10 @@ namespace WSCATProject.Sales
                 toolStripBtnSave.Click += toolStripBtnSave_Click;//保存按钮
                 toolStripBtnShengHe.Click += toolStripBtnShengHe_Click;//审核按钮
                 dataGridViewFuJia.KeyDown += DataGridViewFuJia_KeyDown;
+                toolStripBtnQianDan.Click += ToolStripBtnQianDan_Click;
+                toolStripBtnHouDan.Click += ToolStripBtnHouDan_Click;
+                this.toolStripBtnHouDan.Enabled = false;
+                this.toolStripBtnInsert.Click += ToolStripBtnInsert_Click;
             }
             catch (Exception ex)
             {
@@ -584,6 +621,204 @@ namespace WSCATProject.Sales
                 MessageBox.Show("错误代码：1101-窗体加载时，初始化数据错误！请检查：" + ex.Message);
                 this.Close();
                 return;
+            }
+        }
+        /// <summary>
+        /// 清空
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripBtnInsert_Click(object sender, EventArgs e)
+        {
+            //清空行
+            superGridControlShangPing.PrimaryGrid.Rows.Clear();
+            //新增统计行
+            InitDataGridView();
+            //清空数据
+            this.lblcheckState.Text = "";
+            this.lblcode.Text = "";
+            this.labtxtDanJuType.Text = "";
+            this.labtextboxTop2.Text = "";
+            this.labtextboxTop3.Text = "";
+            this.cboMethod.SelectedIndex = 0;
+            this.labtextboxTop5.Text = "";
+            this.dateTimePicker2.Value = DateTime.Now;
+            this.labtextboxTop7.Text = "";
+            this.labtextboxTop8.Text = "";
+            this.labtextboxTop9.Text = "";
+            this.ltxtbSalsMan.Text = "";
+            this.ltxtbMakeMan.Text = "";
+            this.ltxtbShengHeMan.Text = "";
+            resizablePanel1.Visible = false;
+            EnabledForm();
+        }
+
+        /// <summary>
+        /// supergrid数据填充
+        /// </summary>
+        /// <param name="dt"></param>
+        public void InitSupergridView(DataTable dt)
+        {
+            //清空行
+            superGridControlShangPing.PrimaryGrid.Rows.Clear();
+            //新增统计行
+            InitDataGridView();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i > 0)
+                {
+                    //新增行
+                    superGridControlShangPing.PrimaryGrid.NewRow(superGridControlShangPing.PrimaryGrid.Rows.Count);
+                }
+                GridRow gr = (GridRow)superGridControlShangPing.PrimaryGrid.Rows[i];   //获取
+                string materialCode = dt.Rows[i]["materialCode"].ToString();
+                DataTable dt1 = new DataTable();
+                dt1 = materialInterface.GetList(3, materialCode);
+                gr["material"].Value = XYEEncoding.strHexDecode(dt1.Rows[0]["materialDaima"].ToString());  //商品代码
+                gr["materialCode"].Value = XYEEncoding.strHexDecode(dt1.Rows[0]["code"].ToString());
+                gr["name"].Value = XYEEncoding.strHexDecode(dt1.Rows[0]["name"].ToString());   //商品名称
+                gr["model"].Value = XYEEncoding.strHexDecode(dt1.Rows[0]["model"].ToString());  //规格型号
+                gr["barcode"].Value = XYEEncoding.strHexDecode(dt1.Rows[0]["barCode"].ToString());   //条形码
+                gr["unit"].Value = XYEEncoding.strHexDecode(dt1.Rows[0]["unit"].ToString());   //单位
+
+                gr["dinggouNumber"].Value = dt.Rows[i]["materialNumber"].ToString();   //采购数量
+                gr["price"].Value = dt.Rows[i]["materialPrice"].ToString();   //采购单价
+                gr["money"].Value = dt.Rows[i]["materialMoney"].ToString();   //采购金额
+                gr["DiscountRate"].Value = dt.Rows[i]["discountRate"].ToString();   //折扣率
+                gr["DiscountMoney"].Value = dt.Rows[i]["discountMoney"].ToString();   //折扣额
+                gr["TaxRate"].Value = dt.Rows[i]["VATRate"].ToString();   //增值税
+                gr["TaxMoney"].Value = dt.Rows[i]["tax"].ToString();   //税额
+                gr["priceANDtax"].Value = dt.Rows[i]["taxTotal"].ToString();   //价税合计
+                gr["remark"].Value = XYEEncoding.strHexDecode(dt.Rows[i]["remark"].ToString());   //摘要
+                gr["gridColumnid"].Value = dt.Rows[i]["id1"].ToString();  //id
+                gr["FaHuoNumber"].Value = dt.Rows[i]["deliveryNumber"].ToString();   //code
+                gr["gridColumncode"].Value = dt.Rows[i]["code1"].ToString();  //code
+            }
+            TongJi();
+            superGridControlShangPing.PrimaryGrid.NewRow(superGridControlShangPing.PrimaryGrid.Rows.Count);
+        }
+
+        /// <summary>
+        /// 后单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripBtnHouDan_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                code = this.lblcode.Text;
+                dt = saleorderinterface.GetNextData(code);
+                toolStripBtnHouDan.Enabled = true;
+                this.labtxtDanJuType.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["name"].ToString());  //客户
+                _clientCode = XYEEncoding.strHexDecode(dt.Rows[0]["clientCode"].ToString());
+                this.labtextboxTop2.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["linkMan"].ToString());  //联系人
+                this.labtextboxTop3.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["mobilePhone"].ToString());  //电话
+                this.cboMethod.SelectedIndex = Convert.ToInt32(dt.Rows[0]["deliversMethod"].ToString());  //交货方式
+                this.labtextboxTop5.Text = XYEEncoding.strHexDecode(dt.Rows[0]["deliversLocation"].ToString());   //交货地点
+                this.dateTimePicker2.Value = Convert.ToDateTime(dt.Rows[0]["date"].ToString());  //日期
+                this.labtextboxTop7.Text = dt.Rows[0]["depositReceived"].ToString() == "" ? "0.00" : dt.Rows[0]["depositReceived"].ToString();  //已收定金
+                this.labtextboxTop8.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["fax"].ToString());  //传真
+                this.labtextboxTop9.Text = XYEEncoding.strHexDecode(dt.Rows[0]["remark"].ToString());  //摘要
+
+                this.ltxtbSalsMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["operation"].ToString());
+                this.ltxtbMakeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["makeMan"].ToString());
+                this.ltxtbShengHeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["examine"].ToString());
+                this.lblcode.Text = dt.Rows[0]["code"].ToString();
+                this.lblcheckState.Text = dt.Rows[0]["checkState"].ToString(); //审核
+                //判断审核
+                if (this.lblcheckState.Text == "1")
+                {
+                    picShengHe.Parent = pictureBoxtitle;
+                    InitForm();  //标记控件不可用
+                    toolStripBtnShengHe.Enabled = false;
+                }
+                else
+                {
+                    EnabledForm(); //标记控件可用
+                    toolStripBtnShengHe.Enabled = true;
+                }
+                resizablePanel1.Visible = false;
+                InitSupergridView(dt);
+                //判断是否到上限
+                string lcode = dt.Rows[0]["code"].ToString();
+                dt = saleorderinterface.GetNextData(lcode);
+                toolStripBtnQianDan.Enabled = true;
+                if (dt.Rows.Count == 0)
+                {
+                    toolStripBtnHouDan.Enabled = false; //上一单没有数据
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("错误代码：2106-尝试点击前单数据错误" + ex.Message, "财务凭证条目单温馨提示");
+            }
+        }
+        /// <summary>
+        /// 前单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripBtnQianDan_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                //判断是否code是否存在
+                if (string.IsNullOrWhiteSpace(this.lblcode.Text))
+                {
+                    code = saleorderinterface.GetNewCode();
+                    dt = saleorderinterface.GetFLastData(code);
+                }
+                else
+                {
+                    code = this.lblcode.Text;
+                    dt = saleorderinterface.GetLastData(code);
+                    toolStripBtnHouDan.Enabled = true;
+                }
+
+                this.labtxtDanJuType.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["name"].ToString());  //客户
+                _clientCode = XYEEncoding.strHexDecode(dt.Rows[0]["clientCode"].ToString());
+                this.labtextboxTop2.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["linkMan"].ToString());  //联系人
+                this.labtextboxTop3.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["mobilePhone"].ToString());  //电话
+                this.cboMethod.SelectedIndex = Convert.ToInt32(dt.Rows[0]["deliversMethod"].ToString());  //交货方式
+                this.labtextboxTop5.Text = XYEEncoding.strHexDecode(dt.Rows[0]["deliversLocation"].ToString());   //交货地点
+                this.dateTimePicker2.Value = Convert.ToDateTime(dt.Rows[0]["date"].ToString());  //日期
+                this.labtextboxTop7.Text = dt.Rows[0]["depositReceived"].ToString() == "" ? "0.00" : dt.Rows[0]["depositReceived"].ToString();  //已收定金
+                this.labtextboxTop8.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["fax"].ToString());  //传真
+                this.labtextboxTop9.Text = XYEEncoding.strHexDecode(dt.Rows[0]["remark"].ToString());  //摘要
+
+                this.ltxtbSalsMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["operation"].ToString());
+                this.ltxtbMakeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["makeMan"].ToString());
+                this.ltxtbShengHeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["examine"].ToString());
+                this.lblcode.Text = dt.Rows[0]["code"].ToString();
+                this.lblcheckState.Text = dt.Rows[0]["checkState"].ToString(); //审核
+                //判断审核
+                if (this.lblcheckState.Text == "1")
+                {
+                    picShengHe.Parent = pictureBoxtitle;
+                    InitForm();  //标记控件不可用
+                    toolStripBtnShengHe.Enabled = false;
+                }
+                else
+                {
+                    EnabledForm(); //标记控件可用
+                    toolStripBtnShengHe.Enabled = true;
+                }
+                resizablePanel1.Visible = false;
+                InitSupergridView(dt);
+                //判断是否到上限
+                string lcode = dt.Rows[0]["code"].ToString();
+                dt = saleorderinterface.GetLastData(lcode);
+                if (dt.Rows.Count == 0)
+                {
+                    toolStripBtnQianDan.Enabled = false; //上一单没有数据
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("错误代码：2106-尝试点击前单数据错误" + ex.Message, "财务凭证条目单温馨提示");
             }
         }
 
@@ -624,7 +859,14 @@ namespace WSCATProject.Sales
             List<SalesOrderDetail> salesorderList = new List<SalesOrderDetail>();
             try
             {
-                salesorder.code = XYEEncoding.strCodeHex(validateCode());//销售订单Code           
+                if (string.IsNullOrWhiteSpace(this.lblcode.Text))
+                {
+                    salesorder.code = XYEEncoding.strCodeHex(validateCode());//销售订单Code           
+                }
+                else
+                {
+                    salesorder.code = this.lblcode.Text;//销售订单Code           
+                }
                 //客户code
                 if (labtxtDanJuType.Text != null || labtxtDanJuType.Text.Trim() != "")
                 {
@@ -706,12 +948,19 @@ namespace WSCATProject.Sales
 
                         i++;
                         SalesOrderDetail salesorderDetail = new SalesOrderDetail();
-                        salesorderDetail.mainCode = XYEEncoding.strCodeHex(this.textBoxOddNumbers.Text);//销售订单单据Code
-                        salesorderDetail.code = XYEEncoding.strCodeHex(_SalesOrderCode + i.ToString());//销售订单明细Code
-                        //物料code
+                        salesorderDetail.mainCode = salesorder.code;//销售订单单据Code
+                        if (gr["gridColumncode"].Value == null)
+                        {
+                            salesorderDetail.code = XYEEncoding.strCodeHex(_SalesOrderCode + i.ToString());//销售订单明细Code
+                        }
+                        else
+                        {
+                            salesorderDetail.code = gr["gridColumncode"].Value.ToString();//销售订单明细Code
+                        }
                         if (gr.Cells["name"].Value != null || gr.Cells["name"].Value.ToString() != "")
                         {
-                            salesorderDetail.materialCode = XYEEncoding.strCodeHex(_materialCode);
+                            salesorderDetail.materialCode = XYEEncoding.strCodeHex(gr["materialCode"].Value.ToString());
+                            //   salesorderDetail.materialCode = XYEEncoding.strCodeHex(_materialCode);
                         }
                         else
                         {
@@ -786,7 +1035,18 @@ namespace WSCATProject.Sales
             object saleOrderResult = saleorderinterface.AddOrUpdate(salesorder, salesorderList);
             if (saleOrderResult != null)
             {
-                MessageBox.Show("新增销售订单数据成功", "销售订单温馨提示");
+                if (!string.IsNullOrWhiteSpace(this.lblcode.Text))
+                {
+                    MessageBox.Show("修改其它付款单数据成功", "采购订单温馨提示");
+                }
+                else
+                {
+                    MessageBox.Show("新增其它付款单数据成功", "采购订单温馨提示");
+                    this.toolStripBtnHouDan.Enabled = false;
+                    this.lblcode.Text = salesorder.code;
+                }
+                toolStripBtnQianDan.Enabled = true; //上一单启用
+                toolStripBtnHouDan.Enabled = false; //下一单禁用
             }
         }
 
@@ -807,8 +1067,15 @@ namespace WSCATProject.Sales
             List<SalesOrderDetail> salesorderList = new List<SalesOrderDetail>();
             try
             {
-                salesorder.code = XYEEncoding.strCodeHex(_SalesOrderCode);//销售订单Code
-                                                                          //客户code
+                if (string.IsNullOrWhiteSpace(this.lblcode.Text))
+                {
+                    salesorder.code = XYEEncoding.strCodeHex(validateCode());//销售订单Code           
+                }
+                else
+                {
+                    salesorder.code = this.lblcode.Text;//销售订单Code           
+                }
+                //客户code
                 if (labtxtDanJuType.Text != null || labtxtDanJuType.Text.Trim() != "")
                 {
                     salesorder.clientCode = XYEEncoding.strCodeHex(_clientCode);
@@ -850,7 +1117,6 @@ namespace WSCATProject.Sales
                     ltxtbSalsMan.Focus();
                     return;
                 }
-                salesorder.date = this.dateTimePicker1.Value;//开单日期
                 switch (cboMethod.Text.Trim())//交货方式
                 {
                     case "提货":
@@ -863,15 +1129,16 @@ namespace WSCATProject.Sales
                         salesorder.deliversMethod = 2;
                         break;
                 }
+                salesorder.date = this.dateTimePicker1.Value;//开单日期
                 salesorder.deliversDate = dateTimePicker2.Value;//交货日期
-                salesorder.remark = XYEEncoding.strCodeHex(labtextboxTop9.Text == null ? "" : labtextboxTop9.Text.ToString());//摘要               
-                salesorder.makeMan = XYEEncoding.strCodeHex(ltxtbMakeMan.Text == null ? "" : ltxtbMakeMan.Text.ToString());//制单人
-                salesorder.examine = XYEEncoding.strCodeHex(ltxtbShengHeMan.Text == null ? "" : ltxtbShengHeMan.Text.ToString());//审核人
+                salesorder.remark = XYEEncoding.strCodeHex(labtextboxTop9.Text);//摘要           
+                salesorder.makeMan = XYEEncoding.strCodeHex(ltxtbMakeMan.Text);//制单人
+                salesorder.examine = XYEEncoding.strCodeHex(ltxtbShengHeMan.Text);//审核人
                 salesorder.checkState = 1;//审核状态
             }
             catch (Exception ex)
             {
-                MessageBox.Show("错误代码:1104-尝试创建销售订单商品数据出错！请检查：" + ex.Message, "销售订单温馨提示");
+                MessageBox.Show("错误代码:1102-尝试创建销售订单数据出错！请检查：" + ex.Message, "销售订单温馨提示");
                 return;
             }
 
@@ -889,12 +1156,19 @@ namespace WSCATProject.Sales
 
                         i++;
                         SalesOrderDetail salesorderDetail = new SalesOrderDetail();
-                        salesorderDetail.mainCode = XYEEncoding.strCodeHex(this.textBoxOddNumbers.Text);//销售订单单据Code
-                        salesorderDetail.code = XYEEncoding.strCodeHex(_SalesOrderCode + i.ToString());//销售订单明细Code
-                        //物料code
+                        salesorderDetail.mainCode = this.lblcode.Text;//销售订单单据Code
+                        if (gr["gridColumncode"].Value == null)
+                        {
+                            salesorderDetail.code = XYEEncoding.strCodeHex(_SalesOrderCode + i.ToString());//销售订单明细Code
+                        }
+                        else
+                        {
+                            salesorderDetail.code = gr["gridColumncode"].Value.ToString();//销售订单明细Code
+                        }
                         if (gr.Cells["name"].Value != null || gr.Cells["name"].Value.ToString() != "")
                         {
-                            salesorderDetail.materialCode = XYEEncoding.strCodeHex(_materialCode);
+                            salesorderDetail.materialCode = XYEEncoding.strCodeHex(gr["materialCode"].Value.ToString());
+                            //   salesorderDetail.materialCode = XYEEncoding.strCodeHex(_materialCode);
                         }
                         else
                         {
@@ -902,6 +1176,7 @@ namespace WSCATProject.Sales
                             superGridControlShangPing.Focus();
                             return;
                         }
+
                         //判断表格里的金额与实际值是否相符     
                         decimal money = Convert.ToDecimal(gr["dinggouNumber"].Value) * Convert.ToDecimal(gr["price"].Value);
                         if (money == Convert.ToDecimal(gr["money"].Value))
@@ -948,9 +1223,9 @@ namespace WSCATProject.Sales
                             return;
                         }
                         salesorderDetail.materialNumber = Convert.ToDecimal(gr["dinggouNumber"].Value.ToString() == "" ? 0.0M : Convert.ToDecimal(gr["dinggouNumber"].Value));//数量
-                        salesorderDetail.materialPrice = Convert.ToDecimal(gr["price"].Value.ToString() == "" ? 0.0M : Convert.ToDecimal(gr["price"].Value));//单价                      
-                        salesorderDetail.discountRate = Convert.ToDecimal(gr["DiscountRate"].Value.ToString() == "" ? 0.0M : Convert.ToDecimal(gr["DiscountRate"].Value));//折扣率                  
-                        salesorderDetail.VATRate = Convert.ToDecimal(gr["TaxRate"].Value.ToString() == "" ? 0.0M : Convert.ToDecimal(gr["TaxRate"].Value));//增值税税率                    
+                        salesorderDetail.materialPrice = Convert.ToDecimal(gr["price"].Value.ToString() == "" ? 0.0M : Convert.ToDecimal(gr["price"].Value));//单价                         
+                        salesorderDetail.discountRate = Convert.ToDecimal(gr["DiscountRate"].Value.ToString() == "" ? 0.0M : Convert.ToDecimal(gr["DiscountRate"].Value));//折扣率                   
+                        salesorderDetail.VATRate = Convert.ToDecimal(gr["TaxRate"].Value.ToString() == "" ? 0.0M : Convert.ToDecimal(gr["TaxRate"].Value));//增值税税率                 
                         salesorderDetail.remark = XYEEncoding.strCodeHex(gr["remark"].Value == null ? "" : gr["remark"].Value.ToString());//备注
                         salesorderDetail.deliveryNumber = Convert.ToDecimal(gr["FaHuoNumber"].Value == null ? 0.0M : Convert.ToDecimal(gr["FaHuoNumber"].Value));//发货数量    
 
@@ -961,7 +1236,7 @@ namespace WSCATProject.Sales
             }
             catch (Exception ex)
             {
-                MessageBox.Show("错误代码：1105-尝试创建并审核销售订单商品详细数据出错！请检查：" + ex.Message, "销售订单温馨提示");
+                MessageBox.Show("错误代码：1103-尝试创建销售订单商品详细数据出错!请检查:" + ex.Message, "销售订单温馨提示");
                 return;
             }
 
@@ -969,9 +1244,9 @@ namespace WSCATProject.Sales
             object saleOrderResult = saleorderinterface.AddOrUpdate(salesorder, salesorderList);
             if (saleOrderResult != null)
             {
-                MessageBox.Show("新增并审核销售订单数据成功", "销售订单温馨提示");
+                picShengHe.Parent = pictureBoxtitle;
                 InitForm();
-                this.picShengHe.Image = Properties.Resources.审核;
+                MessageBox.Show("保存和审核其它付款单数据成功", "其它付款单温馨提示");
             }
         }
         #endregion

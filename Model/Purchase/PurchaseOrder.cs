@@ -32,8 +32,6 @@ namespace Model.Purchase
         private decimal? _invoicedamount;
         private decimal? _unbilledamount;
         private decimal? _purchaseamount;
-        private string _contacts;
-        private string _fax;
         /// <summary>
         /// 
         /// </summary>
@@ -188,23 +186,6 @@ namespace Model.Purchase
             get { return _purchaseamount; }
         }
 
-        /// <summary>
-        /// 联系人
-        /// </summary>
-        public string contacts
-        {
-            set { _contacts = value; }
-            get { return _contacts; }
-        }
-
-        /// <summary>
-        /// 传真
-        /// </summary>
-        public string fax
-        {
-            set { _fax = value; }
-            get { return _fax; }
-        }
         #endregion Model
     }
 }

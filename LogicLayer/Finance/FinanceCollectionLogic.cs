@@ -79,7 +79,7 @@ namespace LogicLayer.Finance
             };
             try
             {
-                isflag=_dal.Exists(code);
+                isflag = _dal.Exists(code);
                 model.result = 1;
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace LogicLayer.Finance
         /// </summary>
         /// <param name="strWhere">where后面的条件</param>
         /// <returns></returns>
-        public DataTable GetList(int fieldName,string fieldValue)
+        public DataTable GetList(int fieldName, string fieldValue)
         {
             string strWhere = "";
             DataTable dt = null;
@@ -141,5 +141,130 @@ namespace LogicLayer.Finance
             }
             return dt;
         }
+        /// <summary>
+        /// 默认的上一单
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetFLastData(string code)
+        {
+            Log logModel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                objective = "获取上一单数据",
+                operationContent = "code=" + code,
+                operationTable = "T_SalesOrder",
+                operationTime = DateTime.Now,
+                result = 0
+            };
+            DataTable dt = null;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    throw new Exception("-2");
+                }
+                dt = _dal.GetFLastData(code);
+                logModel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logModel);
+            }
+            return dt;
+        }
+        /// <summary>
+        /// 获取最新的code
+        /// </summary>
+        /// <returns></returns>
+        public string GetNewCode()
+        {
+            return _dal.GetNewCode();
+        }
+
+        /// <summary>
+        /// 获取上一单数据
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetLastData(string code)
+        {
+            Log logModel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                objective = "获取上一单数据",
+                operationContent = "code=" + code,
+                operationTable = "T_SalesOrder",
+                operationTime = DateTime.Now,
+                result = 0
+            };
+            DataTable dt = null;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    throw new Exception("-2");
+                }
+                dt = _dal.GetFLastData(code);
+                logModel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logModel);
+            }
+            return _dal.GetLastData(code);
+        }
+
+        /// <summary>
+        /// 获取下一单数据
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetNextData(string code)
+        {
+            Log logModel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                objective = "获取下一单数据",
+                operationContent = "code=" + code,
+                operationTable = "T_SalesOrder",
+                operationTime = DateTime.Now,
+                result = 0
+            };
+            DataTable dt = null;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    throw new Exception("-2");
+                }
+                dt = _dal.GetFLastData(code);
+                logModel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logModel);
+            }
+            return _dal.GetNextData(code);
+        }
+
     }
 }

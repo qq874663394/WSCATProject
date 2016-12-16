@@ -46,7 +46,6 @@ namespace Model
         private decimal? _invoicedamount;
         private decimal? _unbilledamount;
         private decimal? _purchaseamount;
-        private string _linkMan;
         /// <summary>
         /// 自增ID
         /// </summary>
@@ -326,14 +325,6 @@ namespace Model
         {
             set { _purchaseamount = value; }
             get { return _purchaseamount; }
-        }
-        /// <summary>
-        /// 联系人
-        /// </summary>
-        public string linkMan
-        {
-            set { _linkMan = value; }
-            get { return _linkMan; }
         }
         #endregion Model
     }

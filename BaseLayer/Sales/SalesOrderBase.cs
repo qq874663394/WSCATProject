@@ -156,7 +156,6 @@ namespace BaseLayer.Sales
                 sqlMain.Append("examine=@examine,");
                 sqlMain.Append("checkState=@checkState");
                 sqlMain.Append(" where code=@code ");
-                sqlMain.Append(";select @@IDENTITY");
                 SqlParameter[] spsMain =
                 {
                     new SqlParameter("@clientCode", SqlDbType.NVarChar,50),
@@ -196,7 +195,7 @@ namespace BaseLayer.Sales
                 sqlDetail.Append("taxTotal=@taxTotal,");
                 sqlDetail.Append("remark=@remark,");
                 sqlDetail.Append("deliveryNumber=@deliveryNumber");
-                sqlDetail.Append(" where mainCode=@mainCode and code=@code");
+                sqlDetail.Append(" where code=@code");
 
                 string sqlInsert=@"insert into[T_SalesOrderDetail] 
 (materialCode,materialNumber,materialPrice,
@@ -205,8 +204,7 @@ remark,deliveryNumber,mainCode,code)
 values (@materialCode,@materialNumber,
 @materialPrice,@materialMoney,@discountRate,
 @VATRate,@discountMoney,@tax,@taxTotal,@remark,
-@deliveryNumber,@mainCode,@code)
-select @@IDENTITY";
+@deliveryNumber,@mainCode,@code)";
 
                 foreach (var item in modelDetail)
                 {
@@ -349,6 +347,109 @@ where so.code=sod.mainCode and sod.materialCode=bm.code and
 so.code='{0}' and sod.code='{1}'", salesCode, salesDetailCode);
             dt = DbHelperSQL.Query(sql).Tables[0];
             return dt;
+        }
+
+        /// <summary>
+        /// 默认的上一单
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetFLastData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select so.* ,sod.*
+ from T_SalesOrder so,T_SalesOrderDetail sod
+where so.code=sod.mainCode and 
+so.code= (select top 1 code from T_SalesOrder where id =
+(select id from T_SalesOrder where code = '{0}') order by id desc)", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 获取上一单数据
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetLastData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select so.* ,sod.*
+ from T_SalesOrder so,T_SalesOrderDetail sod
+where so.code=sod.mainCode and 
+so.code= (select top 1 code from T_SalesOrder where id <
+(select id from T_SalesOrder where code = '{0}') order by id desc)", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 下一单数据
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetNextData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select so.* ,sod.*
+ from T_SalesOrder so,T_SalesOrderDetail sod
+where so.code=sod.mainCode and 
+so.code= (select top 1 code from T_SalesOrder where id >
+(select id from T_SalesOrder where code = '{0}'))", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        /// <summary>
+        /// 获取最新的code
+        /// </summary>
+        /// <returns></returns>
+        public string GetNewCode()
+        {
+            string sql = "";
+            object result = null;
+            try
+            {
+                sql = "select top 1 code from  T_SalesOrder order by id desc";
+                result = DbHelperSQL.GetSingle(sql);
+                if (result == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

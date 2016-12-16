@@ -651,6 +651,37 @@ namespace BaseLayer
                                 {
                                     string cmdText = sqlstr;
                                     SqlParameter[] cmdParms = para;
+
+                                    #region 事务操作调试用
+
+                                    for (int i = 0; i < cmdParms.Length; i++)
+                                    {
+                                        string str1 = "declare " + cmdParms[i];
+                                        string str2 = "set " + cmdParms[i] + " = ";
+                                        if (cmdParms[i].SqlDbType == SqlDbType.NVarChar)
+                                        {
+                                            str1 += " Nvarchar(MAX)";
+                                            str2 += "'" + cmdParms[i].Value + "'";
+                                        }
+                                        if (cmdParms[i].SqlDbType == SqlDbType.DateTime)
+                                        {
+                                            str1 += " DateTime";
+                                            str2 += "'" + cmdParms[i].Value + "'";
+                                        }
+                                        if (cmdParms[i].SqlDbType == SqlDbType.Int)
+                                        {
+                                            str1 += " Int";
+                                            str2 += cmdParms[i].Value;
+                                        }
+                                        if (cmdParms[i].SqlDbType == SqlDbType.Decimal)
+                                        {
+                                            str1 += " Decimal(18,2)";
+                                            str2 += cmdParms[i].Value;
+                                        }
+                                        Console.WriteLine(str1);
+                                        Console.WriteLine(str2);
+                                    }
+                                    #endregion
                                     PrepareCommand(cmd, conn, trans, cmdText, cmdParms);
                                     val2 = cmd.ExecuteNonQuery();
                                     cmd.Parameters.Clear();

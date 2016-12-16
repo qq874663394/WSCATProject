@@ -243,6 +243,35 @@ namespace LogicLayer.Purchase
         /// <returns></returns>
         public DataTable GetLastData(string code)
         {
+            Log logModel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                objective = "获取上一单数据",
+                operationContent = "code=" + code,
+                operationTable = "T_PurchaseOrderInterface",
+                operationTime = DateTime.Now,
+                result = 0
+            };
+            DataTable dt = null;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    throw new Exception("-2");
+                }
+                dt = _dal.GetFLastData(code);
+                logModel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logModel);
+            }
             return _dal.GetLastData(code);
         }
 
@@ -253,6 +282,35 @@ namespace LogicLayer.Purchase
         /// <returns></returns>
         public DataTable GetNextData(string code)
         {
+            Log logModel = new Log()
+            {
+                code = BuildCode.ModuleCode("log"),
+                operationCode = "操作人code",
+                operationName = "操作人名",
+                objective = "获取下一单数据",
+                operationContent = "code=" + code,
+                operationTable = "T_PurchaseOrderInterface",
+                operationTime = DateTime.Now,
+                result = 0
+            };
+            DataTable dt = null;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    throw new Exception("-2");
+                }
+                dt = _dal.GetFLastData(code);
+                logModel.result = 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _logDal.Add(logModel);
+            }
             return _dal.GetNextData(code);
         }
     }

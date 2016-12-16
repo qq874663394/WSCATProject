@@ -54,6 +54,8 @@
             this.labelprie = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.labtextboxTop2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labtxtDanJuType = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labtextboxTop6 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labtextboxTop3 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labtextboxTop7 = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -61,8 +63,6 @@
             this.labtextboxTop8 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labtextboxTop5 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labtextboxTop4 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labtextboxTop2 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labtxtDanJuType = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -426,6 +426,42 @@
             this.panel2.TabIndex = 4;
             this.panel2.Click += new System.EventHandler(this.panel6_Click);
             // 
+            // labtextboxTop2
+            // 
+            // 
+            // 
+            // 
+            this.labtextboxTop2.Border.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.labtextboxTop2.Border.BorderBottomColor = System.Drawing.Color.Black;
+            this.labtextboxTop2.Border.BorderBottomWidth = 1;
+            this.labtextboxTop2.Border.BorderGradientAngle = 0;
+            this.labtextboxTop2.Border.Class = "SideNavStrip";
+            this.labtextboxTop2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labtextboxTop2.DisabledBackColor = System.Drawing.Color.White;
+            this.labtextboxTop2.Location = new System.Drawing.Point(374, 15);
+            this.labtextboxTop2.Name = "labtextboxTop2";
+            this.labtextboxTop2.PreventEnterBeep = true;
+            this.labtextboxTop2.Size = new System.Drawing.Size(105, 16);
+            this.labtextboxTop2.TabIndex = 45;
+            // 
+            // labtxtDanJuType
+            // 
+            // 
+            // 
+            // 
+            this.labtxtDanJuType.Border.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.labtxtDanJuType.Border.BorderBottomColor = System.Drawing.Color.Black;
+            this.labtxtDanJuType.Border.BorderBottomWidth = 1;
+            this.labtxtDanJuType.Border.BorderGradientAngle = 0;
+            this.labtxtDanJuType.Border.Class = "SideNavStrip";
+            this.labtxtDanJuType.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labtxtDanJuType.DisabledBackColor = System.Drawing.Color.White;
+            this.labtxtDanJuType.Location = new System.Drawing.Point(91, 15);
+            this.labtxtDanJuType.Name = "labtxtDanJuType";
+            this.labtxtDanJuType.PreventEnterBeep = true;
+            this.labtxtDanJuType.Size = new System.Drawing.Size(105, 16);
+            this.labtxtDanJuType.TabIndex = 44;
+            // 
             // labtextboxTop6
             // 
             // 
@@ -551,42 +587,6 @@
             this.labtextboxTop4.PreventEnterBeep = true;
             this.labtextboxTop4.Size = new System.Drawing.Size(105, 16);
             this.labtextboxTop4.TabIndex = 46;
-            // 
-            // labtextboxTop2
-            // 
-            // 
-            // 
-            // 
-            this.labtextboxTop2.Border.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labtextboxTop2.Border.BorderBottomColor = System.Drawing.Color.Black;
-            this.labtextboxTop2.Border.BorderBottomWidth = 1;
-            this.labtextboxTop2.Border.BorderGradientAngle = 0;
-            this.labtextboxTop2.Border.Class = "SideNavStrip";
-            this.labtextboxTop2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labtextboxTop2.DisabledBackColor = System.Drawing.Color.White;
-            this.labtextboxTop2.Location = new System.Drawing.Point(374, 15);
-            this.labtextboxTop2.Name = "labtextboxTop2";
-            this.labtextboxTop2.PreventEnterBeep = true;
-            this.labtextboxTop2.Size = new System.Drawing.Size(105, 16);
-            this.labtextboxTop2.TabIndex = 45;
-            // 
-            // labtxtDanJuType
-            // 
-            // 
-            // 
-            // 
-            this.labtxtDanJuType.Border.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labtxtDanJuType.Border.BorderBottomColor = System.Drawing.Color.Black;
-            this.labtxtDanJuType.Border.BorderBottomWidth = 1;
-            this.labtxtDanJuType.Border.BorderGradientAngle = 0;
-            this.labtxtDanJuType.Border.Class = "SideNavStrip";
-            this.labtxtDanJuType.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labtxtDanJuType.DisabledBackColor = System.Drawing.Color.White;
-            this.labtxtDanJuType.Location = new System.Drawing.Point(91, 15);
-            this.labtxtDanJuType.Name = "labtxtDanJuType";
-            this.labtxtDanJuType.PreventEnterBeep = true;
-            this.labtxtDanJuType.Size = new System.Drawing.Size(105, 16);
-            this.labtxtDanJuType.TabIndex = 44;
             // 
             // pictureBox4
             // 

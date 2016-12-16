@@ -64,6 +64,8 @@
             this.WeuFuMoney = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.pictureBoxShengHe = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblcheckState = new System.Windows.Forms.Label();
+            this.lblcode = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -472,8 +474,13 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.lblcode);
+            this.panel3.Controls.Add(this.lblcheckState);
             this.panel3.Location = new System.Drawing.Point(0, 241);
             this.panel3.Size = new System.Drawing.Size(1202, 359);
+            this.panel3.Controls.SetChildIndex(this.superGridControlShangPing, 0);
+            this.panel3.Controls.SetChildIndex(this.lblcheckState, 0);
+            this.panel3.Controls.SetChildIndex(this.lblcode, 0);
             // 
             // superGridControlShangPing
             // 
@@ -812,13 +819,31 @@
             // 
             this.pictureBoxShengHe.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxShengHe.Image = global::WSCATProject.Properties.Resources.审核;
-            this.pictureBoxShengHe.Location = new System.Drawing.Point(685, 5);
+            this.pictureBoxShengHe.Location = new System.Drawing.Point(685, 0);
             this.pictureBoxShengHe.Name = "pictureBoxShengHe";
-            this.pictureBoxShengHe.Size = new System.Drawing.Size(64, 56);
+            this.pictureBoxShengHe.Size = new System.Drawing.Size(64, 61);
             this.pictureBoxShengHe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxShengHe.TabIndex = 46;
             this.pictureBoxShengHe.TabStop = false;
             this.pictureBoxShengHe.Visible = false;
+            // 
+            // lblcheckState
+            // 
+            this.lblcheckState.AutoSize = true;
+            this.lblcheckState.Location = new System.Drawing.Point(434, 48);
+            this.lblcheckState.Name = "lblcheckState";
+            this.lblcheckState.Size = new System.Drawing.Size(0, 12);
+            this.lblcheckState.TabIndex = 2;
+            this.lblcheckState.Visible = false;
+            // 
+            // lblcode
+            // 
+            this.lblcode.AutoSize = true;
+            this.lblcode.Location = new System.Drawing.Point(433, 111);
+            this.lblcode.Name = "lblcode";
+            this.lblcode.Size = new System.Drawing.Size(0, 12);
+            this.lblcode.TabIndex = 3;
+            this.lblcode.Visible = false;
             // 
             // SalesReceivablesForm
             // 
@@ -847,6 +872,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtitle)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.resizablePanel1.ResumeLayout(false);
             this.resizablePanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMax)).EndInit();
@@ -887,5 +913,7 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn WeuFuMoney;
         private System.Windows.Forms.PictureBox pictureBoxShengHe;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblcode;
+        private System.Windows.Forms.Label lblcheckState;
     }
 }

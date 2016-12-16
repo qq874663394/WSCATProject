@@ -222,7 +222,7 @@ namespace BaseLayer.Finance
                     @amountUnpaid,
                     @nowMoney,
                     @unCollection,@remark)");
-strInsert.Append(";select @@IDENTITY");
+                strInsert.Append(";select @@IDENTITY");
 
                 sqlMain.Append("update [T_FinanceCollectionDetail] set ");
                 sqlMain.Append("mainCode=@mainCode,");
@@ -265,7 +265,7 @@ strInsert.Append(";select @@IDENTITY");
                     spsDetail[11].Value = item.remark;
                     list.Add(spsDetail);
                 }
-                result = DbHelperSQL.ExecuteSqlTranScalar(hashTable, sqlDetail.ToString(),strInsert.ToString(), list);
+                result = DbHelperSQL.ExecuteSqlTranScalar(hashTable, sqlDetail.ToString(), strInsert.ToString(), list);
             }
             catch (Exception ex)
             {
@@ -308,6 +308,109 @@ strInsert.Append(";select @@IDENTITY");
                 throw ex;
             }
             return ds.Tables[0];
+        }
+
+        /// <summary>
+        /// 默认的上一单
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetFLastData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select fc.* ,fcd.*
+ from T_FinanceCollection fc,T_FinanceCollectionDetail fcd
+where fc.code=fcd.mainCode and 
+fc.code= (select top 1 code from T_FinanceCollection where id =
+(select id from T_FinanceCollection where code = '{0}') order by id desc)", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 获取上一单数据
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetLastData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select fc.* ,fcd.*
+ from T_FinanceCollection fc,T_FinanceCollectionDetail fcd
+where fc.code=fcd.mainCode and 
+fc.code= (select top 1 code from T_FinanceCollection where id <
+(select id from T_FinanceCollection where code = '{0}') order by id desc)", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 下一单数据
+        /// </summary>
+        /// <param name="code">code</param>
+        /// <returns></returns>
+        public DataTable GetNextData(string code)
+        {
+            string sql = "";
+            DataTable dt = null;
+            try
+            {
+                sql = string.Format(@"select fc.* ,fcd.*
+ from T_FinanceCollection fc,T_FinanceCollectionDetail fcd
+where fc.code=fcd.mainCode and 
+fc.code= (select top 1 code from T_FinanceCollection where id >
+(select id from T_FinanceCollection where code = '{0}'))", code);
+                dt = DbHelperSQL.Query(sql).Tables[0];
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        /// <summary>
+        /// 获取最新的code
+        /// </summary>
+        /// <returns></returns>
+        public string GetNewCode()
+        {
+            string sql = "";
+            object result = null;
+            try
+            {
+                sql = "select top 1 code from  T_FinanceCollection order by id desc";
+                result = DbHelperSQL.GetSingle(sql);
+                if (result == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

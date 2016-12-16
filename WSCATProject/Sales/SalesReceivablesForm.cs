@@ -31,6 +31,7 @@ namespace WSCATProject.Sales
         BankAccountInterface bank = new BankAccountInterface();//结算账户
         EmpolyeeInterface employee = new EmpolyeeInterface();//员工
         FinanceCollectionInterface financeCollectionInterface = new FinanceCollectionInterface();
+        string code;
         #endregion
 
         #region 数据字段
@@ -351,9 +352,8 @@ namespace WSCATProject.Sales
                 MessageBox.Show("错误代码：1508-尝试点击收款员，数据显示失败或者无数据！请检查：" + ex.Message, "收款单温馨提示！");
             }
         }
-
         /// <summary>
-        /// 标记那个控件不可用
+        /// 标示那个控件不可用
         /// </summary>
         private void InitForm()
         {
@@ -363,15 +363,12 @@ namespace WSCATProject.Sales
                 {
                     case "Label":
                         c.Enabled = false;
-                        c.ForeColor = Color.Gray;
                         break;
                     case "TextBoxX":
                         c.Enabled = false;
-                        c.BackColor = Color.White;
                         break;
                     case "ComboBoxEx":
                         c.Enabled = false;
-                        c.BackColor = Color.White;
                         break;
                     case "PictureBox":
                         c.Enabled = false;
@@ -384,11 +381,9 @@ namespace WSCATProject.Sales
                 {
                     case "Label":
                         c.Enabled = false;
-                        c.ForeColor = Color.Gray;
                         break;
                     case "TextBoxX":
                         c.Enabled = false;
-                        c.BackColor = Color.White;
                         break;
                     case "PictureBox":
                         c.Enabled = false;
@@ -397,6 +392,51 @@ namespace WSCATProject.Sales
             }
             superGridControlShangPing.PrimaryGrid.ReadOnly = true;
             pictureBoxShengHe.Visible = true;
+            toolStripBtnSave.Enabled = false;
+        }
+
+        /// <summary>
+        /// 标示那个控件可用
+        /// </summary>
+        private void EnabledForm()
+        {
+            foreach (Control c in panel2.Controls)
+            {
+                switch (c.GetType().Name)
+                {
+                    case "Label":
+                        c.Enabled = true;
+                        break;
+                    case "TextBoxX":
+                        c.Enabled = true;
+                        break;
+                    case "ComboBoxEx":
+                        c.Enabled = true;
+                        break;
+                    case "PictureBox":
+                        c.Enabled = true;
+                        break;
+                }
+            }
+            foreach (Control c in panel5.Controls)
+            {
+                switch (c.GetType().Name)
+                {
+                    case "Label":
+                        c.Enabled = true;
+                        break;
+                    case "TextBoxX":
+                        c.Enabled = true;
+                        break;
+                    case "PictureBox":
+                        c.Enabled = true;
+                        break;
+                }
+            }
+            superGridControlShangPing.PrimaryGrid.ReadOnly = false;
+            pictureBoxShengHe.Visible = false;
+            this.toolStripBtnShengHe.Enabled = true;
+            toolStripBtnSave.Enabled = true;
         }
 
         #endregion
@@ -448,6 +488,9 @@ namespace WSCATProject.Sales
                 toolStripBtnShengHe.Click += toolStripBtnShengHe_Click;//审核按钮 
                 toolStripButtonXuanYuanDan.Click += ToolStripButtonXuanYuanDan_Click;//选源单的点击事件
                 dataGridViewFuJia.KeyDown += DataGridViewFuJia_KeyDown;
+                toolStripBtnHouDan.Click += ToolStripBtnHouDan_Click;
+                toolStripBtnQianDan.Click += ToolStripBtnQianDan_Click;
+                toolStripBtnHouDan.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -456,6 +499,162 @@ namespace WSCATProject.Sales
                 return;
             }
 
+        }
+
+        /// <summary>
+        /// supergrid数据填充
+        /// </summary>
+        /// <param name="dt"></param>
+        public void InitSupergridView(DataTable dt)
+        {
+            //清空行
+            superGridControlShangPing.PrimaryGrid.Rows.Clear();
+            //新增统计行
+            InitDataGridView();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i > 0)
+                {
+                    //新增行
+                    superGridControlShangPing.PrimaryGrid.NewRow(superGridControlShangPing.PrimaryGrid.Rows.Count);
+                }
+                GridRow gr = (GridRow)superGridControlShangPing.PrimaryGrid.Rows[i];   //获取
+                gr["yuandanCode"].Value = XYEEncoding.strHexDecode(dt.Rows[0]["saleCode"].ToString());  //源单编号
+                gr["danjuDate"].Value = dt.Rows[0]["salesDate"].ToString();  //源单日期
+                gr["yuandanType"].Value = XYEEncoding.strHexDecode(dt.Rows[0]["salesType"].ToString());   //源单类型
+                gr["danjuMoney"].Value = dt.Rows[0]["amountReceivable"].ToString();  //单据金额
+                gr["YiHeXiaoMoney"].Value = dt.Rows[0]["amountReceived"].ToString();   //已核销金额
+                gr["WeiHeXiaoMoney"].Value = dt.Rows[0]["amountUnpaid"].ToString();   //未核销金额
+                gr["BenCiHeXiao"].Value = dt.Rows[i]["nowMoney"].ToString();   //本次核销
+                gr["WeuFuMoney"].Value = dt.Rows[i]["unCollection"].ToString();   //剩余尾款
+                gr["remark"].Value = dt.Rows[i]["remark"].ToString();   //备注
+            }
+            TongJi();
+            superGridControlShangPing.PrimaryGrid.NewRow(superGridControlShangPing.PrimaryGrid.Rows.Count);
+        }
+
+        /// <summary>
+        /// 前单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripBtnQianDan_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                //判断是否code是否存在
+                if (string.IsNullOrWhiteSpace(this.lblcode.Text))
+                {
+                    code = financeCollectionInterface.GetNewCode();
+                    dt = financeCollectionInterface.GetFLastData(code);
+                }
+                else
+                {
+                    code = this.lblcode.Text;
+                    dt = financeCollectionInterface.GetLastData(code);
+                    toolStripBtnHouDan.Enabled = true;
+                }
+                this.cboDanJuType.SelectedText = XYEEncoding.strHexDecode(dt.Rows[0]["type"].ToString());
+                this.txtClient.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["name"].ToString());
+                //this.txtBenCiHeXiao.Text = 
+                _clientCode = XYEEncoding.strHexDecode(dt.Rows[0]["clientCode"].ToString());
+                BankAccountInterface bankAccountInterface = new BankAccountInterface();
+                this.txtBank.Text = XYEEncoding.strHexDecode(dt.Rows[0]["accountName"].ToString());
+                //this.txtBankcode.text = XYEEncoding.strHexDecode(dt.Rows[0]["accountCode"]);
+                this.cboDanJuType.SelectedText = XYEEncoding.strHexDecode(dt.Rows[0]["settlementMethod"].ToString());
+                this.txtDiscount.Text = dt.Rows[0]["discount"].ToString();
+                this.txtRemark.Text = XYEEncoding.strHexDecode(dt.Rows[0]["remark"].ToString());
+
+                this.ltxtbSalsMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["salesMan"].ToString());
+                this.ltxtbMakeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["operationMan"].ToString());
+                this.ltxtbShengHeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["checkMan"].ToString());
+                this.lblcode.Text = dt.Rows[0]["code"].ToString();
+                this.lblcheckState.Text = dt.Rows[0]["checkState"].ToString(); //审核
+                //判断审核
+                //if (this.lblcheckState.Text == "1")
+                //{
+                //    picShengHe.Parent = pictureBoxtitle;
+                //    InitForm();  //标记控件不可用
+                //    toolStripBtnShengHe.Enabled = false;
+                //}
+                //else
+                //{
+                //    EnabledForm(); //标记控件可用
+                //    toolStripBtnShengHe.Enabled = true;
+                //}
+                resizablePanel1.Visible = false;
+                InitSupergridView(dt);
+                //判断是否到上限
+                string lcode = dt.Rows[0]["code"].ToString();
+                dt = financeCollectionInterface.GetLastData(lcode);
+                if (dt.Rows.Count == 0)
+                {
+                    toolStripBtnQianDan.Enabled = false; //上一单没有数据
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("错误代码：2106-尝试点击前单数据错误" + ex.Message, "财务凭证条目单温馨提示");
+            }
+        }
+
+        /// <summary>
+        /// 后单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripBtnHouDan_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                code = this.lblcode.Text;
+                dt = financeCollectionInterface.GetNextData(code);
+                toolStripBtnHouDan.Enabled = true;
+                this.cboDanJuType.SelectedText = XYEEncoding.strHexDecode(dt.Rows[0]["type"].ToString());
+                this.txtClient.Text = XYEEncoding.strHexDecode(client.GetList(3, dt.Rows[0]["clientCode"].ToString()).Rows[0]["name"].ToString());
+                //this.txtBenCiHeXiao.Text = 
+                _clientCode = XYEEncoding.strHexDecode(dt.Rows[0]["clientCode"].ToString());
+                BankAccountInterface bankAccountInterface = new BankAccountInterface();
+                this.txtBank.Text = XYEEncoding.strHexDecode(dt.Rows[0]["accountName"].ToString());
+                //this.txtBankcode.text = XYEEncoding.strHexDecode(dt.Rows[0]["accountCode"]);
+                this.cboDanJuType.SelectedText = XYEEncoding.strHexDecode(dt.Rows[0]["settlementMethod"].ToString());
+                this.txtDiscount.Text = dt.Rows[0]["discount"].ToString();
+                this.txtRemark.Text = XYEEncoding.strHexDecode(dt.Rows[0]["remark"].ToString());
+
+                this.ltxtbSalsMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["salesMan"].ToString());
+                this.ltxtbMakeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["operationMan"].ToString());
+                this.ltxtbShengHeMan.Text = XYEEncoding.strHexDecode(dt.Rows[0]["checkMan"].ToString());
+                this.lblcode.Text = dt.Rows[0]["code"].ToString();
+                this.lblcheckState.Text = dt.Rows[0]["checkState"].ToString(); //审核
+                //判断审核
+                //if (this.lblcheckState.Text == "1")
+                //{
+                //    picShengHe.Parent = pictureBoxtitle;
+                //    InitForm();  //标记控件不可用
+                //    toolStripBtnShengHe.Enabled = false;
+                //}
+                //else
+                //{
+                //    EnabledForm(); //标记控件可用
+                //    toolStripBtnShengHe.Enabled = true;
+                //}
+                resizablePanel1.Visible = false;
+                InitSupergridView(dt);
+                //判断是否到上限
+                string lcode = dt.Rows[0]["code"].ToString();
+                dt = financeCollectionInterface.GetNextData(lcode);
+                toolStripBtnQianDan.Enabled = true;
+                if (dt.Rows.Count == 0)
+                {
+                    toolStripBtnHouDan.Enabled = false; //下一单没有数据
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("错误代码：2106-尝试点击前单数据错误" + ex.Message, "财务凭证条目单温馨提示");
+            }
         }
 
         private void DataGridViewFuJia_KeyDown(object sender, KeyEventArgs e)

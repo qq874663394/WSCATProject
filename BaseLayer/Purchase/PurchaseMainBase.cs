@@ -353,16 +353,18 @@ namespace BaseLayer
                 sqlDetail.Append("productionDate=@productionDate,");
                 sqlDetail.Append("qualityDate=@qualityDate,");
                 sqlDetail.Append("effectiveDate=@effectiveDate,");
-                sqlDetail.Append("VATRate=@VATRate");
-                sqlDetail.Append(" where code=@code and purchaseCode=@purchaseCode");
-                sqlMain.Append(";select @@IDENTITY");
+                sqlDetail.Append("VATRate=@VATRate,");
+                sqlDetail.Append("tax=@tax,");
+                sqlDetail.Append("taxTotal=@taxTotal,");
+                sqlDetail.Append("discountMoney=@discountMoney,");
+                sqlDetail.Append("discountRate=@discountRate");
+                sqlDetail.Append(" where code=@code");
 
                 StringBuilder sqlInsert = new StringBuilder();
-                sqlMain.Append("insert into [T_PurchaseMain] (");
-                sqlMain.Append("isClear,code,type,data,supplierCode,supplierName,purchaseOrderState,checkState,purchaseManCode,salesMan,operationMan,checkMan,isPay,payMethod,putStorageState,deliveryDate,logistics,logisticsCode,logisticsPhone,oddMoney,accountCode,inMoney,lastMoney,updateDate,urgentState,remark,reserved1,reserved2,examineDate,payDate,offersSubject,invoicedAmount,unbilledAmount,purchaseAmount)");
-                sqlMain.Append(" values (");
-                sqlMain.Append("@isClear,@code,@type,@data,@supplierCode,@supplierName,@purchaseOrderState,@checkState,@purchaseManCode,@salesMan,@operationMan,@checkMan,@isPay,@payMethod,@putStorageState,@deliveryDate,@logistics,@logisticsCode,@logisticsPhone,@oddMoney,@accountCode,@inMoney,@lastMoney,@updateDate,@urgentState,@remark,@reserved1,@reserved2,@examineDate,@payDate,@offersSubject,@invoicedAmount,@unbilledAmount,@purchaseAmount)");
-                sqlMain.Append(";select @@IDENTITY");
+                sqlInsert.Append("insert into T_PurchaseDetail(");
+                sqlInsert.Append("isClear,materialDaima,zhujima,barCode,code,purchaseCode,storageCode,storageName,materialCode,materialName,materialModel,unit,number,discountBeforePrice,discount,discountAfterPrice,money,remark,updateDate,reserved1,reserved2,productionDate,qualityDate,effectiveDate,VATRate,tax,taxTotal,discountMoney,discountRate)");
+                sqlInsert.Append(" values (");
+                sqlInsert.Append("@isClear,@materialDaima,@zhujima,@barCode,@code,@purchaseCode,@storageCode,@storageName,@materialCode,@materialName,@materialModel,@unit,@number,@discountBeforePrice,@discount,@discountAfterPrice,@money,@remark,@updateDate,@reserved1,@reserved2,@productionDate,@qualityDate,@effectiveDate,@VATRate,@tax,@taxTotal,@discountMoney,@discountRate)");
 
                 foreach (var item in modelDetail)
                 {
@@ -393,7 +395,10 @@ namespace BaseLayer
                     new SqlParameter("@qualityDate", SqlDbType.Decimal,9),
                     new SqlParameter("@effectiveDate", SqlDbType.DateTime),
                     new SqlParameter("@VATRate", SqlDbType.NChar,10),
-                    new SqlParameter("@id", SqlDbType.Int,4)
+                    new SqlParameter("@tax", SqlDbType.Decimal,9),
+                    new SqlParameter("@taxTotal", SqlDbType.Decimal,9),
+                    new SqlParameter("@discountMoney", SqlDbType.Decimal,9),
+                    new SqlParameter("@discountRate", SqlDbType.Decimal,9)
                     };
                     spsDetail[0].Value = item.isClear;
                     spsDetail[1].Value = item.materialDaima;
@@ -420,6 +425,10 @@ namespace BaseLayer
                     spsDetail[22].Value = item.qualityDate;
                     spsDetail[23].Value = item.effectiveDate;
                     spsDetail[24].Value = item.VATRate;
+                    spsDetail[25].Value = item.tax;
+                    spsDetail[26].Value = item.taxTotal;
+                    spsDetail[27].Value = item.discountMoney;
+                    spsDetail[28].Value = item.discountRate;
                     list.Add(spsDetail);
                 }
                 result = DbHelperSQL.ExecuteSqlTranScalar(hashTable, sqlDetail.ToString(), sqlInsert.ToString(), list);
@@ -509,7 +518,7 @@ pm.code= (select top 1 code from T_PurchaseMain where id =
                 sql = string.Format(@"select pm.* ,pd.*
  from T_PurchaseMain pm,T_PurchaseDetail pd
 where pm.code=pd.purchaseCode and 
-pm.code= (select top 1 code from T_PurchaseMain where id >
+pm.code= (select top 1 code from T_PurchaseMain where id <
 (select id from T_PurchaseMain where code = '{0}') order by id desc)", code);
                 dt = DbHelperSQL.Query(sql).Tables[0];
                 return dt;
@@ -534,8 +543,8 @@ pm.code= (select top 1 code from T_PurchaseMain where id >
                 sql = string.Format(@"select pm.* ,pd.*
  from T_PurchaseMain pm,T_PurchaseDetail pd
 where pm.code=pd.purchaseCode and 
-pm.code= (select top 1 code from T_PurchaseMain where id <
-(select id from T_PurchaseMain where code = '{0}') order by id desc)", code);
+pm.code= (select top 1 code from T_PurchaseMain where id >
+(select id from T_PurchaseMain where code = '{0}'))", code);
                 dt = DbHelperSQL.Query(sql).Tables[0];
                 return dt;
             }

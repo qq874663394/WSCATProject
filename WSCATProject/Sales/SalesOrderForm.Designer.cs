@@ -66,6 +66,9 @@
             this.FaHuoNumber = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.picShengHe = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblcheckState = new System.Windows.Forms.Label();
+            this.lblcode = new System.Windows.Forms.Label();
+            this.gridColumn1 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -474,6 +477,14 @@
             // 
             this.pictureBoxtitle.Click += new System.EventHandler(this.panel2_Click);
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.lblcode);
+            this.panel3.Controls.Add(this.lblcheckState);
+            this.panel3.Controls.SetChildIndex(this.superGridControlShangPing, 0);
+            this.panel3.Controls.SetChildIndex(this.lblcheckState, 0);
+            this.panel3.Controls.SetChildIndex(this.lblcode, 0);
+            // 
             // superGridControlShangPing
             // 
             this.superGridControlShangPing.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
@@ -497,6 +508,7 @@
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumnid);
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.materialCode);
             this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.FaHuoNumber);
+            this.superGridControlShangPing.PrimaryGrid.Columns.Add(this.gridColumn1);
             this.superGridControlShangPing.PrimaryGrid.FrozenColumnCount = 2;
             this.superGridControlShangPing.PrimaryGrid.RowHeaderIndexOffset = 1;
             this.superGridControlShangPing.PrimaryGrid.ShowInsertRow = true;
@@ -756,13 +768,37 @@
             // picShengHe
             // 
             this.picShengHe.BackColor = System.Drawing.Color.Transparent;
-            this.picShengHe.Location = new System.Drawing.Point(696, 2);
+            this.picShengHe.Image = global::WSCATProject.Properties.Resources.审核;
+            this.picShengHe.Location = new System.Drawing.Point(696, 0);
             this.picShengHe.Name = "picShengHe";
-            this.picShengHe.Size = new System.Drawing.Size(77, 56);
+            this.picShengHe.Size = new System.Drawing.Size(77, 61);
             this.picShengHe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picShengHe.TabIndex = 46;
             this.picShengHe.TabStop = false;
             this.picShengHe.Visible = false;
+            // 
+            // lblcheckState
+            // 
+            this.lblcheckState.AutoSize = true;
+            this.lblcheckState.Location = new System.Drawing.Point(440, 77);
+            this.lblcheckState.Name = "lblcheckState";
+            this.lblcheckState.Size = new System.Drawing.Size(0, 12);
+            this.lblcheckState.TabIndex = 2;
+            this.lblcheckState.Visible = false;
+            // 
+            // lblcode
+            // 
+            this.lblcode.AutoSize = true;
+            this.lblcode.Location = new System.Drawing.Point(393, 76);
+            this.lblcode.Name = "lblcode";
+            this.lblcode.Size = new System.Drawing.Size(0, 12);
+            this.lblcode.TabIndex = 3;
+            this.lblcode.Visible = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Name = "gridColumncode";
+            this.gridColumn1.Visible = false;
             // 
             // SalesOrderForm
             // 
@@ -791,6 +827,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxtitle)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.resizablePanel1.ResumeLayout(false);
             this.resizablePanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMax)).EndInit();
@@ -829,5 +866,8 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn FaHuoNumber;
         private System.Windows.Forms.PictureBox picShengHe;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblcode;
+        private System.Windows.Forms.Label lblcheckState;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn1;
     }
 }
